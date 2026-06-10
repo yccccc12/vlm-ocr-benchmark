@@ -1,5 +1,5 @@
 """
-Table Evaluation Script  (v2 — with full diagnostics)
+Table Evaluation Script
 ======================================================
 Evaluates VLM-predicted HTML tables against PubTabNet OTSL ground truth.
 
@@ -15,10 +15,30 @@ Metrics:
 
 import json
 import re
+import argparse
+import contextlib
+import io
+import sys
+import unicodedata
 from collections import Counter
+from pathlib import Path
+import os
 
-from apted import APTED, Config
 from bs4 import BeautifulSoup, NavigableString, Tag
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+try:
+    from apted import APTED, Config
+except ImportError:
+    APTED = None
+    Config = object
+
+try:
+    from otsl_to_html import convert_otsl_to_html
+except ImportError:
+    from .otsl_to_html import convert_otsl_to_html
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -34,6 +54,46 @@ def _banner(title: str, width: int = 64):
 
 def _sub(title: str):
     print(f"\n  ▸ {title}")
+
+
+LATEX_SYMBOLS = {
+    "times": "×",
+    "cdot": "·",
+    "pm": "±",
+    "leq": "≤",
+    "le": "≤",
+    "geq": "≥",
+    "ge": "≥",
+    "neq": "≠",
+    "ne": "≠",
+    "alpha": "α",
+    "beta": "β",
+    "gamma": "γ",
+    "delta": "δ",
+}
+
+
+def normalize_cell_text(text: str) -> str:
+    """
+    Normalize visually equivalent OCR text before comparing table cells.
+
+    Examples:
+      '$ \\times $', '\\( \\times \\)', and '×' all become '×'.
+    """
+    if not text:
+        return ""
+
+    text = unicodedata.normalize("NFKC", text)
+    text = text.replace("Ã—", "×")
+
+    text = re.sub(r"\\\((.*?)\\\)", r"\1", text)
+    text = re.sub(r"\\\[(.*?)\\\]", r"\1", text)
+    text = re.sub(r"\$(.*?)\$", r"\1", text)
+
+    for latex, symbol in LATEX_SYMBOLS.items():
+        text = re.sub(rf"\\{latex}\b", symbol, text)
+
+    return re.sub(r"\s+", " ", text).strip()
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -62,7 +122,7 @@ def reconstruct_gt_html(row: dict, struct_only: bool = False) -> str:
             if (not struct_only) and cell_idx < len(cells):
                 raw = "".join(cells[cell_idx]["tokens"])
                 # Strip inline HTML formatting tags (<b>, <i>, etc.)
-                text = re.sub(r"<[^>]+>", "", raw)
+                text = normalize_cell_text(re.sub(r"<[^>]+>", "", raw))
                 html_parts.append(text)
             cell_idx += 1
             html_parts.append("</td>")
@@ -70,6 +130,77 @@ def reconstruct_gt_html(row: dict, struct_only: bool = False) -> str:
             html_parts.append(token)
 
     return f"<table>{''.join(html_parts)}</table>"
+
+
+def _cell_tokens_to_text(cell: dict) -> str:
+    raw = "".join(cell.get("tokens", []))
+    return normalize_cell_text(re.sub(r"<[^>]+>", "", raw))
+
+
+def _otsl_token_to_tag(token: str) -> str:
+    token = token.strip()
+    if token.startswith("<") and token.endswith(">"):
+        return token
+    return f"<{token}>"
+
+
+def reconstruct_gt_html_from_otsl(row: dict) -> str:
+    """
+    Reconstruct ground-truth HTML by converting the row's OTSL tokens to HTML.
+
+    PubTabNet stores OTSL as structure tokens and stores cell text separately
+    in cells[0]. This function injects each cell's text into the OTSL stream
+    before calling convert_otsl_to_html(...).
+    """
+    if "otsl" not in row:
+        raise ValueError("Ground-truth row does not contain an 'otsl' field.")
+
+    cells = row.get("cells", [[]])[0]
+    cell_idx = 0
+    otsl_parts = []
+
+    for token in row["otsl"]:
+        tag = _otsl_token_to_tag(token)
+        otsl_parts.append(tag)
+
+        token_name = tag.strip("<>")
+        if token_name in {"fcel", "ecel"}:
+            if token_name == "fcel" and cell_idx < len(cells):
+                otsl_parts.append(_cell_tokens_to_text(cells[cell_idx]))
+            cell_idx += 1
+
+    return convert_otsl_to_html("".join(otsl_parts))
+
+
+def print_gt_html(
+    gt_path: str | Path,
+    source: str = "otsl",
+    pretty: bool = True,
+) -> str:
+    """
+    Print a ground-truth table as HTML in the console and return the HTML string.
+
+    source='otsl' converts row['otsl'] to HTML with cell text injected.
+    source='tokens' uses the existing PubTabNet row['html'] reconstruction.
+    """
+    with open(gt_path, encoding="utf-8") as f:
+        gt_data = json.load(f)
+        gt_row = gt_data.get("row", gt_data)
+
+    if source == "otsl":
+        gt_html = reconstruct_gt_html_from_otsl(gt_row)
+    elif source == "tokens":
+        gt_html = reconstruct_gt_html(gt_row, struct_only=False)
+    else:
+        raise ValueError("source must be either 'otsl' or 'tokens'.")
+
+    html_to_print = BeautifulSoup(gt_html, "html.parser").prettify() if pretty else gt_html
+
+    _banner(f"Ground Truth HTML ({source})")
+    print(f"  Source file: {gt_path}")
+    print()
+    print(html_to_print)
+    return gt_html
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -99,18 +230,19 @@ def extract_html_from_markdown(md_text: str) -> str:
 def normalize_html(html_str: str, struct_only: bool = False) -> str:
     """
     Canonical form for comparison:
-      • Keep only structural tags: table / thead / tbody / tfoot / tr / td / th
-      • Keep only colspan and rowspan attributes; drop everything else
-      • Remove colspan="1" / rowspan="1" (they are the default)
-      • Collapse whitespace inside cells
-      • If struct_only=True: wipe all cell text
+      - Keep only table layout tags: table / tr / td / th
+      - Unwrap section wrappers: thead / tbody / tfoot
+      - Keep only colspan and rowspan attributes; drop everything else
+      - Remove colspan="1" / rowspan="1" (they are the default)
+      - Collapse whitespace inside cells
+      - If struct_only=True: wipe all cell text
     """
     soup  = BeautifulSoup(html_str, "html.parser")
     table = soup.find("table")
     if table is None:
         raise ValueError("No <table> element found.")
 
-    KEEP_TAGS  = {"table", "thead", "tbody", "tfoot", "tr", "td", "th"}
+    KEEP_TAGS  = {"table", "tr", "td", "th"}
     KEEP_ATTRS = {"colspan", "rowspan"}
 
     def _clean(tag: Tag):
@@ -120,6 +252,7 @@ def normalize_html(html_str: str, struct_only: bool = False) -> str:
             if not isinstance(child, Tag):
                 continue
             if child.name not in KEEP_TAGS:
+                _clean(child)
                 child.unwrap()
             else:
                 _clean(child)
@@ -135,7 +268,7 @@ def normalize_html(html_str: str, struct_only: bool = False) -> str:
             return
 
         if (not struct_only) and tag.name in ("td", "th"):
-            text = tag.get_text(separator=" ", strip=True)
+            text = normalize_cell_text(tag.get_text(separator=" ", strip=True))
             tag.clear()
             if text:
                 tag.string = text
@@ -215,6 +348,9 @@ def compute_teds(
     """
     label = "TEDS-Struct" if struct_only else "TEDS"
 
+    if APTED is None:
+        raise ImportError("Missing dependency 'apted'. Install it to compute TEDS metrics.")
+
     try:
         pred_norm = normalize_html(pred_html, struct_only=struct_only)
         gt_norm   = normalize_html(gt_html,   struct_only=struct_only)
@@ -269,7 +405,7 @@ def extract_cells(html_str: str, include_empty: bool = False) -> list[str]:
     soup  = BeautifulSoup(html_str, "html.parser")
     cells = []
     for tag in soup.find_all(["td", "th"]):
-        text = tag.get_text(separator=" ", strip=True).lower()
+        text = normalize_cell_text(tag.get_text(separator=" ", strip=True)).lower()
         if text or include_empty:
             cells.append(text)
     return cells
@@ -297,7 +433,7 @@ def compute_cell_f1(
 
         Precision = TP / (TP + FP)
         Recall    = TP / (TP + FN)
-        F1        = 2 · Precision · Recall / (Precision + Recall)
+        F1        = 2 x Precision x Recall / (Precision + Recall)
 
     Note on empty cells
     -------------------
@@ -364,6 +500,9 @@ def evaluate(
     gt_path:  str,
     pred_path: str,
     verbose:  bool = True,
+    show_gt_html: bool = False,
+    gt_html_source: str = "otsl",
+    pretty_gt_html: bool = True,
 ) -> dict:
     """
     Run the full evaluation pipeline for one (GT, prediction) pair.
@@ -373,11 +512,15 @@ def evaluate(
     gt_path   : path to a PubTabNet row_*.json file
     pred_path : path to a VLM output markdown file (doc_*.md)
     verbose   : print step-by-step calculation details
+    show_gt_html : print the ground-truth table HTML to the console
+    gt_html_source : 'otsl' to convert row['otsl'], or 'tokens' for row['html']
+    pretty_gt_html : prettify printed GT HTML for easier reading
     """
 
     # ── Load ──────────────────────────────────────────────────────
     with open(gt_path, encoding="utf-8") as f:
-        gt_row = json.load(f)["row"]
+        gt_data = json.load(f)
+        gt_row = gt_data.get("row", gt_data)
 
     with open(pred_path, encoding="utf-8") as f:
         md_text = f.read()
@@ -386,6 +529,9 @@ def evaluate(
     _banner("Step 1 — Ground-Truth Reconstruction")
     gt_html_full   = reconstruct_gt_html(gt_row, struct_only=False)
     gt_html_struct = reconstruct_gt_html(gt_row, struct_only=True)
+
+    if show_gt_html:
+        print_gt_html(gt_path, source=gt_html_source, pretty=pretty_gt_html)
 
     # Count raw cells to show context
     n_gt_cells_all   = sum(1 for t in gt_row["html"] if t == "</td>")
@@ -453,7 +599,7 @@ def evaluate(
     }
 
 
-def main():
+def main_single():
     GT_PATH   = "PubTabNet_OTSL_train_20/row_16.json"
     PRED_PATH = "experiments/output/otsl_3/doc_0.md"
 
@@ -463,6 +609,231 @@ def main():
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2)
     print(f"\n  Results saved → {out_path}")
+
+def _empty_summary() -> dict:
+    return {
+        "count": 0,
+        "failed": 0,
+        "average_TEDS": 0.0,
+        "average_TEDS-Struct": 0.0,
+        "average_Cell-P": 0.0,
+        "average_Cell-R": 0.0,
+        "average_Cell-F1": 0.0,
+        "total_TP": 0,
+        "total_FP": 0,
+        "total_FN": 0,
+    }
+
+
+def _summarize(results: list[dict], failed: int = 0) -> dict:
+    summary = _empty_summary()
+    summary["count"] = len(results)
+    summary["failed"] = failed
+
+    if not results:
+        return summary
+
+    metrics = ["TEDS", "TEDS-Struct", "Cell-P", "Cell-R", "Cell-F1"]
+    for metric in metrics:
+        summary[f"average_{metric}"] = (
+            sum(item[metric] for item in results) / len(results)
+        )
+
+    summary["total_TP"] = sum(item["TP"] for item in results)
+    summary["total_FP"] = sum(item["FP"] for item in results)
+    summary["total_FN"] = sum(item["FN"] for item in results)
+    return summary
+
+
+def _evaluate_quiet(
+    gt_path: Path,
+    pred_path: Path,
+    verbose: bool,
+    show_gt_html: bool = False,
+    gt_html_source: str = "otsl",
+    pretty_gt_html: bool = True,
+) -> dict:
+    if verbose or show_gt_html:
+        return evaluate(
+            str(gt_path),
+            str(pred_path),
+            verbose=verbose,
+            show_gt_html=show_gt_html,
+            gt_html_source=gt_html_source,
+            pretty_gt_html=pretty_gt_html,
+        )
+
+    with contextlib.redirect_stdout(io.StringIO()):
+        return evaluate(str(gt_path), str(pred_path), verbose=False)
+
+
+MODELS = ["paddle_vl", "monkey_ocr", "mineru", "deepseekOCR2"]
+
+
+def _parse_models(models_arg: str, pred_root: Path) -> list[str]:
+    if models_arg.lower() == "all":
+        return sorted(p.name for p in pred_root.iterdir() if p.is_dir())
+
+    models = []
+    for raw_model in models_arg.split(","):
+        model = raw_model.strip()
+        if model and model not in models:
+            models.append(model)
+    return models
+
+
+def _resolve_prediction_path(model: str, table_dir: Path, table_id: str) -> Path:
+    candidates = {
+        "paddle_vl": [
+            table_dir / "doc_0.md",
+        ],
+        "mineru": [
+            table_dir / "ocr" / f"{table_id}.md",
+        ],
+        "deepseekOCR2": [
+            table_dir / "result.mmd",
+        ],
+        "monkey_ocr": [
+            table_dir / f"{table_id}.md",
+        ],
+    }.get(model, [table_dir / "doc_0.md"])
+
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate
+    return candidates[0]
+
+
+def evaluate_model(model: str, args: argparse.Namespace) -> dict | None:
+    gt_root = Path(args.gt_root)
+    pred_model_root = Path(args.pred_root) / model
+
+    if args.out and len(args.models_to_run) == 1:
+        out_path = Path(args.out)
+    else:
+        out_path = Path("evaluation_reports") / "table_by_level" / f"{model}_eval_report.json"
+
+    if not gt_root.is_dir():
+        raise FileNotFoundError(f"Ground-truth root not found: {gt_root}")
+    if not pred_model_root.is_dir():
+        print(f"\nSkipping {model}: prediction model folder not found: {pred_model_root}")
+        return None
+
+    report = {
+        "model": model,
+        "gt_root": str(gt_root),
+        "pred_root": str(pred_model_root),
+        "summary": _empty_summary(),
+        "levels": {},
+    }
+    all_results = []
+    total_failed = 0
+
+    for level_dir in sorted(p for p in pred_model_root.iterdir() if p.is_dir()):
+        level_name = level_dir.name
+        gt_level_dir = gt_root / level_name / "gt"
+        level_results = []
+        level_failures = []
+
+        print(f"\nEvaluating {model}/{level_name}...")
+
+        for table_dir in sorted(p for p in level_dir.iterdir() if p.is_dir()):
+            table_id = table_dir.name
+            gt_path = gt_level_dir / f"{table_id}.json"
+            pred_path = _resolve_prediction_path(model, table_dir, table_id)
+
+            if not gt_path.is_file() or not pred_path.is_file():
+                level_failures.append({
+                    "id": table_id,
+                    "gt_path": str(gt_path),
+                    "pred_path": str(pred_path),
+                    "error": "missing ground-truth or prediction file",
+                })
+                continue
+
+            try:
+                result = _evaluate_quiet(
+                    gt_path,
+                    pred_path,
+                    verbose=args.verbose,
+                    show_gt_html=args.print_gt_html,
+                    gt_html_source=args.gt_html_source,
+                    pretty_gt_html=not args.raw_gt_html,
+                )
+                result.update({
+                    "id": table_id,
+                    "level": level_name,
+                    "gt_path": str(gt_path),
+                    "pred_path": str(pred_path),
+                })
+                level_results.append(result)
+                print(f"  {table_id}: TEDS={result['TEDS']:.4f}, Cell-F1={result['Cell-F1']:.4f}")
+            except Exception as exc:
+                level_failures.append({
+                    "id": table_id,
+                    "gt_path": str(gt_path),
+                    "pred_path": str(pred_path),
+                    "error": str(exc),
+                })
+                print(f"  {table_id}: failed ({exc})")
+
+        level_summary = _summarize(level_results, failed=len(level_failures))
+        report["levels"][level_name] = {
+            "summary": level_summary,
+            "details": level_results,
+            "failures": level_failures,
+        }
+        all_results.extend(level_results)
+        total_failed += len(level_failures)
+
+        print(
+            f"  Summary: count={level_summary['count']}, "
+            f"failed={level_summary['failed']}, "
+            f"avg TEDS={level_summary['average_TEDS']:.4f}, "
+            f"avg Cell-F1={level_summary['average_Cell-F1']:.4f}"
+        )
+
+    report["summary"] = _summarize(all_results, failed=total_failed)
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=2, ensure_ascii=False)
+
+    print(f"\nOverall summary for {model}")
+    print(f"  Evaluated: {report['summary']['count']}")
+    print(f"  Failed:    {report['summary']['failed']}")
+    print(f"  Avg TEDS:  {report['summary']['average_TEDS']:.4f}")
+    print(f"  Avg Cell-F1: {report['summary']['average_Cell-F1']:.4f}")
+    print(f"\n  Results saved -> {out_path}")
+    return report
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Batch evaluate table OCR outputs by table difficulty level.",
+    )
+    parser.add_argument("--model", default=None, help="Single model folder name. Overrides --models.")
+    parser.add_argument("--models", default=",".join(MODELS), help="Comma-separated model names, or 'all'. Defaults to MODELS.")
+    parser.add_argument("--gt-root", default="data/raw/table_by_level", help="Ground-truth root containing level_X/gt folders.")
+    parser.add_argument("--pred-root", default="outputs/table_by_level", help="Prediction root containing MODEL/level_X folders.")
+    parser.add_argument("--out", default=None, help="Output report path. Only used when evaluating one model.")
+    parser.add_argument("--verbose", action="store_true", help="Print full diagnostics for every table.")
+    parser.add_argument("--print-gt-only", default=None, help="Print one ground-truth JSON table as HTML and exit.")
+    parser.add_argument("--print-gt-html", action="store_true", help="Print ground-truth HTML during evaluation.")
+    parser.add_argument("--gt-html-source", choices=["otsl", "tokens"], default="otsl", help="Source used when printing GT HTML.")
+    parser.add_argument("--raw-gt-html", action="store_true", help="Print GT HTML on one line instead of prettifying it.")
+    args = parser.parse_args()
+
+    if args.print_gt_only:
+        print_gt_html(args.print_gt_only, source=args.gt_html_source, pretty=not args.raw_gt_html)
+        return
+
+    pred_root = Path(args.pred_root)
+    models_arg = args.model if args.model else args.models
+    args.models_to_run = _parse_models(models_arg, pred_root)
+
+    for model in args.models_to_run:
+        evaluate_model(model, args)
 
 
 if __name__ == "__main__":
