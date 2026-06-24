@@ -10,11 +10,11 @@ gt_dir = os.path.join(save_dir, "gt")
 os.makedirs(images_dir, exist_ok=True)
 os.makedirs(gt_dir, exist_ok=True)
 
-# Parameters to fetch first 20 rows from the test split
+# Parameters to fetch first 100 rows from the test split
 dataset_name = "Teklia/CASIA-HWDB2-line"
 split = "test"
 offset = 0
-length = 20
+length = 100
 
 # URL and parameters
 url = "https://datasets-server.huggingface.co/rows"
