@@ -33,6 +33,11 @@ def normalize(text):
     # Remove markdown image tags, e.g. ![alt](path)
     text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)
 
+    # Strip LaTeX wrappers, e.g. $$\text{...}$$ or $...$
+    text = re.sub(r"\\text\{([^}]*)\}", r"\1", text)
+    text = re.sub(r"\$\$(.*?)\$\$", r"\1", text, flags=re.DOTALL)
+    text = re.sub(r"\$(.*?)\$", r"\1", text, flags=re.DOTALL)
+
     # Standardize punctuation
     text = text.replace("“", '"').replace("”", '"')
     text = text.replace("‘", "'").replace("’", "'")
