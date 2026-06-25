@@ -1,11 +1,21 @@
 import os
 import json
+import re
 import jiwer
 import unicodedata
 
 # --- CONFIGURATION ---
 DATASET_TYPE = "handwritten_zh"
-MODELS = ["paddle_vl", "monkey_ocr", "mineru", "deepseekOCR2", "tesseract"]
+MODELS = [
+    "deepseekOCR",
+    "deepseekOCR2",
+    "dots_mocr",
+    "mineru",
+    "monkey_ocr",
+    "paddle_vl_1.5",
+    "paddle_vl_1.6",
+    "tesseract",
+]
 
 GT_DIR = os.path.join("data", "raw", DATASET_TYPE, "gt")
 
@@ -20,6 +30,9 @@ def normalize(text):
     # Unicode normalization
     text = unicodedata.normalize("NFKC", text)
 
+    # Remove markdown image tags, e.g. ![alt](path)
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)
+
     # Standardize punctuation
     text = text.replace("“", '"').replace("”", '"')
     text = text.replace("‘", "'").replace("’", "'")
@@ -31,49 +44,73 @@ def normalize(text):
 
 
 # -----------------------------
+# EXTRACT PREDICTION HELPERS
+# -----------------------------
+def _read_file(path):
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read().strip()
+
+
+def _strip_html(text):
+    # Replace tags with spaces so adjacent table cells don't merge together.
+    return re.sub(r"<[^>]+>", " ", text)
+
+
+def _join_content_list(items):
+    parts = []
+    for item in items:
+        for key in ("text", "content", "table_body"):
+            val = item.get(key)
+            if val:
+                parts.append(val)
+                break
+    return "\n".join(parts)
+
+
+# -----------------------------
 # EXTRACT PREDICTION
 # -----------------------------
 def extract_pred_text(file_id, model_type, results_dir):
     try:
-        # -- PaddleOCR-VL --
-        if model_type == "paddle_vl":
-            pred_path = os.path.join(results_dir, file_id, "pruned_result_0.json")
+        sample_dir = os.path.join(results_dir, file_id)
 
-            with open(pred_path, "r", encoding="utf-8") as f:
-                pred_data = json.load(f)
-                res_list = pred_data.get("parsing_res_list", [])
-                return res_list[0].get("block_content", "") if res_list else ""
-
-        # -- MonkeyOCR --
-        elif model_type == "monkey_ocr":
-            pred_path = os.path.join(results_dir, file_id, f"{file_id}_text_result.md")
-
-            with open(pred_path, "r", encoding="utf-8") as f:
-                return f.read().strip()
-        
-        # -- MinerU --
-        elif model_type == "mineru":
-            pred_path = os.path.join(results_dir, file_id, "ocr", f"{file_id}_content_list.json")
-            with open(pred_path, "r", encoding="utf-8") as f:
-                pred_data = json.load(f)
-
-            if not pred_data:
-                return ""
-
-            item = pred_data[0]
-            return item.get("text", "") if item.get("type") == "text" else ""
-
-        # -- DeepSeek OCR --
-        elif model_type == "deepseekOCR2":
-            pred_path = os.path.join(results_dir, file_id, "result.mmd")
-            with open(pred_path, "r", encoding="utf-8") as f:
-                return f.read().strip()
+        # -- DeepSeek-OCR / DeepSeek-OCR2 --
+        if model_type in ("deepseekOCR", "deepseekOCR2"):
+            return _read_file(os.path.join(sample_dir, "result.mmd"))
 
         # -- Tesseract --
         elif model_type == "tesseract":
-            pred_path = os.path.join(results_dir, file_id, "result.txt")
+            return _read_file(os.path.join(sample_dir, "result.txt"))
+
+        # -- dots.ocr --
+        elif model_type == "dots_mocr":
+            return _read_file(os.path.join(sample_dir, f"{file_id}.md"))
+
+        # -- PaddleOCR-VL (1.5 / 1.6) --
+        elif model_type in ("paddle_vl_1.5", "paddle_vl_1.6"):
+            pred_path = os.path.join(sample_dir, f"{file_id}_res.json")
             with open(pred_path, "r", encoding="utf-8") as f:
-                return f.read().strip()
+                pred_data = json.load(f)
+            res_list = pred_data.get("parsing_res_list", [])
+            return "\n".join(b.get("block_content", "") for b in res_list)
+
+        # -- MinerU --
+        elif model_type == "mineru":
+            pred_path = os.path.join(
+                sample_dir, file_id, "vlm", f"{file_id}_content_list.json"
+            )
+            with open(pred_path, "r", encoding="utf-8") as f:
+                pred_data = json.load(f)
+            return _join_content_list(pred_data)
+
+        # -- MonkeyOCR --
+        elif model_type == "monkey_ocr":
+            pred_path = os.path.join(
+                sample_dir, file_id, f"{file_id}_content_list.json"
+            )
+            with open(pred_path, "r", encoding="utf-8") as f:
+                pred_data = json.load(f)
+            return _strip_html(_join_content_list(pred_data))
 
     except Exception as e:
         print(f"[WARNING] {model_type} missing file for {file_id}: {e}")
