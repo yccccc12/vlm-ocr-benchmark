@@ -4,3 +4,4 @@ venv/
 data/
 temp/
 outputs/
+__pycache__/
