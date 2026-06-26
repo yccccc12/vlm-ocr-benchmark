@@ -19,6 +19,7 @@ A benchmark for comparing modern OCR / Vision-Language Models (VLMs) on document
 
 | Key | Official Model Name | Description | Repository |
 |------|---------------------|-------------|------------|
+| `baidu_ocr` | Baidu Unlimited OCR | Baidu OCR service | [baidu/Unlimited-OCR](https://github.com/baidu/Unlimited-OCR) |
 | `deepseekOCR` | DeepSeek-OCR | First-generation DeepSeek OCR model | [deepseek-ai/DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR) |
 | `deepseekOCR2` | DeepSeek-OCR-2 | Second-generation DeepSeek OCR model | [deepseek-ai/DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2) |
 | `dots_mocr` | dots.mocr | 3B parameters VLM | [rednote-hilab/dots.mocr](https://github.com/rednote-hilab/dots.mocr) |
