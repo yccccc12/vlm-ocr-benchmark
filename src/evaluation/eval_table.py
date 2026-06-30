@@ -736,6 +736,7 @@ MODELS = [
     "deepseekOCR",
     "deepseekOCR2",
     "dots_mocr",
+    "glm_ocr",
     "mineru",
     "monkey_ocr",
     "paddle_vl_1.5",
@@ -885,6 +886,7 @@ def _resolve_prediction_path(model: str, table_dir: Path, table_id: str) -> Path
         "deepseekOCR": [table_dir / "result.mmd"],
         "deepseekOCR2": [table_dir / "result.mmd"],
         "dots_mocr": [table_dir / f"{table_id}.md"],
+        "glm_ocr": [table_dir / table_id / f"{table_id}.md"],
         "mineru": [table_dir / table_id / "vlm" / f"{table_id}.md"],
         "monkey_ocr": [
             table_dir / table_id / f"{table_id}.md",          

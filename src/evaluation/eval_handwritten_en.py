@@ -9,6 +9,7 @@ import unicodedata
 DATASET_TYPE = "handwritten_en"
 MODELS = [
     "baidu_ocr",
+    "glm_ocr",
     "deepseekOCR",
     "deepseekOCR2",
     "dots_mocr",
@@ -89,6 +90,10 @@ def extract_pred_text(file_id, model_type, results_dir):
         # -- Baidu Unlimited OCR --
         if model_type == "baidu_ocr":
             return _strip_html(_read_file(os.path.join(sample_dir, "result.md")))
+
+        # -- GLM-OCR --
+        elif model_type == "glm_ocr":
+            return _strip_html(_read_file(os.path.join(sample_dir, file_id, f"{file_id}.md")))
 
         # -- DeepSeek-OCR / DeepSeek-OCR2 --
         if model_type in ("deepseekOCR", "deepseekOCR2"):
