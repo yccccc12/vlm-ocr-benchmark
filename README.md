@@ -23,6 +23,7 @@ A benchmark for comparing modern OCR / Vision-Language Models (VLMs) on document
 | `deepseekOCR` | DeepSeek-OCR | First-generation DeepSeek OCR model | [deepseek-ai/DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR) |
 | `deepseekOCR2` | DeepSeek-OCR-2 | Second-generation DeepSeek OCR model | [deepseek-ai/DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2) |
 | `dots_mocr` | dots.mocr | 3B parameters VLM | [rednote-hilab/dots.mocr](https://github.com/rednote-hilab/dots.mocr) |
+| `glm_ocr` | GLM-OCR | Zhipu AI GLM-based OCR model | [zai-org/GLM-V](https://github.com/zai-org/GLM-V) |
 | `mineru` | MinerU2.5-Pro-2605-1.2B | MinerU 2.5 Pro model (1.2B parameters) | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) |
 | `monkey_ocr` | MonkeyOCR-pro-3B | MonkeyOCR Pro (3B parameters) | [Yuliang-Liu/MonkeyOCR](https://github.com/Yuliang-Liu/MonkeyOCR) |
 | `paddle_vl_1.5` | PaddleOCR-VL-1.5 | PaddleOCR-VL version 1.5 (0.9B paramters) | [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) |
