@@ -170,7 +170,7 @@ This repository was developed as a **Final Year Project (FYP)** for academic pur
 
 It builds on the following open-source models and datasets, whose authors and maintainers are gratefully acknowledged:
 
-- **Models** — [DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR) & [DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2), [dots.mocr](https://github.com/rednote-hilab/dots.mocr), [MinerU](https://github.com/opendatalab/MinerU), [MonkeyOCR](https://github.com/Yuliang-Liu/MonkeyOCR), [PaddleOCR-VL](https://github.com/PaddlePaddle/PaddleOCR), and [Tesseract OCR](https://github.com/tesseract-ocr/tesseract).
+- **Models** — [Baidu Unlimited OCR](https://github.com/baidu/Unlimited-OCR), [DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR) & [DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2), [dots.mocr](https://github.com/rednote-hilab/dots.mocr), [GLM-OCR](https://github.com/zai-org/GLM-V), [MinerU](https://github.com/opendatalab/MinerU), [MonkeyOCR](https://github.com/Yuliang-Liu/MonkeyOCR), [PaddleOCR-VL](https://github.com/PaddlePaddle/PaddleOCR), and [Tesseract OCR](https://github.com/tesseract-ocr/tesseract).
 - **Datasets** — [PubTabNet OTSL](https://huggingface.co/datasets/docling-project/PubTabNet_OTSL), [IAM-line](https://huggingface.co/datasets/Teklia/IAM-line), and [CASIA-HWDB2-line](https://huggingface.co/datasets/Teklia/CASIA-HWDB2-line).
 
 All models and datasets remain the property of their respective owners and are used here under their original licenses for non-commercial, educational research only.
