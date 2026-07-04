@@ -69,38 +69,67 @@ LATEX_SYMBOLS = {
     "ge": "≥",
     "neq": "≠",
     "ne": "≠",
+    "gt": ">",
+    "lt": "<",
+    "mu": "\u03bc",
     "alpha": "α",
     "beta": "β",
     "gamma": "γ",
     "delta": "δ",
 }
 
+# --- Character-variant folds (NFKC alone leaves these distinct) ------------
 
-def normalize_cell_text(text: str) -> str:
-    """Normalize cell text so visually equal values compare equal.
+# Dash / hyphen variants -> '-' (en dash, em dash, minus sign, ...). 
+_DASH_RE = re.compile("[\u2010\u2011\u2012\u2013\u2014\u2015\u2212]")
 
-    e.g. '$ \\times $', '\\( \\times \\)' and '×' all collapse to '×'
+# Asterisk variants -> '*' (asterisk operator ∗, low/heavy asterisks).
+_ASTERISK_RE = re.compile("[\u2217\u204e\u2731\u066d\u273b\u273c\u273d]")
 
-    The same normalisation is applied to BOTH ground-truth and prediction cells, 
-    The goal is consistency rather than perfect fidelity: 
-    - as long as a LaTeX form and its plain-text equivalent collapse to the same string on both sides, they will match
+# Typographic (curly) quotes -> ASCII ' or ".
+_QUOTE_TABLE = str.maketrans({
+    "\u2018": "'", "\u2019": "'", "\u201a": "'", "\u201b": "'", "\u2032": "'", "\u02bc": "'",
+    "\u201c": '"', "\u201d": '"', "\u201e": '"', "\u201f": '"', "\u2033": '"',
+})
 
-    Note on '$': PubTabNet ground truth uses '$' as a literal currency symbol (e.g. 'US$750'), 
-    so we only unwrap '$...$' when it forms a delimited pair. Alone '$' is left untouched to avoid corrupting currency values
-    """
+# Literal '\uXXXX' escape leaked into the text as plain characters.
+_UNICODE_ESCAPE_RE = re.compile(r"\\u([0-9a-fA-F]{4})")
 
-    if not text: 
-        return ""
-    
+# --- Cosmetic whitespace (spacing that carries no content meaning) ---------
+
+# Whitespace around these operators / unit symbols is cosmetic -> μ for unit prefixes like 'μl'
+_OPERATOR_SPACING_RE = re.compile(r"\s*([±×·≤≥≠<>=\u03bc])\s*")
+
+
+def _decode_unicode_escapes(text: str) -> str:
+    """Decode literal '\\uXXXX' escape sequences into their actual characters."""
+    return _UNICODE_ESCAPE_RE.sub(lambda m: chr(int(m.group(1), 16)), text)
+
+
+def _fold_character_variants(text: str) -> str:
+    """Fold unicode look-alikes to a canonical ASCII / standard form."""
+    text = _decode_unicode_escapes(text)
     text = unicodedata.normalize("NFKC", text)
-    text = text.replace("Ã—", "×")
+    text = text.replace("Ã—", "×")              # common mojibake for '×'
+    text = text.translate(_QUOTE_TABLE)
+    text = _DASH_RE.sub("-", text)
+    text = _ASTERISK_RE.sub("*", text)
+    return text
 
-    # Strip math delimiters, keeping the inner expression
+
+def _strip_latex(text: str) -> str:
+    """Reduce LaTeX / math markup to its plain-text equivalent.
+
+    Note on '$': PubTabNet uses '$' as a literal currency symbol (e.g. 'US$750'),
+    so we only unwrap '$...$' when it forms a delimited pair; a lone '$' is left
+    untouched to avoid corrupting currency values.
+    """
+    # Math delimiters: keep the inner expression
     text = re.sub(r"\\\((.*?)\\\)", r"\1", text)
     text = re.sub(r"\\\[(.*?)\\\]", r"\1", text)
     text = re.sub(r"\$(.+?)\$", r"\1", text)
 
-    # Unwrap text/font macros: \mathrm{kg} -> kg, \text{n} -> n, etc
+    # Text / font macros: \mathrm{kg} -> kg, \text{n} -> n, etc.
     text = re.sub(
         r"\\(?:mathrm|mathbf|mathit|mathsf|mathcal|text|textbf|textit|operatorname)\s*\{([^{}]*)\}",
         r"\1",
@@ -110,19 +139,51 @@ def normalize_cell_text(text: str) -> str:
     # \frac{a}{b} -> a/b
     text = re.sub(r"\\frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}", r"\1/\2", text)
 
-    # Superscripts / subscripts: drop the marker, keep the content
+    # Super / subscripts: drop the marker, keep the content
     # kg/m^{2} -> kg/m2 ,  H_{2}O -> H2O ,  x^2 -> x2
     text = re.sub(r"[\^_]\{([^{}]*)\}", r"\1", text)
     text = re.sub(r"[\^_]([A-Za-z0-9])", r"\1", text)
 
-    # Known LaTeX symbol commands (must run before generic escape removal)
+    # Leftover empty groups, e.g. the '{}' base in footnote-style '{}^{1}'.
+    text = re.sub(r"\{\s*\}", "", text)
+
+    # LaTeX symbol commands: \times -> ×, \gt -> >, ... (before escape removal)
     for latex, symbol in LATEX_SYMBOLS.items():
         text = re.sub(rf"\\{latex}\b", symbol, text)
 
-    # Remaining backslash escapes: \% -> %, \& -> &, \_ -> _, \$ -> $, etc
-    text = re.sub(r"\\([%&#_${}~])", r"\1", text)
+    return text
 
-    # Markdown emphasis escapes: \* -> *
+
+def _strip_cosmetic_whitespace(text: str) -> str:
+    """Remove spacing artifacts that do not change the cell's content."""
+    text = _OPERATOR_SPACING_RE.sub(r"\1", text)  # '( \pm 0.83)' -> '(±0.83)'
+    text = re.sub(r"\s+\(", "(", text)            # 'coeff (se)' -> 'coeff(se)'
+    text = re.sub(r"\(\s+", "(", text)            # '( n=598)'   -> '(n=598)'
+    text = re.sub(r"\s+\)", ")", text)            # '(598 )'     -> '(598)'
+    text = re.sub(r"\s+\*", "*", text)            # '(mg/l)  **' -> '(mg/l)**'
+    return text
+
+
+def normalize_cell_text(text: str) -> str:
+    """Normalize cell text so visually-equal values compare equal.
+
+    e.g. '$ \\times $', '\\( \\times \\)' and '×' all collapse to '×'.
+
+    The same normalisation is applied to BOTH ground-truth and prediction cells;
+    the goal is consistency rather than perfect fidelity: as long as a value and
+    its variant collapse to the same string on both sides, they match.
+    """
+    if not text:
+        return ""
+
+    text = _fold_character_variants(text)
+    text = _strip_latex(text)
+    text = _strip_cosmetic_whitespace(text)
+
+    # Remaining backslash escapes: \% -> %, \& -> &, \_ -> _, \$ -> $, etc.
+    text = re.sub(r"\\([%&#_${}~])", r"\1", text)
+    
+    # Markdown emphasis escape: \* -> * (after asterisk-spacing above)
     text = text.replace("\\*", "*")
 
     return re.sub(r"\s+", " ", text).strip()
