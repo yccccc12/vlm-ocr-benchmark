@@ -8,9 +8,12 @@ from datetime import datetime
 
 
 def load_log_files(logs_dir):
-    """Load all JSON log files from the directory."""
+    """Load all JSON log files from the directory (flat or per-model subfolders)."""
     logs = []
-    log_files = sorted(Path(logs_dir).glob("*.json"))
+    logs_path = Path(logs_dir)
+    log_files = sorted(logs_path.glob("*.json"))
+    if not log_files:
+        log_files = sorted(logs_path.glob("*/log.json"))
     
     for log_file in log_files:
         try:
@@ -58,7 +61,7 @@ def aggregate_computational_logs(logs):
     
     # Aggregate data
     for log in logs:
-        model = log["metadata"]["model"]
+        model = log["metadata"].get("model") or log["metadata"].get("method", "unknown")
         timestamp = log["metadata"].get("timestamp", "")
         model_stats[model]["timestamps"].append(timestamp)
         
