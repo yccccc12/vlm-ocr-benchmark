@@ -26,16 +26,10 @@ import unicodedata
 from collections import Counter
 from pathlib import Path
 
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-
-try:
-    from apted import APTED, Config
-except ImportError:
-    APTED = None
-    Config = object
 
 try:
     from otsl_to_html import convert_otsl_to_html
@@ -43,9 +37,9 @@ except ImportError:
     from .otsl_to_html import convert_otsl_to_html
 
 try:
-    from metric import TEDS as OfficialTEDS
+    from metric import TEDS
 except ImportError:
-    from .metric import TEDS as OfficialTEDS
+    from .metric import TEDS
 
 
 # =====================================================================
@@ -294,7 +288,11 @@ def build_gt_html(row: dict, struct_only: bool = False, source: str = "tokens") 
     if source == "otsl":
         html = reconstruct_gt_html_from_otsl(row)
         if struct_only:
-            return normalize_html(html, struct_only=True)
+            soup = BeautifulSoup(html, "html.parser")
+            for cell in soup.find_all(["td", "th"]):
+                cell.clear()
+            table = soup.find("table")
+            return str(table) if table else html
         return html
 
     raise ValueError("source must be either 'otsl' or 'tokens'.")
@@ -314,6 +312,7 @@ def print_gt_html(gt_path: str | Path, source: str = "tokens", pretty: bool = Tr
     print(f"  Source file: {gt_path}")
     print()
     print(html_to_print)
+    
     return gt_html
 
 
@@ -446,119 +445,11 @@ def extract_html_from_markdown(md_text: str) -> str:
 
 
 # =====================================================================
-# HTML normalisation
-# =====================================================================
-
-def normalize_html(html_str: str, struct_only: bool = False) -> str:
-    """
-    Normalize the HTML table by keeping only table/tr/td/th, unwrapping thead/tbody/tfoot, 
-    and keeping only the colspan/rowspan attributes. If struct_only=True, the cell text is cleared.
-    """
-    soup = BeautifulSoup(html_str, "html.parser")
-    table = soup.find("table")
-
-    if table is None:
-        raise ValueError("No <table> element found.")
-
-    KEEP_TAGS = {"table", "tr", "td", "th"}
-    KEEP_ATTRS = {"colspan", "rowspan"}
-
-    def _clean(tag: Tag):
-        for child in list(tag.children):
-            if isinstance(child, NavigableString):
-                continue
-
-            if not isinstance(child, Tag):
-                continue
-
-            if child.name not in KEEP_TAGS:
-                _clean(child)
-                child.unwrap()
-
-            else:
-                _clean(child)
-
-        if hasattr(tag, "attrs"):
-            tag.attrs = {k: v for k, v in tag.attrs.items() if k in KEEP_ATTRS}
-
-            for attr in ("colspan", "rowspan"):
-                if tag.attrs.get(attr) in ("1", 1):
-                    del tag.attrs[attr]
-
-        if struct_only and tag.name in ("td", "th"):
-            tag.clear()
-            return
-
-        if (not struct_only) and tag.name in ("td", "th"):
-            text = normalize_cell_text(tag.get_text(separator=" ", strip=True))
-            tag.clear()
-
-            if text:
-                tag.string = text
-
-    _clean(table)
-    return str(table)
-
-
-# =====================================================================
 # TEDS (Tree Edit Distance Similarity)
 # =====================================================================
 
-class TableTree:
-    def __init__(self, tag: str, text: str = "", attrs: dict = None):
-        self.tag = tag
-        self.text = text.strip() if text else ""
-        self.attrs = attrs or {}
-        self.children: list["TableTree"] = []
-
-    def __repr__(self):
-        return f"TableTree({self.tag!r}, text={self.text!r}, n_children={len(self.children)})"
-
-
-def _html_to_tree(html_str: str) -> TableTree | None:
-    soup = BeautifulSoup(html_str, "html.parser")
-    table_tag = soup.find("table")
-    if table_tag is None:
-        return None
-
-    def _convert(bs_node) -> TableTree | None:
-        if isinstance(bs_node, str):
-            text = bs_node.strip()
-            return TableTree("__text__", text=text) if text else None
-        node = TableTree(
-            tag=bs_node.name,
-            attrs={k: str(v) for k, v in bs_node.attrs.items()},
-        )
-
-        for child in bs_node.children:
-            c = _convert(child)
-
-            if c is not None:
-                node.children.append(c)
-
-        return node
-
-    return _convert(table_tag)
-
-
-class TEDSConfig(Config):
-    def rename(self, n1: TableTree, n2: TableTree) -> float:
-        if n1.tag != n2.tag:       return 1.0
-        if n1.text != n2.text:     return 1.0
-        if n1.attrs != n2.attrs:   return 1.0
-        
-        return 0.0
-
-    def children(self, node: TableTree):
-        return node.children
-
-
-def _count_nodes(node: TableTree) -> int:
-    return 1 + sum(_count_nodes(c) for c in node.children)
-
-
-def prepare_for_official_teds(html_str: str) -> str:
-    """Prepare bare table HTML for PubTabNet official TEDS (metric.py).
+def prepare_for_teds(html_str: str) -> str:
+    """Prepare bare table HTML for PubTabNet TEDS (metric.py).
 
     - Normalises cell text (both sides use the same rules).
     - Renames ``th`` -> ``td`` (reference scorer only handles ``td``).
@@ -580,18 +471,18 @@ def prepare_for_official_teds(html_str: str) -> str:
     return f"<html><body>{str(table)}</body></html>"
 
 
-_official_teds_full = OfficialTEDS(structure_only=False)
-_official_teds_struct = OfficialTEDS(structure_only=True)
+_teds_full = TEDS(structure_only=False)
+_teds_struct = TEDS(structure_only=True)
 
 
 def compute_teds(pred_html: str, gt_html: str, struct_only: bool = False, verbose: bool = False) -> float:
-    """Compute PubTabNet official TEDS (or TEDS-Struct when struct_only=True)."""
+    """Compute PubTabNet TEDS (or TEDS-Struct when struct_only=True)."""
     label = "TEDS-Struct" if struct_only else "TEDS"
-    scorer = _official_teds_struct if struct_only else _official_teds_full
+    scorer = _teds_struct if struct_only else _teds_full
 
     try:
-        pred_prep = prepare_for_official_teds(pred_html)
-        gt_prep = prepare_for_official_teds(gt_html)
+        pred_prep = prepare_for_teds(pred_html)
+        gt_prep = prepare_for_teds(gt_html)
     except Exception as e:
         if verbose:
             print(f"    [WARN] TEDS preparation failed: {e}")
@@ -600,49 +491,7 @@ def compute_teds(pred_html: str, gt_html: str, struct_only: bool = False, verbos
     score = scorer.evaluate(pred_prep, gt_prep)
 
     if verbose:
-        _sub(f"{label} calculation (PubTabNet official)")
-        print(f"      {label:<22}= {score:.6f}")
-
-    return score
-
-
-def compute_teds_legacy(pred_html: str, gt_html: str, struct_only: bool = False, verbose: bool = False) -> float:
-    """Legacy custom TEDS (binary cell match). Kept for ablation only — not used in batch eval."""
-    label = "TEDS-Struct" if struct_only else "TEDS"
-
-    if APTED is None:
-        raise ImportError("Missing dependency 'apted'. Install it to compute TEDS metrics.")
-
-    try:
-        pred_norm = normalize_html(pred_html, struct_only=struct_only)
-        gt_norm = normalize_html(gt_html, struct_only=struct_only)
-
-    except Exception as e:
-        print(f"    [WARN] normalisation failed: {e}")
-        return 0.0
-
-    pred_tree = _html_to_tree(pred_norm)
-    gt_tree = _html_to_tree(gt_norm)
-
-    if pred_tree is None or gt_tree is None:
-        print(f"    [WARN] tree conversion failed")
-        return 0.0
-
-    n_pred = _count_nodes(pred_tree)
-    n_gt = _count_nodes(gt_tree)
-    denom = max(n_pred, n_gt)
-
-    apted = APTED(pred_tree, gt_tree, TEDSConfig())
-    ted = apted.compute_edit_distance()
-
-    score = 1.0 - (ted / denom) if denom > 0 else 1.0
-
-    if verbose:
-        _sub(f"{label} calculation (legacy)")
-        print(f"      Tree nodes (pred)      : {n_pred}")
-        print(f"      Tree nodes (GT)        : {n_gt}")
-        print(f"      max(|T_pred|, |T_gt|)  : {denom}")
-        print(f"      Edit distance (TED)    : {ted}")
+        _sub(f"{label} calculation")
         print(f"      {label:<22}= {score:.6f}")
 
     return score
@@ -962,7 +811,7 @@ def _evaluate_quiet(
     pred_path: Path,
     verbose: bool,
     show_gt_html: bool = False,
-    gt_html_source: str = "otsl",
+    gt_html_source: str = "tokens",
     pretty_gt_html: bool = True,
 ) -> dict:
     if verbose or show_gt_html:
@@ -1085,9 +934,7 @@ def _evaluate_one_table(
     except Exception as exc:
         # The prediction exists but yields no usable table (empty file, plain
         # text, no parseable structure): score it 0 rather than dropping it.
-        return _zero_result(
-            table_id, gt_path, pred_path, str(exc), level_name,
-        ), None
+        return _zero_result(table_id, gt_path, pred_path, str(exc), level_name), None
 
 
 def _write_report_and_print(report: dict, out_path: Path, model: str) -> None:
@@ -1243,19 +1090,6 @@ def evaluate_model_overall(model: str, args: argparse.Namespace) -> dict | None:
 # =====================================================================
 # Entry points
 # =====================================================================
-
-# Main function for single table evaluation
-def main_single():
-    GT_PATH = "PubTabNet_OTSL_train_20/row_16.json"
-    PRED_PATH = "experiments/output/otsl_3/doc_0.md"
-
-    result = evaluate(GT_PATH, PRED_PATH, verbose=True)
-
-    out_path = "evaluation_results.json"
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(result, f, indent=2)
-    print(f"\n  Results saved -> {out_path}")
-
 
 def main():
     parser = argparse.ArgumentParser(description="Batch evaluate table OCR outputs by table difficulty level.")
