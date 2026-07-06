@@ -8,9 +8,12 @@ Inputs:
   - doc_*.md    : VLM prediction (markdown-wrapped HTML)
 
 Metrics:
-  - TEDS        : Tree Edit Distance Similarity (structure + content)
-  - TEDS-Struct : Tree Edit Distance Similarity (structure only)
-  - Cell P/R/F1 : Cell-text multiset precision / recall / F1
+  - TEDS        : PubTabNet official Tree Edit Distance Similarity (structure + content)
+  - TEDS-Struct : PubTabNet official TEDS (structure only)
+  - Cell P/R/F1 : Cell-text multiset precision / recall / F1 (macro-averaged in batch reports)
+
+Ground truth is reconstructed from PubTabNet ``html`` tokens + ``cells`` by default (token path).
+Batch summaries use macro averaging (mean per table).
 """
 
 import json
@@ -38,6 +41,11 @@ try:
     from otsl_to_html import convert_otsl_to_html
 except ImportError:
     from .otsl_to_html import convert_otsl_to_html
+
+try:
+    from metric import TEDS as OfficialTEDS
+except ImportError:
+    from .metric import TEDS as OfficialTEDS
 
 
 # =====================================================================
@@ -273,20 +281,32 @@ def reconstruct_gt_html_from_otsl(row: dict) -> str:
     return convert_otsl_to_html("".join(otsl_parts))
 
 
-def print_gt_html(gt_path: str | Path, source: str = "otsl", pretty: bool = True) -> str:
+def build_gt_html(row: dict, struct_only: bool = False, source: str = "tokens") -> str:
+    """Build GT HTML from a PubTabNet row.
+
+    Parameters
+    ----------
+    source : 'tokens' (default, canonical for scoring) or 'otsl' (debug / comparison).
+    """
+    if source == "tokens":
+        return reconstruct_gt_html(row, struct_only=struct_only)
+
+    if source == "otsl":
+        html = reconstruct_gt_html_from_otsl(row)
+        if struct_only:
+            return normalize_html(html, struct_only=True)
+        return html
+
+    raise ValueError("source must be either 'otsl' or 'tokens'.")
+
+
+def print_gt_html(gt_path: str | Path, source: str = "tokens", pretty: bool = True) -> str:
     """Print a GT table as HTML and return the HTML string."""
     with open(gt_path, encoding="utf-8") as f:
         gt_data = json.load(f)
         gt_row = gt_data.get("row", gt_data)
 
-    if source == "otsl":
-        gt_html = reconstruct_gt_html_from_otsl(gt_row)
-
-    elif source == "tokens":
-        gt_html = reconstruct_gt_html(gt_row, struct_only=False)
-        
-    else:
-        raise ValueError("source must be either 'otsl' or 'tokens'.")
+    gt_html = build_gt_html(gt_row, struct_only=False, source=source)
 
     html_to_print = BeautifulSoup(gt_html, "html.parser").prettify() if pretty else gt_html
 
@@ -537,17 +557,57 @@ def _count_nodes(node: TableTree) -> int:
     return 1 + sum(_count_nodes(c) for c in node.children)
 
 
+def prepare_for_official_teds(html_str: str) -> str:
+    """Prepare bare table HTML for PubTabNet official TEDS (metric.py).
+
+    - Normalises cell text (both sides use the same rules).
+    - Renames ``th`` -> ``td`` (reference scorer only handles ``td``).
+    - Wraps in ``<html><body>`` (required by metric.py xpath).
+    """
+    soup = BeautifulSoup(html_str, "html.parser")
+    table = soup.find("table")
+    if table is None:
+        raise ValueError("No <table> element found.")
+
+    for cell in table.find_all(["td", "th"]):
+        if cell.name == "th":
+            cell.name = "td"
+        text = normalize_cell_text(cell.get_text(separator=" ", strip=True))
+        cell.clear()
+        if text:
+            cell.string = text
+
+    return f"<html><body>{str(table)}</body></html>"
+
+
+_official_teds_full = OfficialTEDS(structure_only=False)
+_official_teds_struct = OfficialTEDS(structure_only=True)
+
+
 def compute_teds(pred_html: str, gt_html: str, struct_only: bool = False, verbose: bool = False) -> float:
-    """
-    Compute TEDS (or TEDS-Struct when struct_only=True).
+    """Compute PubTabNet official TEDS (or TEDS-Struct when struct_only=True)."""
+    label = "TEDS-Struct" if struct_only else "TEDS"
+    scorer = _official_teds_struct if struct_only else _official_teds_full
 
-    Formula
-    -------
-        TEDS = 1 - EditDist(T_pred, T_gt) / max(|T_pred|, |T_gt|)
+    try:
+        pred_prep = prepare_for_official_teds(pred_html)
+        gt_prep = prepare_for_official_teds(gt_html)
+    except Exception as e:
+        if verbose:
+            print(f"    [WARN] TEDS preparation failed: {e}")
+        return 0.0
 
-    The edit distance is computed with the APTED algorithm.
-    Node costs: insert = delete = rename = 1 (rename = 0 when nodes are identical).
-    """
+    score = scorer.evaluate(pred_prep, gt_prep)
+
+    if verbose:
+        _sub(f"{label} calculation (PubTabNet official)")
+        print(f"      {label:<22}= {score:.6f}")
+
+    return score
+
+
+def compute_teds_legacy(pred_html: str, gt_html: str, struct_only: bool = False, verbose: bool = False) -> float:
+    """Legacy custom TEDS (binary cell match). Kept for ablation only — not used in batch eval."""
     label = "TEDS-Struct" if struct_only else "TEDS"
 
     if APTED is None:
@@ -556,7 +616,7 @@ def compute_teds(pred_html: str, gt_html: str, struct_only: bool = False, verbos
     try:
         pred_norm = normalize_html(pred_html, struct_only=struct_only)
         gt_norm = normalize_html(gt_html, struct_only=struct_only)
-    
+
     except Exception as e:
         print(f"    [WARN] normalisation failed: {e}")
         return 0.0
@@ -578,12 +638,11 @@ def compute_teds(pred_html: str, gt_html: str, struct_only: bool = False, verbos
     score = 1.0 - (ted / denom) if denom > 0 else 1.0
 
     if verbose:
-        _sub(f"{label} calculation")
+        _sub(f"{label} calculation (legacy)")
         print(f"      Tree nodes (pred)      : {n_pred}")
         print(f"      Tree nodes (GT)        : {n_gt}")
         print(f"      max(|T_pred|, |T_gt|)  : {denom}")
         print(f"      Edit distance (TED)    : {ted}")
-        print(f"      Formula                : 1 - {ted} / {denom}")
         print(f"      {label:<22}= {score:.6f}")
 
     return score
@@ -699,7 +758,7 @@ def evaluate(
     pred_path: str,
     verbose: bool = True,
     show_gt_html: bool = False,
-    gt_html_source: str = "otsl",
+    gt_html_source: str = "tokens",
     pretty_gt_html: bool = True,
 ) -> dict:
     """Run the full evaluation for a single (GT, prediction) pair.
@@ -710,7 +769,7 @@ def evaluate(
     pred_path : path to a VLM output markdown file (doc_*.md)
     verbose   : print step-by-step calculation details
     show_gt_html : print the ground-truth table HTML to the console
-    gt_html_source : 'otsl' to convert row['otsl'], or 'tokens' for row['html']
+    gt_html_source : 'tokens' (default) for row['html'], or 'otsl' for debug
     pretty_gt_html : prettify printed GT HTML for easier reading
     """
 
@@ -724,8 +783,7 @@ def evaluate(
 
     # Reconstruct GT
     _banner("Step 1 - Ground-Truth Reconstruction")
-    gt_html_full = reconstruct_gt_html(gt_row, struct_only=False)
-    gt_html_struct = reconstruct_gt_html(gt_row, struct_only=True)
+    gt_html_full = build_gt_html(gt_row, struct_only=False, source=gt_html_source)
 
     if show_gt_html:
         print_gt_html(gt_path, source=gt_html_source, pretty=pretty_gt_html)
@@ -733,6 +791,7 @@ def evaluate(
     n_gt_cells_all = sum(1 for t in gt_row["html"] if t == "</td>")
     n_gt_cells_empty = sum(1 for c in gt_row["cells"][0] if not re.sub(r"<[^>]+>", "", "".join(c["tokens"])).strip())
 
+    print(f"  GT source     : {gt_html_source}")
     print(f"  File          : {gt_row['filename']}")
     print(f"  Table size    : {gt_row['rows']} rows x {gt_row['cols']} cols")
     print(f"  Total cells   : {n_gt_cells_all}")
@@ -756,7 +815,7 @@ def evaluate(
     teds = compute_teds(pred_html, gt_html_full, struct_only=False, verbose=verbose)
 
     _banner("Step 4 - TEDS-Struct")
-    teds_struct = compute_teds(pred_html, gt_html_struct, struct_only=True, verbose=verbose)
+    teds_struct = compute_teds(pred_html, gt_html_full, struct_only=True, verbose=verbose)
 
     _banner("Step 5 - Cell-Level F1")
     cell_scores = compute_cell_f1(pred_html, gt_html_full, verbose=verbose)
@@ -815,14 +874,12 @@ def _empty_summary() -> dict:
         "count": 0,
         "failed": 0,
         "scored_zero": 0,
+        "aggregation": "macro",
         "average_TEDS": 0.0,
         "average_TEDS-Struct": 0.0,
         "average_Cell-P": 0.0,
         "average_Cell-R": 0.0,
         "average_Cell-F1": 0.0,
-        "total_TP": 0,
-        "total_FP": 0,
-        "total_FN": 0,
     }
 
 
@@ -848,9 +905,6 @@ def _summarize(results: list[dict], failed: int = 0) -> dict:
     for metric in metrics:
         summary[f"average_{metric}"] = sum(item[metric] for item in results) / len(results)
 
-    summary["total_TP"] = sum(item["TP"] for item in results)
-    summary["total_FP"] = sum(item["FP"] for item in results)
-    summary["total_FN"] = sum(item["FN"] for item in results)
     return summary
 
 
@@ -861,7 +915,7 @@ def _gt_nonempty_cell_count(gt_path: Path) -> int:
             data = json.load(f)
 
         row = data.get("row", data)
-        gt_html = reconstruct_gt_html(row, struct_only=False)
+        gt_html = build_gt_html(row, struct_only=False, source="tokens")
         return len(extract_cells(gt_html, include_empty=False))
     
     except Exception:
@@ -871,8 +925,7 @@ def _gt_nonempty_cell_count(gt_path: Path) -> int:
 def _zero_result(table_id: str, gt_path: Path, pred_path: Path, reason: str, level_name: str | None = None) -> dict:
     """Build a zero-scored result for a present-but-unusable prediction.
 
-    All metrics are 0. FN is set to the GT's non-empty cell count so the
-    micro-totals stay honest (every GT cell was missed).
+    All metrics are 0. Per-table FN records missed GT cells (for detail JSON only).
     """
     
     result = {
@@ -923,7 +976,12 @@ def _evaluate_quiet(
         )
 
     with contextlib.redirect_stdout(io.StringIO()):
-        return evaluate(str(gt_path), str(pred_path), verbose=False)
+        return evaluate(
+            str(gt_path),
+            str(pred_path),
+            verbose=False,
+            gt_html_source=gt_html_source,
+        )
 
 
 def _parse_models(models_arg: str, pred_root: Path) -> list[str]:
@@ -1213,7 +1271,7 @@ def main():
     parser.add_argument("--verbose", action="store_true", help="Print full diagnostics for every table.")
     parser.add_argument("--print-gt-only", default=None, help="Print one ground-truth JSON table as HTML and exit.")
     parser.add_argument("--print-gt-html", action="store_true", help="Print ground-truth HTML during evaluation.")
-    parser.add_argument("--gt-html-source", choices=["otsl", "tokens"], default="otsl", help="Source used when printing GT HTML.")
+    parser.add_argument("--gt-html-source", choices=["otsl", "tokens"], default="tokens", help="GT HTML source: tokens (default, used for scoring) or otsl (debug).")
     parser.add_argument("--raw-gt-html", action="store_true", help="Print GT HTML on one line instead of prettifying it.")
     
     args = parser.parse_args()
