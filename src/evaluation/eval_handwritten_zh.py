@@ -3,6 +3,7 @@ import json
 import re
 import jiwer
 import unicodedata
+from statistics import mean, stdev
 
 # --- CONFIGURATION ---
 DATASET_TYPE = "handwritten_zh"
@@ -86,31 +87,31 @@ def extract_pred_text(file_id, model_type, results_dir):
             return _strip_html(_read_file(os.path.join(sample_dir, "result.md")))
 
         # -- GLM-OCR --
-        elif model_type == "glm_ocr":
+        if model_type == "glm_ocr":
             return _strip_html(_read_file(os.path.join(sample_dir, file_id, f"{file_id}.md")))
 
-        # -- DeepSeek-OCR / DeepSeek-OCR2 --
+        # -- DeepSeek-OCR / DeepSeek-OCR-2 --
         if model_type in ("deepseekOCR", "deepseekOCR2"):
             return _read_file(os.path.join(sample_dir, "result.mmd"))
 
         # -- Tesseract --
-        elif model_type == "tesseract":
+        if model_type == "tesseract":
             return _read_file(os.path.join(sample_dir, "result.txt"))
 
-        # -- dots.ocr --
-        elif model_type == "dots_mocr":
+        # -- dots.mocr --
+        if model_type == "dots_mocr":
             return _read_file(os.path.join(sample_dir, f"{file_id}.md"))
 
         # -- PaddleOCR-VL (1.5 / 1.6) --
-        elif model_type in ("paddle_vl_1.5", "paddle_vl_1.6"):
+        if model_type in ("paddle_vl_1.5", "paddle_vl_1.6"):
             pred_path = os.path.join(sample_dir, f"{file_id}_res.json")
             with open(pred_path, "r", encoding="utf-8") as f:
                 pred_data = json.load(f)
             res_list = pred_data.get("parsing_res_list", [])
             return "\n".join(b.get("block_content", "") for b in res_list)
 
-        # -- MinerU --
-        elif model_type == "mineru":
+        # -- MinerU2.5-Pro-2605-1.2B --
+        if model_type == "mineru":
             pred_path = os.path.join(
                 sample_dir, file_id, "vlm", f"{file_id}_content_list.json"
             )
@@ -118,8 +119,8 @@ def extract_pred_text(file_id, model_type, results_dir):
                 pred_data = json.load(f)
             return _join_content_list(pred_data)
 
-        # -- MonkeyOCR --
-        elif model_type == "monkey_ocr":
+        # -- MonkeyOCR-pro-3B --
+        if model_type == "monkey_ocr":
             pred_path = os.path.join(
                 sample_dir, file_id, f"{file_id}_content_list.json"
             )
@@ -184,11 +185,18 @@ def run_evaluation():
             all_pred.append(pred_text)
 
         # --- Global Metric ---
-        total_cer = jiwer.cer(all_gt, all_pred)
+        # corpus_cer: micro (concatenated corpus) — matches jiwer default behaviour
+        corpus_cer = jiwer.cer(all_gt, all_pred)
+
+        # macro mean and stdev over per-sample values
+        cer_vals = [r["cer"] for r in results]
+        macro_cer = mean(cer_vals)
+        stdev_cer = stdev(cer_vals) if len(cer_vals) > 1 else 0.0
 
         print("-" * 30)
         print(f"FINAL RESULTS for {MODEL_NAME}")
-        print(f"Average CER: {total_cer:.4f} ({total_cer*100:.2f}%)")
+        print(f"Corpus CER (micro): {corpus_cer:.4f} ({corpus_cer*100:.2f}%)")
+        print(f"Macro CER:          {macro_cer:.4f}  ±{stdev_cer:.4f}")
         print("-" * 30)
 
         # --- Save report ---
@@ -198,7 +206,9 @@ def run_evaluation():
             json.dump({
                 "model": MODEL_NAME,
                 "summary": {
-                    "average_cer": total_cer
+                    "corpus_cer": corpus_cer,
+                    "macro_cer": macro_cer,
+                    "stdev_cer": stdev_cer,
                 },
                 "details": results
             }, f, indent=4, ensure_ascii=False)

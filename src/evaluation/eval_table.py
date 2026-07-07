@@ -25,6 +25,7 @@ import sys
 import unicodedata
 from collections import Counter
 from pathlib import Path
+from statistics import stdev
 
 from bs4 import BeautifulSoup
 
@@ -725,10 +726,15 @@ def _empty_summary() -> dict:
         "scored_zero": 0,
         "aggregation": "macro",
         "average_TEDS": 0.0,
+        "stdev_TEDS": 0.0,
         "average_TEDS-Struct": 0.0,
+        "stdev_TEDS-Struct": 0.0,
         "average_Cell-P": 0.0,
+        "stdev_Cell-P": 0.0,
         "average_Cell-R": 0.0,
+        "stdev_Cell-R": 0.0,
         "average_Cell-F1": 0.0,
+        "stdev_Cell-F1": 0.0,
     }
 
 
@@ -750,9 +756,11 @@ def _summarize(results: list[dict], failed: int = 0) -> dict:
         return summary
 
     metrics = ["TEDS", "TEDS-Struct", "Cell-P", "Cell-R", "Cell-F1"]
-    
+
     for metric in metrics:
-        summary[f"average_{metric}"] = sum(item[metric] for item in results) / len(results)
+        values = [item[metric] for item in results]
+        summary[f"average_{metric}"] = sum(values) / len(values)
+        summary[f"stdev_{metric}"] = stdev(values) if len(values) > 1 else 0.0
 
     return summary
 
@@ -945,8 +953,8 @@ def _write_report_and_print(report: dict, out_path: Path, model: str) -> None:
     print(f"\nOverall summary for {model}")
     print(f"  Evaluated:   {report['summary']['count']}  (incl. {report['summary']['scored_zero']} scored 0)")
     print(f"  Failed:      {report['summary']['failed']}  (excluded: missing ground truth)")
-    print(f"  Avg TEDS:    {report['summary']['average_TEDS']:.4f}")
-    print(f"  Avg Cell-F1: {report['summary']['average_Cell-F1']:.4f}")
+    print(f"  Avg TEDS:    {report['summary']['average_TEDS']:.4f}  ±{report['summary']['stdev_TEDS']:.4f}")
+    print(f"  Avg Cell-F1: {report['summary']['average_Cell-F1']:.4f}  ±{report['summary']['stdev_Cell-F1']:.4f}")
     print(f"\n  Results saved -> {out_path}")
 
 
