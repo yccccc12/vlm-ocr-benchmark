@@ -99,14 +99,26 @@ All scripts are intended to be run from the project root so that relative paths 
 
 ```bash
 python src/fetch_data/table.py            # PubTabNet tables -> data/raw/table/
-python src/fetch_data/select_table.py     # build data/raw/table_by_level/level_1..4
+python src/fetch_data/select_table.py     # PubTabNet tables (by-level) -> data/raw/table_by_level/level_1..4
 python src/fetch_data/handwritten_en.py   # IAM-line          -> data/raw/handwritten_en/
 python src/fetch_data/handwritten_zh.py   # CASIA-HWDB2-line  -> data/raw/handwritten_zh/
 ```
 
+Or run all four in sequence:
+
+```bash
+python src/fetch_data/fetch_all.py
+```
+
+This step also produces the ground-truth files used for evaluation (`data/raw/<task>/gt/`).
+
 ### 2. Generate predictions
 
-Run the engine for each model. The notebooks in `src/engines/` produce per-model outputs under `outputs/<dataset>/<model>/...`. Script-based engines:
+Run the engine for each model. The notebooks in `src/engines/` are Colab-based: upload the fetched input images as a zip, run the notebook, then download the resulting `<model>_output.zip` and extract it under `outputs/<dataset>/<model>/`.
+
+> To skip re-fetching, download the pre-packaged input-images zip used for this project's notebook runs: [Google Drive link](https://drive.google.com/file/d/17fy1xziJWVD7hC1PaFI5KZrRNDWGxIDe/view?usp=sharing). This is the zip to upload into each notebook — it does not include ground truth (that still comes from step 1).
+
+Script-based engines:
 
 ```bash
 python src/engines/tesseract.py            # handwritten_en + handwritten_zh
