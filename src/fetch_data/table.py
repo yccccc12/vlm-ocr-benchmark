@@ -1,5 +1,5 @@
 '''
-This script fetches the first 1000 samples from the "val" split 
+This script fetches the first 100 samples from the "val" split
 of the "docling-project/PubTabNet_OTSL" dataset using the Hugging Face Datasets API.
 '''
 import requests
@@ -15,10 +15,10 @@ gt_dir = os.path.join(save_dir, "gt")
 os.makedirs(images_dir, exist_ok=True)
 os.makedirs(gt_dir, exist_ok=True)
 
-# Parameters to fetch first 1000 rows from the test split
+# Parameters to fetch first 100 rows from the val split
 dataset_name = "docling-project/PubTabNet_OTSL"
 split = "val"
-total_samples = 1000
+total_samples = 100
 batch_size = 100
 
 count = 0
