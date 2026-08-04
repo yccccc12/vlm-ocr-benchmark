@@ -11,8 +11,8 @@ A benchmark for comparing modern OCR / Vision-Language Models (VLMs) on document
 | Handwritten Chinese | [CASIA-HWDB2-line](https://huggingface.co/datasets/Teklia/CASIA-HWDB2-line) | CER |
 | Computational cost | (runtime logs) | Time, CPU, RAM, GPU util / memory / temperature |
 
-- **TEDS / TEDS-Struct** — Tree Edit Distance Similarity over the reconstructed HTML table tree (structure + content, or structure only). Computed with the APTED algorithm.
-- **Cell P/R/F1** — multiset precision / recall / F1 over normalised cell-text strings.
+- **TEDS / TEDS-Struct** — PubTabNet official Tree Edit Distance Similarity ([`src/evaluation/metric.py`](src/evaluation/metric.py)); macro mean per table. GT rebuilt from `html` tokens + `cells`.
+- **Cell P/R/F1** — multiset precision / recall / F1 over normalised cell-text strings; macro mean per table in batch reports.
 - **CER / WER** — character / word error rate (via `jiwer`), after Unicode and markdown normalisation.
 
 ## Models Benchmarked
@@ -23,8 +23,8 @@ A benchmark for comparing modern OCR / Vision-Language Models (VLMs) on document
 | `deepseekOCR` | DeepSeek-OCR | First-generation DeepSeek OCR model | [deepseek-ai/DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR) |
 | `deepseekOCR2` | DeepSeek-OCR-2 | Second-generation DeepSeek OCR model | [deepseek-ai/DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2) |
 | `dots_mocr` | dots.mocr | 3B parameters VLM | [rednote-hilab/dots.mocr](https://github.com/rednote-hilab/dots.mocr) |
-| `glm_ocr` | GLM-OCR | Zhipu AI GLM-based OCR model | [zai-org/GLM-V](https://github.com/zai-org/GLM-V) |
-| `mineru` | MinerU2.5-Pro-2605-1.2B | MinerU 2.5 Pro model (1.2B parameters) | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) |
+| `glm_ocr` | GLM-OCR | Zhipu AI GLM-based OCR model | [zai-org/GLM-OCR](https://github.com/zai-org/GLM-OCR) |
+| `mineru` | MinerU2.5-Pro-2605-1.2B | MinerU 2.5 Pro model (1.2B parameters) | [opendatalab/MinerU](https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B) |
 | `monkey_ocr` | MonkeyOCR-pro-3B | MonkeyOCR Pro (3B parameters) | [Yuliang-Liu/MonkeyOCR](https://github.com/Yuliang-Liu/MonkeyOCR) |
 | `paddle_vl_1.5` | PaddleOCR-VL-1.5 | PaddleOCR-VL version 1.5 (0.9B paramters) | [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) |
 | `paddle_vl_1.6` | PaddleOCR-VL-1.6 | PaddleOCR-VL version 1.6 (0.9B paramters) | [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) |
@@ -170,7 +170,7 @@ This repository was developed as a **Final Year Project (FYP)** for academic pur
 
 It builds on the following open-source models and datasets, whose authors and maintainers are gratefully acknowledged:
 
-- **Models** — [Baidu Unlimited OCR](https://github.com/baidu/Unlimited-OCR), [DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR) & [DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2), [dots.mocr](https://github.com/rednote-hilab/dots.mocr), [GLM-OCR](https://github.com/zai-org/GLM-V), [MinerU](https://github.com/opendatalab/MinerU), [MonkeyOCR](https://github.com/Yuliang-Liu/MonkeyOCR), [PaddleOCR-VL](https://github.com/PaddlePaddle/PaddleOCR), and [Tesseract OCR](https://github.com/tesseract-ocr/tesseract).
+- **Models** — [Baidu Unlimited OCR](https://github.com/baidu/Unlimited-OCR), [DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR) & [DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2), [dots.mocr](https://github.com/rednote-hilab/dots.mocr), [GLM-OCR](https://github.com/zai-org/GLM-OCR), [MinerU2.5-Pro](https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B), [MonkeyOCR](https://github.com/Yuliang-Liu/MonkeyOCR), [PaddleOCR-VL](https://github.com/PaddlePaddle/PaddleOCR), and [Tesseract OCR](https://github.com/tesseract-ocr/tesseract).
 - **Datasets** — [PubTabNet OTSL](https://huggingface.co/datasets/docling-project/PubTabNet_OTSL), [IAM-line](https://huggingface.co/datasets/Teklia/IAM-line), and [CASIA-HWDB2-line](https://huggingface.co/datasets/Teklia/CASIA-HWDB2-line).
 
 All models and datasets remain the property of their respective owners and are used here under their original licenses for non-commercial, educational research only.
