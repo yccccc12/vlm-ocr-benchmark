@@ -1,0 +1,62 @@
+[
+  {
+    "chi2": 412.5610446599193,
+    "p_value": 2.8566849044856566e-83,
+    "kendall_w": 0.45840116073324366,
+    "kendall_w_label": "medium",
+    "significant": true,
+    "n_documents": 100,
+    "n_engines": 10,
+    "metric": "English CER"
+  },
+  {
+    "chi2": 392.1423791821562,
+    "p_value": 6.500551460633421e-79,
+    "kendall_w": 0.43571375464684026,
+    "kendall_w_label": "medium",
+    "significant": true,
+    "n_documents": 100,
+    "n_engines": 10,
+    "metric": "English WER"
+  },
+  {
+    "chi2": 437.22400150715924,
+    "p_value": 1.5424317486650876e-88,
+    "kendall_w": 0.4858044461190658,
+    "kendall_w_label": "medium",
+    "significant": true,
+    "n_documents": 100,
+    "n_engines": 10,
+    "metric": "Chinese CER"
+  },
+  {
+    "chi2": 157.061855670103,
+    "p_value": 6.578334309167778e-30,
+    "kendall_w": 0.19632731958762875,
+    "kendall_w_label": "small",
+    "significant": true,
+    "n_documents": 100,
+    "n_engines": 9,
+    "metric": "Table TEDS"
+  },
+  {
+    "chi2": 190.35096200328718,
+    "p_value": 6.870644040661217e-37,
+    "kendall_w": 0.23793870250410898,
+    "kendall_w_label": "small",
+    "significant": true,
+    "n_documents": 100,
+    "n_engines": 9,
+    "metric": "Table TEDS-Struct"
+  },
+  {
+    "chi2": 263.2970742685669,
+    "p_value": 2.6049376202451144e-52,
+    "kendall_w": 0.32912134283570865,
+    "kendall_w_label": "medium",
+    "significant": true,
+    "n_documents": 100,
+    "n_engines": 9,
+    "metric": "Table Cell-F1"
+  }
+]

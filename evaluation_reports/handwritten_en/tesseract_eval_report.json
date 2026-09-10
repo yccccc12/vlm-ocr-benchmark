@@ -1,8 +1,12 @@
 {
     "model": "tesseract",
     "summary": {
-        "average_cer": 0.33043478260869563,
-        "average_wer": 0.6907630522088354
+        "corpus_cer": 0.49327091866588646,
+        "corpus_wer": 0.8847780126849895,
+        "macro_cer": 0.5063407472996214,
+        "stdev_cer": 0.26903337796186694,
+        "macro_wer": 0.908701514945323,
+        "stdev_wer": 0.26285991820306914
     },
     "details": [
         {
@@ -144,6 +148,566 @@
             "pred": "wy Lf be math Ke hoy welen shy Ye freu jer sf ber 4e der atfoy",
             "cer": 0.4745762711864407,
             "wer": 1.3636363636363635
+        },
+        {
+            "id": "handwritten_en_0020",
+            "gt": "parts of the mind not normally available without hypnosis are used.",
+            "pred": "pares ot He vcashiaal sade notpelly avai La ble es ee h fpqosi' of @ us col.",
+            "cer": 0.6119402985074627,
+            "wer": 1.5454545454545454
+        },
+        {
+            "id": "handwritten_en_0021",
+            "gt": "I T V have postponed Malcolm Muggeridge's \" Appointment with",
+            "pred": "1 Tv hand pot poqed Malto a Musser dee' s \"A py erg tia cad wilf",
+            "cer": 0.5333333333333333,
+            "wer": 1.6
+        },
+        {
+            "id": "handwritten_en_0022",
+            "gt": "success last night in I T V's \" Private Potter, \" his",
+            "pred": "SUCEZES (Fae sagt \\~ (TV Is Rocke Rother,\" Ls",
+            "cer": 0.6415094339622641,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0023",
+            "gt": "man could only be regarded as a machine.",
+            "pred": "",
+            "cer": 1.0,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0024",
+            "gt": "date. \" ACTOR Tom Courtenay was an outstanding",
+            "pred": "Joke AGL Tou, eee om, Ge outstiondbens",
+            "cer": 0.6304347826086957,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0025",
+            "gt": "the switch because of the topicality of African",
+            "pred": "the SON dh accuantes of +e Lagoa Kity of Abdconr.",
+            "cer": 0.5531914893617021,
+            "wer": 0.875
+        },
+        {
+            "id": "handwritten_en_0026",
+            "gt": "essay on soldiering which stated that a fighting",
+            "pred": "CBB Ou side dus ube clea, leben hay",
+            "cer": 0.7916666666666666,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0027",
+            "gt": "Say Granada T V, the producers: \" We decided to make",
+            "pred": "Say Gravobaty the prduers' \"We decrbed to. wake",
+            "cer": 0.3076923076923077,
+            "wer": 0.8181818181818182
+        },
+        {
+            "id": "handwritten_en_0028",
+            "gt": "first big T V part. The play was a brilliantly-written",
+            "pred": "lod Ueayt Ly —aikte Ax ex bq TW yok Te (Woy wos a Wibawly",
+            "cer": 0.9074074074074074,
+            "wer": 1.3
+        },
+        {
+            "id": "handwritten_en_0029",
+            "gt": "affairs. The Wesker interview will be seen at a later",
+            "pred": "ot dorve. The Wesker futewview Git Ge secu ok a Koke",
+            "cer": 0.41509433962264153,
+            "wer": 0.8
+        },
+        {
+            "id": "handwritten_en_0030",
+            "gt": "craggy face, and obstinate, baffled eyes. They stripped",
+            "pred": "",
+            "cer": 1.0,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0031",
+            "gt": "claimed he had seen a vision of God - only the padre and his",
+            "pred": "bined le lod Seeuy & Vistou or Gro, -ouly Whe Rodve. cud Lis",
+            "cer": 0.45,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0032",
+            "gt": "Potter screamed during an action, and was arrested. He",
+            "pred": "Fikes Scr-eomsedh dorn on acklou oud waxes ovvesterd. We",
+            "cer": 0.5,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0033",
+            "gt": "him of his ugly battle-dress, to leave him for",
+            "pred": "",
+            "cer": 1.0,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0034",
+            "gt": "vision.",
+            "pred": "URI",
+            "cer": 1.0,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0035",
+            "gt": "what he was - Potter, a frightened boy who had a",
+            "pred": "",
+            "cer": 1.0,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0036",
+            "gt": "C O believed him. Courtenay played the part with a gawky,",
+            "pred": "Co lnc Reved \\Wuur - Couvterory plowed the pot ata a qosey",
+            "cer": 0.5263157894736842,
+            "wer": 0.9090909090909091
+        },
+        {
+            "id": "handwritten_en_0037",
+            "gt": "Northern defiance. The cameras played continuously on his",
+            "pred": "Bsc vena Be ue Carseyo% ployed covd\\auousty Ou lus",
+            "cer": 0.5614035087719298,
+            "wer": 1.125
+        },
+        {
+            "id": "handwritten_en_0038",
+            "gt": "to the European Common Market.",
+            "pred": "= Mao Cuvopeon bse Mor yo eee",
+            "cer": 0.6666666666666666,
+            "wer": 1.4
+        },
+        {
+            "id": "handwritten_en_0039",
+            "gt": "scene, ranging from pubs, the Eton wall game,",
+            "pred": "S Cone, yang \\ng Prom pulp S the Eton wd A Ong",
+            "cer": 0.4444444444444444,
+            "wer": 1.25
+        },
+        {
+            "id": "handwritten_en_0040",
+            "gt": "Dennis Brogan, Shelagh Delaney, and Alan Sillitoe.",
+            "pred": "Dennis Byogan Shelagh Delaney, — Avon SWlite",
+            "cer": 0.22,
+            "wer": 0.5714285714285714
+        },
+        {
+            "id": "handwritten_en_0041",
+            "gt": "The film replaced \" What's My Line? \" and \" Be My",
+            "pred": "The Alm replaced \"Whats Mz Line! \"amd \" Be Uy",
+            "cer": 0.1836734693877551,
+            "wer": 0.6666666666666666
+        },
+        {
+            "id": "handwritten_en_0042",
+            "gt": "British personalities. Among them - Professor",
+            "pred": "B xi fish peYsona ities, Among them ~ Pro fessor",
+            "cer": 0.2,
+            "wer": 1.3333333333333333
+        },
+        {
+            "id": "handwritten_en_0043",
+            "gt": "The film covered a wide aspect of the British",
+            "pred": "Ta Donn Conserve ie aspec lye Ryidish",
+            "cer": 0.5333333333333333,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0044",
+            "gt": "Guest \" programmes because of an electricians'",
+            "pred": "sek pyoqvammes Qecause- of an ekeckvicians",
+            "cer": 0.32608695652173914,
+            "wer": 0.7142857142857143
+        },
+        {
+            "id": "handwritten_en_0045",
+            "gt": "of an American T V reporter, Eric Sevareid, and",
+            "pred": "wk Qn dienes Can TV vepor ter, Eri a SZvayeis sand",
+            "cer": 0.425531914893617,
+            "wer": 1.2222222222222223
+        },
+        {
+            "id": "handwritten_en_0046",
+            "gt": "strike. It showed Britain today through the eyes",
+            "pred": "styine, It show enh By, toan today through the eyes",
+            "cer": 0.22916666666666666,
+            "wer": 0.625
+        },
+        {
+            "id": "handwritten_en_0047",
+            "gt": "Britain was slipping behind....",
+            "pred": "",
+            "cer": 1.0,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0048",
+            "gt": "to make the strongest criticisms. He said",
+            "pred": "te make ee Strongest it CSS. LHe Sa",
+            "cer": 0.3902439024390244,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0049",
+            "gt": "Shelagh Delaney and Alan Sillitoe attacked",
+            "pred": "Shelagh De Loner, omd KWo, Sillitee atte Coe]",
+            "cer": 0.40476190476190477,
+            "wer": 1.1666666666666667
+        },
+        {
+            "id": "handwritten_en_0050",
+            "gt": "that in the race of the modern nations,",
+            "pred": "thet im the Ye.ce ot the modern nakions,",
+            "cer": 0.1794871794871795,
+            "wer": 0.625
+        },
+        {
+            "id": "handwritten_en_0051",
+            "gt": "education. It was left to reporter Sevareid",
+            "pred": "eda cation. \\t Was LeP thes veporter Sevareigl",
+            "cer": 0.3023255813953488,
+            "wer": 1.1428571428571428
+        },
+        {
+            "id": "handwritten_en_0052",
+            "gt": "other chums sniffing the wind and",
+            "pred": "fuel Huu daifiug The tthe! alos",
+            "cer": 0.6363636363636364,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0053",
+            "gt": "offering to drop by for a chat.",
+            "pred": "ofenao re",
+            "cer": 0.7741935483870968,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0054",
+            "gt": "arrived two hours earlier by appointment",
+            "pred": "anmived Two houn 2arher by sepouhtuer7",
+            "cer": 0.375,
+            "wer": 0.8333333333333334
+        },
+        {
+            "id": "handwritten_en_0055",
+            "gt": "to talk to the author of Borstal Boy and",
+            "pred": "% *%/ & Ae auttor of Beri-a/ Soy GLo/",
+            "cer": 0.5,
+            "wer": 0.8888888888888888
+        },
+        {
+            "id": "handwritten_en_0056",
+            "gt": "The Hostage about his new work, if any,",
+            "pred": "/he tashage. ekhout AV Aon Work | sf Abn,",
+            "cer": 0.5384615384615384,
+            "wer": 1.125
+        },
+        {
+            "id": "handwritten_en_0057",
+            "gt": "and who is now being pluckily convivial",
+            "pred": "ahd Who Wt acow being [OCuckily Cay unvia/",
+            "cer": 0.41025641025641024,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0058",
+            "gt": "has rung a couple of times, calls from",
+            "pred": "ae has hug 4 Conte f Ares | Calf fro,",
+            "cer": 0.5263157894736842,
+            "wer": 1.125
+        },
+        {
+            "id": "handwritten_en_0059",
+            "gt": "to fight off the frustration. The telephone",
+            "pred": "% Aght f Le ~rnttrahon, (ta RapPhoue",
+            "cer": 0.5348837209302325,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0060",
+            "gt": "ALSO present is a London journalist who",
+            "pred": "Also jererend B® 9 Louden journal? nko",
+            "cer": 0.4358974358974359,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0061",
+            "gt": "the Synoptics can be reasonably solved by paying due regard to the time and",
+            "pred": "Vi dynaphies eonn he perevondly UP fs PSG hee pegeared. & A dius couslll",
+            "cer": 0.6933333333333334,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0062",
+            "gt": "plan and to the different public for which, or against which, the author wrote.",
+            "pred": "peor ae 4 bh ft Abkaal pol hy whrel, wee agernel colih, fA ae wrod.",
+            "cer": 0.620253164556962,
+            "wer": 1.0714285714285714
+        },
+        {
+            "id": "handwritten_en_0063",
+            "gt": "The third article excluded any allegorical interpretation of the Gospel.",
+            "pred": "the toll salah armdeahel oxy othagecica! iclegihelen ind the Gage",
+            "cer": 0.6527777777777778,
+            "wer": 0.9
+        },
+        {
+            "id": "handwritten_en_0064",
+            "gt": "The second said that the problems which arise from the comparisons with",
+            "pred": "He PR aEe fo fd te. poblmes upbiai once hes A Com per isenl cor",
+            "cer": 0.6619718309859155,
+            "wer": 1.25
+        },
+        {
+            "id": "handwritten_en_0065",
+            "gt": "Fourth Gospel by explanations based on assumed textual dislocations. The",
+            "pred": "",
+            "cer": 1.0,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0066",
+            "gt": "There is a whole group of theories which attempt to explain the problems of the",
+            "pred": "here Ils oe i grep nes teem abit idleed fo oxphen Hh. probleme we",
+            "cer": 0.5443037974683544,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0067",
+            "gt": "could of the chaos by placing the fragments, or sheets, or pages, in order.",
+            "pred": "onl ee, 0 ae b ploaing fa Payne ly or hak or feges,\" pee ©",
+            "cer": 0.5733333333333334,
+            "wer": 0.9285714285714286
+        },
+        {
+            "id": "handwritten_en_0068",
+            "gt": "present state of the Gospel is the result of an accident-prone history. The",
+            "pred": "giaelilel of Me begeel cM well shan sontdec!- pune hiclegy Gl",
+            "cer": 0.64,
+            "wer": 0.9230769230769231
+        },
+        {
+            "id": "handwritten_en_0069",
+            "gt": "accidentally damaged. An editor, who was not the author, made what he",
+            "pred": "secihedale Aah Me aller, ole cwtnel Uther, anil vthed-de",
+            "cer": 0.6521739130434783,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0070",
+            "gt": "original was written on a roll, or codex, which fell into disorder or was",
+            "pred": "0D ror in ts Lt (ad oe xy coc'4 hi, eg fo ot —_ Cty Orig-1re¢",
+            "cer": 0.7534246575342466,
+            "wer": 1.1428571428571428
+        },
+        {
+            "id": "handwritten_en_0071",
+            "gt": "showing that such changes are part of a",
+            "pred": "Showing Yat Such Changes Are part of Qa",
+            "cer": 0.1794871794871795,
+            "wer": 0.75
+        },
+        {
+            "id": "handwritten_en_0072",
+            "gt": "how this enlargement was effected nor has he",
+            "pred": "Yous this enlarge ment WAS efickA Yor has he",
+            "cer": 0.29545454545454547,
+            "wer": 0.75
+        },
+        {
+            "id": "handwritten_en_0073",
+            "gt": "The one real weakness of the Commentator's",
+            "pred": "The one real uraluess of the Qumenhbo-'s",
+            "cer": 0.2619047619047619,
+            "wer": 0.2857142857142857
+        },
+        {
+            "id": "handwritten_en_0074",
+            "gt": "this is possible it is necessary to examine the",
+            "pred": "lis is possi ble itis pa cessary bo £xawme the",
+            "cer": 0.2553191489361702,
+            "wer": 0.8888888888888888
+        },
+        {
+            "id": "handwritten_en_0075",
+            "gt": "he has not, until now, been able to exhibit exactly",
+            "pred": "2 has nol / unl, YOu, been able lo exh bil exachHy",
+            "cer": 0.3137254901960784,
+            "wer": 0.9
+        },
+        {
+            "id": "handwritten_en_0076",
+            "gt": "been able to explain the textual movements by",
+            "pred": "heen able b explain bh 1ex hal mo yemouts by",
+            "cer": 0.26666666666666666,
+            "wer": 0.875
+        },
+        {
+            "id": "handwritten_en_0077",
+            "gt": "case is that, in common with all his colleagues,",
+            "pred": "case is that, in common with all lus caleaques",
+            "cer": 0.125,
+            "wer": 0.2222222222222222
+        },
+        {
+            "id": "handwritten_en_0078",
+            "gt": "text of the Gospel.",
+            "pred": "lex of fhe Gospel",
+            "cer": 0.21052631578947367,
+            "wer": 0.75
+        },
+        {
+            "id": "handwritten_en_0079",
+            "gt": "simple and coherent plan. To understand how",
+            "pred": "ba aA p A e y",
+            "cer": 0.813953488372093,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0080",
+            "gt": "wording. It is not possible to establish any one",
+            "pred": "Wording. I-Lis nol possi ble to eslablish any ond",
+            "cer": 0.14583333333333334,
+            "wer": 0.7777777777777778
+        },
+        {
+            "id": "handwritten_en_0081",
+            "gt": "THE Fourth Gospel was almost certainly",
+            "pred": "THE Foucd Gogel vas alutast cerla'nly",
+            "cer": 0.2894736842105263,
+            "wer": 0.8333333333333334
+        },
+        {
+            "id": "handwritten_en_0082",
+            "gt": "Gospel represents the work of generations of",
+            "pred": "Gospel represeuls the worlg o } generalions ° L",
+            "cer": 0.22727272727272727,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0083",
+            "gt": "scholars who have compared the many manu-",
+            "pred": "scholars who hae Compared the many Mann —",
+            "cer": 0.14634146341463414,
+            "wer": 0.5714285714285714
+        },
+        {
+            "id": "handwritten_en_0084",
+            "gt": "written in Greek. A modern text of the",
+            "pred": "writin in Greek. A maolern fext of he",
+            "cer": 0.15789473684210525,
+            "wer": 0.5
+        },
+        {
+            "id": "handwritten_en_0085",
+            "gt": "which is most likely to have been the original",
+            "pred": "which is most likly bo laut hen phe anginal",
+            "cer": 0.2391304347826087,
+            "wer": 0.6666666666666666
+        },
+        {
+            "id": "handwritten_en_0086",
+            "gt": "text with absolute precision.",
+            "pred": "lext with absolele PSION,",
+            "cer": 0.4482758620689655,
+            "wer": 0.75
+        },
+        {
+            "id": "handwritten_en_0087",
+            "gt": "scripts of John and worked out the version",
+            "pred": "Scripls of John and worked out he version",
+            "cer": 0.07142857142857142,
+            "wer": 0.25
+        },
+        {
+            "id": "handwritten_en_0088",
+            "gt": "paragraphos markings were omitted. C. H. Roberts is of",
+            "pred": "COTGALAGLS WHRANGS WET Osta: Cr. Ces AS OH",
+            "cer": 0.7777777777777778,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0089",
+            "gt": "The bar was the commonest marking, but others",
+            "pred": "Wo SOF WAS LA COMMONES WORN, Kau ONS",
+            "cer": 0.8222222222222222,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0090",
+            "gt": "some markings would be used, although which, it is",
+            "pred": "SOWA WONUARS WOO LE WA, ugha Wid Av AS",
+            "cer": 0.76,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0091",
+            "gt": "impossible to say.",
+            "pred": "WAPOA ee",
+            "cer": 0.9444444444444444,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0092",
+            "gt": "were also used. Dots sometimes served in place of the",
+            "pred": "WHEEL USO USed. OKS Mtrehinad Served uv) PG Gre",
+            "cer": 0.660377358490566,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0093",
+            "gt": "bar, and there are cases where spacing is used as",
+            "pred": "COS, Gud Nee Ose COSAS Wok SPAGN AS USLA OS",
+            "cer": 0.7142857142857143,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0094",
+            "gt": "the opinion that in the original of the Fourth Gospel",
+            "pred": "LQ OPINION Ack ip re Ongina. ltre Tul. GOS—",
+            "cer": 0.660377358490566,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0095",
+            "gt": "it is now used to mark a paragraph ending. Frequently",
+            "pred": "he AS TOS VR KO WOR O PTAAOPA Roya, HEpuarry",
+            "cer": 0.7924528301886793,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0096",
+            "gt": "the original of the Gospel would be unmarked. The",
+            "pred": "THQ OnNo\\nas GAL GOSH \\WOuko We WAWOread \"Tha",
+            "cer": 0.7142857142857143,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0097",
+            "gt": "Professor E. G. Turner is inclined to take the view that",
+            "pred": "(OKSsar =. GL \\UMear AS WchiNed cOLARE yilyy Cack",
+            "cer": 0.6964285714285714,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0098",
+            "gt": "about one third of a page of Souter's print.",
+            "pred": "Ook Ove ach OO (OK. Ok CORN EAE",
+            "cer": 0.7954545454545454,
+            "wer": 1.0
+        },
+        {
+            "id": "handwritten_en_0099",
+            "gt": "manuscripts. A common size of column would hold",
+            "pred": "WONUSCHGS - A COMMON S23 A COtiwe WOUlA WAC",
+            "cer": 0.8085106382978723,
+            "wer": 1.0
         }
     ]
 }

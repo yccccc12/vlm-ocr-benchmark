@@ -1,90 +1,90 @@
 {
-    "model": "monkey_ocr",
+    "model": "paddle_vl_1.5",
     "summary": {
-        "corpus_cer": 0.051492100643651256,
-        "corpus_wer": 0.23150105708245244,
-        "macro_cer": 0.06021197535809856,
-        "stdev_cer": 0.11405673084801742,
-        "macro_wer": 0.22932341364346007,
-        "stdev_wer": 0.24314049051775793
+        "corpus_cer": 0.04622586307782329,
+        "corpus_wer": 0.16701902748414377,
+        "macro_cer": 0.05502979358588939,
+        "stdev_cer": 0.11054538435476331,
+        "macro_wer": 0.17723334792142842,
+        "stdev_wer": 0.22372611452016483
     },
     "details": [
         {
             "id": "handwritten_en_0000",
             "gt": "assuredness \" Bella Bella Marie \" ( Parlophone ), a lively song that changes tempo mid-way.",
-            "pred": "assuredness \"Bella Bella Marie\" (Parlophone),a lively song that change, tempo mid-way.",
-            "cer": 0.06593406593406594,
-            "wer": 0.5625
+            "pred": "assuredness \"Bella Bella Marie\" (Parlophone), a lively song that changes tempo mid-way.",
+            "cer": 0.04395604395604396,
+            "wer": 0.4375
         },
         {
             "id": "handwritten_en_0001",
             "gt": "I don't think he will storm the charts with this one, but it's a good start.",
-            "pred": "don't thinu he will storm the charts with this one,but it's a good start.",
-            "cer": 0.05263157894736842,
-            "wer": 0.25
+            "pred": "don't thinu he will storm the charts with this one, oat it's a good start.",
+            "cer": 0.06578947368421052,
+            "wer": 0.1875
         },
         {
             "id": "handwritten_en_0002",
             "gt": "CHRIS CHARLES, 39, who lives in Stockton-on-Tees, is an accountant.",
-            "pred": "CHRIS CHARLES,39,who lives in Stoculon-on-Tees,is an accountant",
-            "cer": 0.08955223880597014,
-            "wer": 0.6
+            "pred": "CHRIS CHARLES, 39, who lives in Stockton-on-Tees, is an accountant.",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0003",
             "gt": "Become a success with a disc and hey presto! You're a star.... Rolly sings with",
-            "pred": "Become a success with a dise and hey presto! You're a star... Rolly sings with",
-            "cer": 0.02531645569620253,
+            "pred": "Become a success with a disease and hey presto! You're a star... Rolly sings with",
+            "cer": 0.06329113924050633,
             "wer": 0.13333333333333333
         },
         {
             "id": "handwritten_en_0004",
             "gt": "Tolch, as he is known in Tin Pan Alley, likes songs with a month in the title. He wrote",
-            "pred": "ch,as he is unknown in Tin Pan Alley,lives songs with a month in the title.He wrote",
-            "cer": 0.10344827586206896,
-            "wer": 0.3684210526315789
+            "pred": "Tolch, as he is unknown in Tin Pan Alley, lives songs with a month in the title. He wrote",
+            "cer": 0.034482758620689655,
+            "wer": 0.10526315789473684
         },
         {
             "id": "handwritten_en_0005",
             "gt": "\" My September Love, \" the big David Whitfield hit of 1956.",
-            "pred": "My September love\",the big David Whitfield hit of 1956.",
-            "cer": 0.1016949152542373,
+            "pred": "\"My September love\", the big David Whitfield hit of 1956.",
+            "cer": 0.0847457627118644,
             "wer": 0.3333333333333333
         },
         {
             "id": "handwritten_en_0006",
             "gt": "He is also a director of a couple of garages. And he finds time as well to be a lyric",
-            "pred": "he is also a director of a couple of garages.And he finds time as well to be a ly",
-            "cer": 0.058823529411764705,
-            "wer": 0.2
+            "pred": "He is also a director of a couple of garages. And he finds time as well to be a lyric",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0007",
             "gt": "writer. He writes with Tolchard Evans, composer of \" Lady of Spain \" and other big hits.",
-            "pred": "writer.He writes with Tolchard Evans,composer of \"lady of Spain\" and other big",
-            "cer": 0.125,
-            "wer": 0.5294117647058824
+            "pred": "writer. He writes with Tolchard Evans, composer of \" Lady of Spain\" and other big hits.",
+            "cer": 0.011363636363636364,
+            "wer": 0.11764705882352941
         },
         {
             "id": "handwritten_en_0008",
             "gt": "The numbers include \" Scotland the Brave, \" \" Men of Harlech, \"",
-            "pred": "The numbers include \"Scotland the Brave,\" \"Men of Harlech,\"",
-            "cer": 0.06349206349206349,
+            "pred": "The numbers include \"Scotland the Brave,\" \"Men of Harleth,\"",
+            "cer": 0.07936507936507936,
             "wer": 0.6153846153846154
         },
         {
             "id": "handwritten_en_0009",
             "gt": "Fay Compton stars in \" No Hiding Place \" (I T V, 9.35 p.m. ).",
-            "pred": "Ray Compton stars in \"No Hiding Place\" (ITV, 9.35 p.m.).",
+            "pred": "Ray Compton stars in \" No Hiding Place \" ( ITV, 9.33 p.m.).",
             "cer": 0.09836065573770492,
-            "wer": 0.6666666666666666
+            "wer": 0.4666666666666667
         },
         {
             "id": "handwritten_en_0010",
             "gt": "She plays the possessive mother of a man whose hobby revolves",
-            "pred": "She plays the possessive mother of a man whose hobby revolves",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "She plays the possessive rather of a way whose hobby revolves",
+            "cer": 0.06557377049180328,
+            "wer": 0.18181818181818182
         },
         {
             "id": "handwritten_en_0011",
@@ -96,29 +96,29 @@
         {
             "id": "handwritten_en_0012",
             "gt": "THREE people will be hypnotised in tonight's \" Lifeline \"",
-            "pred": "THREE people will be lgly notised in tonight's \"Lifeline\"",
-            "cer": 0.10526315789473684,
-            "wer": 0.5
+            "pred": "THREE people will be try-notised in tonight's \" Lifeline\"",
+            "cer": 0.07017543859649122,
+            "wer": 0.3
         },
         {
             "id": "handwritten_en_0013",
             "gt": "( B B C, 10.15 ).",
-            "pred": "(BB(,10.15)。",
-            "cer": 0.4117647058823529,
+            "pred": "(BBE, 10.15).",
+            "cer": 0.29411764705882354,
             "wer": 1.0
         },
         {
             "id": "handwritten_en_0014",
             "gt": "\" McNamara's Band, \" \" Greensleeves \" and \" English Rose. \"",
-            "pred": "\"Me Namara's boyd,\" \"greysleeves\" and \"English rose.\"",
-            "cer": 0.2542372881355932,
-            "wer": 0.9166666666666666
+            "pred": "\"Me Nawara's Boyd,\" \" Breeysleeves\" and \" English Rose. \"",
+            "cer": 0.1694915254237288,
+            "wer": 0.5
         },
         {
             "id": "handwritten_en_0015",
             "gt": "of Rhodesia and Nyasaland ( 10.30 p.m. ).",
-            "pred": "of Rhodes, a and Nyasaland (10.30g.m.).",
-            "cer": 0.14634146341463414,
+            "pred": "of Rhodes, a and Nyasaland (10.30 g.m.).",
+            "cer": 0.12195121951219512,
             "wer": 0.75
         },
         {
@@ -131,58 +131,58 @@
         {
             "id": "handwritten_en_0017",
             "gt": "playwright Arnold Wesker. \" Instead, Muggeridge's appointment",
-            "pred": "playwright Arnold wafer.\" Instead, Mugeridge's appointment",
-            "cer": 0.09836065573770492,
-            "wer": 0.42857142857142855
+            "pred": "playwright Aryold Wesler.\" Instead, Nuggeridge's appointment",
+            "cer": 0.06557377049180328,
+            "wer": 0.5714285714285714
         },
         {
             "id": "handwritten_en_0018",
             "gt": "such as a chair and a motor-car. The idea is to see what happens when",
-            "pred": "such as a chair and a motor-car.The idea is to see what happens when",
+            "pred": "such as a chair and a moor-car. The idea is to see what happens when",
             "cer": 0.014492753623188406,
-            "wer": 0.13333333333333333
+            "wer": 0.06666666666666667
         },
         {
             "id": "handwritten_en_0019",
             "gt": "will be with Sir Roy Welensky the Premier of the Federation",
-            "pred": "will be with Sir Roy Welensky the premier of the Federation",
-            "cer": 0.01694915254237288,
-            "wer": 0.09090909090909091
+            "pred": "will be with Sir Roy Welensky the Premier of the Federation",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0020",
             "gt": "parts of the mind not normally available without hypnosis are used.",
-            "pred": "parts of the mind not normally available without hypnosis are used.",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "parts of the wind not normally available without hyposis are used.",
+            "cer": 0.029850746268656716,
+            "wer": 0.18181818181818182
         },
         {
             "id": "handwritten_en_0021",
             "gt": "I T V have postponed Malcolm Muggeridge's \" Appointment with",
-            "pred": "I TV have postponed Malcom Muggeridge's \"Appointment with",
-            "cer": 0.05,
-            "wer": 0.5
+            "pred": "I TN have postponed Malcolm Muggeridge's \" Appointment with",
+            "cer": 0.03333333333333333,
+            "wer": 0.2
         },
         {
             "id": "handwritten_en_0022",
             "gt": "success last night in I T V's \" Private Potter, \" his",
-            "pred": "success last night in TV's \"Private Potter,\" his",
+            "pred": "success lost eight in TV's \" Private Potter, \" his",
             "cer": 0.09433962264150944,
-            "wer": 0.5833333333333334
+            "wer": 0.4166666666666667
         },
         {
             "id": "handwritten_en_0023",
             "gt": "man could only be regarded as a machine.",
-            "pred": "man could only be regarded as a machine.",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "can suddenly be regarded as a machine.",
+            "cer": 0.15,
+            "wer": 0.375
         },
         {
             "id": "handwritten_en_0024",
             "gt": "date. \" ACTOR Tom Courtenay was an outstanding",
-            "pred": "date.\" Actor Tom Courtenay was an outstanding",
-            "cer": 0.10869565217391304,
-            "wer": 0.375
+            "pred": "date.\" Actor Tom Caterer was an outstanding",
+            "cer": 0.2391304347826087,
+            "wer": 0.5
         },
         {
             "id": "handwritten_en_0025",
@@ -201,37 +201,37 @@
         {
             "id": "handwritten_en_0027",
             "gt": "Say Granada T V, the producers: \" We decided to make",
-            "pred": "Say Granada TV, the producers: \"We decided to make",
-            "cer": 0.038461538461538464,
+            "pred": "Say GruudatoTV, the producers: \" We decided to wake",
+            "cer": 0.1346153846153846,
             "wer": 0.36363636363636365
         },
         {
             "id": "handwritten_en_0028",
             "gt": "first big T V part. The play was a brilliantly-written",
-            "pred": "first big TV part.The play was a brilliantly-writer",
-            "cer": 0.07407407407407407,
-            "wer": 0.5
+            "pred": "First big TV port. The play was a brilliantly-written",
+            "cer": 0.05555555555555555,
+            "wer": 0.4
         },
         {
             "id": "handwritten_en_0029",
             "gt": "affairs. The Wesker interview will be seen at a later",
-            "pred": "offairs.The Wester interview will be seen at a later",
-            "cer": 0.05660377358490566,
-            "wer": 0.3
+            "pred": "affairs. The Wester interview will be seen at a later-",
+            "cer": 0.03773584905660377,
+            "wer": 0.2
         },
         {
             "id": "handwritten_en_0030",
             "gt": "craggy face, and obstinate, baffled eyes. They stripped",
-            "pred": "waggy face, and obstinate, bated eyes. They stripped",
-            "cer": 0.09090909090909091,
-            "wer": 0.25
+            "pred": "crazley face, and obstinate, baffled eyes. They stripped",
+            "cer": 0.05454545454545454,
+            "wer": 0.125
         },
         {
             "id": "handwritten_en_0031",
             "gt": "claimed he had seen a vision of God - only the padre and his",
-            "pred": "claimed he had seen a vision of God-only the Padre and his",
-            "cer": 0.05,
-            "wer": 0.2857142857142857
+            "pred": "claimed he had seen a vision of God - only the Padre seed his",
+            "cer": 0.06666666666666667,
+            "wer": 0.14285714285714285
         },
         {
             "id": "handwritten_en_0032",
@@ -243,37 +243,37 @@
         {
             "id": "handwritten_en_0033",
             "gt": "him of his ugly battle-dress, to leave him for",
-            "pred": "When of his ugly battle-dress, to leave like for",
-            "cer": 0.13043478260869565,
-            "wer": 0.2222222222222222
+            "pred": "line of his ugly battle-dress, to leave him for",
+            "cer": 0.06521739130434782,
+            "wer": 0.1111111111111111
         },
         {
             "id": "handwritten_en_0034",
             "gt": "vision.",
-            "pred": "张东",
+            "pred": "",
             "cer": 1.0,
             "wer": 1.0
         },
         {
             "id": "handwritten_en_0035",
             "gt": "what he was - Potter, a frightened boy who had a",
-            "pred": "what he was - after, a frightened boy who had a",
-            "cer": 0.0625,
+            "pred": "what he was - better, a frightened boy who had a",
+            "cer": 0.041666666666666664,
             "wer": 0.09090909090909091
         },
         {
             "id": "handwritten_en_0036",
             "gt": "C O believed him. Courtenay played the part with a gawky,",
-            "pred": "co believed when.Curteau played the part with a gawky,",
-            "cer": 0.17543859649122806,
-            "wer": 0.36363636363636365
+            "pred": "CO believed war. Courteous played the part with a gowky,",
+            "cer": 0.14035087719298245,
+            "wer": 0.45454545454545453
         },
         {
             "id": "handwritten_en_0037",
             "gt": "Northern defiance. The cameras played continuously on his",
-            "pred": "Northern defiance.The cameras played continuously on his",
-            "cer": 0.017543859649122806,
-            "wer": 0.25
+            "pred": "Northern defiance. The cameras played continuously on his",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0038",
@@ -285,44 +285,44 @@
         {
             "id": "handwritten_en_0039",
             "gt": "scene, ranging from pubs, the Eton wall game,",
-            "pred": "scene,ranging from pub's,the Eton wall game,",
-            "cer": 0.06666666666666667,
-            "wer": 0.5
+            "pred": "Scene, ranging from pubs, the Eton wall game,",
+            "cer": 0.022222222222222223,
+            "wer": 0.125
         },
         {
             "id": "handwritten_en_0040",
             "gt": "Dennis Brogan, Shelagh Delaney, and Alan Sillitoe.",
-            "pred": "Dennis Brogan, Shelagh Delaney, and Alan Sillitoe",
-            "cer": 0.02,
-            "wer": 0.14285714285714285
+            "pred": "Dennis Brogan, Shelagh Delaney, and Alan Sillitoe.",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0041",
             "gt": "The film replaced \" What's My Line? \" and \" Be My",
-            "pred": "The film replaced \"What's My Line?\"and\"Belly",
-            "cer": 0.14285714285714285,
-            "wer": 0.6666666666666666
+            "pred": "The film replaced \" What's My Line? \" and \" Be My",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0042",
             "gt": "British personalities. Among them - Professor",
-            "pred": "British personalities,Among them-Professor",
-            "cer": 0.08888888888888889,
-            "wer": 0.8333333333333334
+            "pred": "British personalities. Among them-Professor",
+            "cer": 0.044444444444444446,
+            "wer": 0.5
         },
         {
             "id": "handwritten_en_0043",
             "gt": "The film covered a wide aspect of the British",
-            "pred": "$ film covered a wide aspect of the British",
-            "cer": 0.06666666666666667,
-            "wer": 0.1111111111111111
+            "pred": "The film covered a wide aspect of the British",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0044",
             "gt": "Guest \" programmes because of an electricians'",
-            "pred": "Guest\" programmes because of an electricians'",
-            "cer": 0.021739130434782608,
-            "wer": 0.2857142857142857
+            "pred": "Guest\" programmes because of an electricans",
+            "cer": 0.06521739130434782,
+            "wer": 0.42857142857142855
         },
         {
             "id": "handwritten_en_0045",
@@ -334,51 +334,51 @@
         {
             "id": "handwritten_en_0046",
             "gt": "strike. It showed Britain today through the eyes",
-            "pred": "strike.It showed Britain today through the eyes",
+            "pred": "strive. It showed Britain today through the eyes",
             "cer": 0.020833333333333332,
-            "wer": 0.25
+            "wer": 0.125
         },
         {
             "id": "handwritten_en_0047",
             "gt": "Britain was slipping behind....",
-            "pred": "Britain was slipping behind...",
-            "cer": 0.03225806451612903,
+            "pred": "Britain was slipping behind..",
+            "cer": 0.06451612903225806,
             "wer": 0.25
         },
         {
             "id": "handwritten_en_0048",
             "gt": "to make the strongest criticisms. He said",
-            "pred": "to make the strongest criticisms.He said",
-            "cer": 0.024390243902439025,
-            "wer": 0.2857142857142857
+            "pred": "to make the strongest criticisms. He said",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0049",
             "gt": "Shelagh Delaney and Alan Sillitoe attacked",
-            "pred": "Shelagh Delaney and Alan Silltoe attacked",
+            "pred": "Shelagh Delaney and Alan Sillito attacked",
             "cer": 0.023809523809523808,
             "wer": 0.16666666666666666
         },
         {
             "id": "handwritten_en_0050",
             "gt": "that in the race of the modern nations,",
-            "pred": "that in the \\$ of the modern nations,",
-            "cer": 0.10256410256410256,
-            "wer": 0.125
+            "pred": "that in the race of the modern nations,",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0051",
             "gt": "education. It was left to reporter Sevareid",
-            "pred": "education.It was left to reporter Sevareid",
+            "pred": "education. It was left to reporter Severeid",
             "cer": 0.023255813953488372,
-            "wer": 0.2857142857142857
+            "wer": 0.14285714285714285
         },
         {
             "id": "handwritten_en_0052",
             "gt": "other chums sniffing the wind and",
-            "pred": "other chuan shifing the wind and",
-            "cer": 0.12121212121212122,
-            "wer": 0.3333333333333333
+            "pred": "other chums shifting the wind and",
+            "cer": 0.06060606060606061,
+            "wer": 0.16666666666666666
         },
         {
             "id": "handwritten_en_0053",
@@ -397,114 +397,114 @@
         {
             "id": "handwritten_en_0055",
             "gt": "to talk to the author of Borstal Boy and",
-            "pred": "to talk to the author of Bonstal Boy and",
-            "cer": 0.025,
-            "wer": 0.1111111111111111
+            "pred": "to talk to the author of Borstal Boy and",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0056",
             "gt": "The Hostage about his new work, if any,",
-            "pred": "The hostage about his new work,if any,",
-            "cer": 0.05128205128205128,
-            "wer": 0.375
+            "pred": "The Hostage about his new work, if any,",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0057",
             "gt": "and who is now being pluckily convivial",
-            "pred": "and who it now being luckily convivial",
-            "cer": 0.05128205128205128,
+            "pred": "and who it now being pluckily council",
+            "cer": 0.15384615384615385,
             "wer": 0.2857142857142857
         },
         {
             "id": "handwritten_en_0058",
             "gt": "has rung a couple of times, calls from",
-            "pred": "has ring a couple of times, calls from",
-            "cer": 0.02631578947368421,
+            "pred": "has nug a couple of times, calls from",
+            "cer": 0.05263157894736842,
             "wer": 0.125
         },
         {
             "id": "handwritten_en_0059",
             "gt": "to fight off the frustration. The telephone",
-            "pred": "to fight off the frustration.The telephone",
-            "cer": 0.023255813953488372,
-            "wer": 0.2857142857142857
+            "pred": "to fight off the frustration. The telephone",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0060",
             "gt": "ALSO present is a London journalist who",
-            "pred": "Also present is a London journalist who",
-            "cer": 0.07692307692307693,
-            "wer": 0.14285714285714285
+            "pred": "Also present it a London journalist who",
+            "cer": 0.10256410256410256,
+            "wer": 0.2857142857142857
         },
         {
             "id": "handwritten_en_0061",
             "gt": "the Synoptics can be reasonably solved by paying due regard to the time and",
-            "pred": "The Synoptics can be reasonably solved by paying due regard to the time and",
+            "pred": "the synoptics can be reasonably solved by paying due regard to the time and",
             "cer": 0.013333333333333334,
             "wer": 0.07142857142857142
         },
         {
             "id": "handwritten_en_0062",
             "gt": "plan and to the different public for which, or against which, the author wrote.",
-            "pred": "plan and to the different public for which, or against which, the author does.",
-            "cer": 0.05063291139240506,
-            "wer": 0.07142857142857142
+            "pred": "plan and to the different public for which, or against which, the author was a",
+            "cer": 0.06329113924050633,
+            "wer": 0.14285714285714285
         },
         {
             "id": "handwritten_en_0063",
             "gt": "The third article excluded any allegorical interpretation of the Gospel.",
-            "pred": "the third article excluded any allegorical interpretation of the Gsod.",
-            "cer": 0.06944444444444445,
+            "pred": "the third article excluded any allegorical interpretation of the Gagud.",
+            "cer": 0.08333333333333333,
             "wer": 0.2
         },
         {
             "id": "handwritten_en_0064",
             "gt": "The second said that the problems which arise from the comparisons with",
-            "pred": "The second said that the problems which arise from the comparisons will",
-            "cer": 0.028169014084507043,
+            "pred": "The second said that the problem which arise from the comparisons with",
+            "cer": 0.014084507042253521,
             "wer": 0.08333333333333333
         },
         {
             "id": "handwritten_en_0065",
             "gt": "Fourth Gospel by explanations based on assumed textual dislocations. The",
-            "pred": "Fourth Gospel by explanations based on assumed textual dislocations. The",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "Fourth Gospel by explanations based on assumed textual mislocations. He",
+            "cer": 0.041666666666666664,
+            "wer": 0.2
         },
         {
             "id": "handwritten_en_0066",
             "gt": "There is a whole group of theories which attempt to explain the problems of the",
-            "pred": "There is a whole group of theories which attempt to explain the problems of the",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "there is a whole group of theories which attempt to explain the problems of the",
+            "cer": 0.012658227848101266,
+            "wer": 0.06666666666666667
         },
         {
             "id": "handwritten_en_0067",
             "gt": "could of the chaos by placing the fragments, or sheets, or pages, in order.",
-            "pred": "could of the chaos by placing the fragments, or sheets, or pages, in order.",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "could all choose by placing the fragments, or sheets, or pages, in order.",
+            "cer": 0.10666666666666667,
+            "wer": 0.21428571428571427
         },
         {
             "id": "handwritten_en_0068",
             "gt": "present state of the Gospel is the result of an accident-prone history. The",
-            "pred": "present state of the Gaspel is the result of an accident-prone history. It",
-            "cer": 0.05333333333333334,
-            "wer": 0.15384615384615385
+            "pred": "present state of the Gospel is the result of an accident-prone history. He",
+            "cer": 0.02666666666666667,
+            "wer": 0.07692307692307693
         },
         {
             "id": "handwritten_en_0069",
             "gt": "accidentally damaged. An editor, who was not the author, made what he",
-            "pred": "accidentally damaged. So editor, who was not the author, made what he",
-            "cer": 0.028985507246376812,
-            "wer": 0.08333333333333333
+            "pred": "accidentally damaged. In editor, who was not the author, most what he",
+            "cer": 0.057971014492753624,
+            "wer": 0.16666666666666666
         },
         {
             "id": "handwritten_en_0070",
             "gt": "original was written on a roll, or codex, which fell into disorder or was",
-            "pred": "original was written on a roll, or codex, which fell into disorder or was",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "original was carrily on a roll, or codex, which fell into disorder was",
+            "cer": 0.136986301369863,
+            "wer": 0.14285714285714285
         },
         {
             "id": "handwritten_en_0071",
@@ -565,16 +565,16 @@
         {
             "id": "handwritten_en_0079",
             "gt": "simple and coherent plan. To understand how",
-            "pred": "simple and coherent plan.To understand how",
-            "cer": 0.023255813953488372,
-            "wer": 0.2857142857142857
+            "pred": "simple and coherent plan. To understand how",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0080",
             "gt": "wording. It is not possible to establish any one",
-            "pred": "wording.It is not possible to establish any one",
-            "cer": 0.020833333333333332,
-            "wer": 0.2222222222222222
+            "pred": "wording. It is not possible to establish any one",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0081",
@@ -593,16 +593,16 @@
         {
             "id": "handwritten_en_0083",
             "gt": "scholars who have compared the many manu-",
-            "pred": "scholars who have compared the many manu",
-            "cer": 0.024390243902439025,
-            "wer": 0.14285714285714285
+            "pred": "scholars who have compared the many manu-",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0084",
             "gt": "written in Greek. A modern text of the",
-            "pred": "written in Greek.A modern text of the",
-            "cer": 0.02631578947368421,
-            "wer": 0.25
+            "pred": "written in Greek. A modern text of the",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0085",
@@ -614,9 +614,9 @@
         {
             "id": "handwritten_en_0086",
             "gt": "text with absolute precision.",
-            "pred": "text with absolute precision.",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "text with absolute precision,",
+            "cer": 0.034482758620689655,
+            "wer": 0.25
         },
         {
             "id": "handwritten_en_0087",
@@ -628,9 +628,9 @@
         {
             "id": "handwritten_en_0088",
             "gt": "paragraphos markings were omitted. C. H. Roberts is of",
-            "pred": "poragraphs workings were omitted.C.H.Rolets is of",
-            "cer": 0.16666666666666666,
-            "wer": 0.6666666666666666
+            "pred": "paragraphs workings were omitted. C.H. Roberts is of",
+            "cer": 0.07407407407407407,
+            "wer": 0.4444444444444444
         },
         {
             "id": "handwritten_en_0089",
@@ -642,71 +642,71 @@
         {
             "id": "handwritten_en_0090",
             "gt": "some markings would be used, although which, it is",
-            "pred": "some workings would be used, which, it is",
-            "cer": 0.22,
-            "wer": 0.2222222222222222
+            "pred": "Some warlings would be used, Ough which, it is",
+            "cer": 0.16,
+            "wer": 0.3333333333333333
         },
         {
             "id": "handwritten_en_0091",
             "gt": "impossible to say.",
-            "pred": "unpossible to say.",
-            "cer": 0.1111111111111111,
-            "wer": 0.3333333333333333
+            "pred": "w possible to say",
+            "cer": 0.16666666666666666,
+            "wer": 1.0
         },
         {
             "id": "handwritten_en_0092",
             "gt": "were also used. Dots sometimes served in place of the",
-            "pred": "were also used. Nuts sometimes served in place of the",
+            "pred": "were also used. Oats sometimes served in place of the",
             "cer": 0.03773584905660377,
             "wer": 0.1
         },
         {
             "id": "handwritten_en_0093",
             "gt": "bar, and there are cases where spacing is used as",
-            "pred": "bar, and there are cases where spacing is used as",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "bas, and there are cases where spacing is used as",
+            "cer": 0.02040816326530612,
+            "wer": 0.1
         },
         {
             "id": "handwritten_en_0094",
             "gt": "the opinion that in the original of the Fourth Gospel",
-            "pred": "the opinion that in the original of the Fourth Gospel",
-            "cer": 0.0,
-            "wer": 0.0
+            "pred": "the opinion that in the original of the Fowlu Gospel",
+            "cer": 0.07547169811320754,
+            "wer": 0.1
         },
         {
             "id": "handwritten_en_0095",
             "gt": "it is now used to mark a paragraph ending. Frequently",
-            "pred": "it is now used to work a paragraph ending.Frequent",
-            "cer": 0.09433962264150944,
-            "wer": 0.3
+            "pred": "it is now used to work a paragraph ending. Frequently",
+            "cer": 0.03773584905660377,
+            "wer": 0.1
         },
         {
             "id": "handwritten_en_0096",
             "gt": "the original of the Gospel would be unmarked. The",
-            "pred": "the original of the Gospel would be unworkcd.The",
-            "cer": 0.08163265306122448,
+            "pred": "The original of the Gospel would be unworked. The",
+            "cer": 0.061224489795918366,
             "wer": 0.2222222222222222
         },
         {
             "id": "handwritten_en_0097",
             "gt": "Professor E. G. Turner is inclined to take the view that",
-            "pred": "Professor E. G. Turner is inclined to take view that",
-            "cer": 0.07142857142857142,
-            "wer": 0.09090909090909091
+            "pred": "professor E. G. Turner is inclined to take view that",
+            "cer": 0.08928571428571429,
+            "wer": 0.18181818181818182
         },
         {
             "id": "handwritten_en_0098",
             "gt": "about one third of a page of Souter's print.",
-            "pred": "about one third of a page of Sauter's print.",
-            "cer": 0.022727272727272728,
-            "wer": 0.1111111111111111
+            "pred": "about one third of a page of Souter's print.",
+            "cer": 0.0,
+            "wer": 0.0
         },
         {
             "id": "handwritten_en_0099",
             "gt": "manuscripts. A common size of column would hold",
-            "pred": "manuscripts.A common size of column would hold",
-            "cer": 0.02127659574468085,
+            "pred": "Manuscripts. A common size A column would hold",
+            "cer": 0.06382978723404255,
             "wer": 0.25
         }
     ]

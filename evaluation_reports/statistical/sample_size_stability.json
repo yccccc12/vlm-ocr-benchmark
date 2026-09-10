@@ -1,0 +1,3548 @@
+{
+  "seed": 42,
+  "n_reps_per_size": 1000,
+  "sample_sizes": [
+    20,
+    40,
+    60,
+    80,
+    100
+  ],
+  "method": "random subsampling without replacement, drawn from the full N=100 corpus",
+  "metrics": [
+    {
+      "metric": "English CER",
+      "report_dir": "handwritten_en",
+      "field": "cer",
+      "higher_is_better": false,
+      "n_full": 100,
+      "engines": [
+        "baidu_ocr",
+        "deepseekOCR",
+        "deepseekOCR2",
+        "dots_mocr",
+        "glm_ocr",
+        "mineru",
+        "monkey_ocr",
+        "paddle_vl_1.5",
+        "paddle_vl_1.6",
+        "tesseract"
+      ],
+      "top1_full_dataset": "dots.mocr",
+      "by_sample_size": {
+        "20": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9284606060606061,
+          "spearman_rho_std": 0.06644414211981796,
+          "kendall_tau_mean": 0.8516444444444446,
+          "top1_match_rate": 0.986,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.6479055347697307,
+              "std_across_reps": 0.09138152613128445,
+              "ci_lower_2.5": 0.46883196598748456,
+              "ci_upper_97.5": 0.817773918827686,
+              "ci_width": 0.34894195284020146,
+              "full_dataset_mean": 0.6475109436975904,
+              "full_dataset_rank": 10
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.1610962206314373,
+              "std_across_reps": 0.11129774539702167,
+              "ci_lower_2.5": 0.04749440752567101,
+              "ci_upper_97.5": 0.4240337634417281,
+              "ci_width": 0.3765393559160571,
+              "full_dataset_mean": 0.16441258150094845,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.09423952122043901,
+              "std_across_reps": 0.03103940868398466,
+              "ci_lower_2.5": 0.048236592273986585,
+              "ci_upper_97.5": 0.16674532447926477,
+              "ci_width": 0.11850873220527819,
+              "full_dataset_mean": 0.09472990130384451,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.023598863751852654,
+              "std_across_reps": 0.010031671252994973,
+              "ci_lower_2.5": 0.007926763385223693,
+              "ci_upper_97.5": 0.045088250648246654,
+              "ci_width": 0.03716148726302296,
+              "full_dataset_mean": 0.023546211356495327,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.07895042124283808,
+              "std_across_reps": 0.027862684760699204,
+              "ci_lower_2.5": 0.03848334080656958,
+              "ci_upper_97.5": 0.14538399564658017,
+              "ci_width": 0.10690065484001059,
+              "full_dataset_mean": 0.07935137110293686,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.046844926137629146,
+              "std_across_reps": 0.01754964486027216,
+              "ci_lower_2.5": 0.021150564911818832,
+              "ci_upper_97.5": 0.08784048172967159,
+              "ci_width": 0.06668991681785275,
+              "full_dataset_mean": 0.0478736477027097,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.06014447733537714,
+              "std_across_reps": 0.023080853650121132,
+              "ci_lower_2.5": 0.029191226954744864,
+              "ci_upper_97.5": 0.115541123848956,
+              "ci_width": 0.08634989689421113,
+              "full_dataset_mean": 0.060211975358098545,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.054842482497657004,
+              "std_across_reps": 0.02249073040397293,
+              "ci_lower_2.5": 0.025033569885790162,
+              "ci_upper_97.5": 0.10564313899727382,
+              "ci_width": 0.08060956911148365,
+              "full_dataset_mean": 0.055029793585889414,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.051203014592934235,
+              "std_across_reps": 0.022585895024504414,
+              "ci_lower_2.5": 0.022274180397758518,
+              "ci_upper_97.5": 0.10360131832945778,
+              "ci_width": 0.08132713793169927,
+              "full_dataset_mean": 0.051211206287079515,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.5046601524313226,
+              "std_across_reps": 0.05373957830272574,
+              "ci_lower_2.5": 0.4006078989281364,
+              "ci_upper_97.5": 0.6056743549379027,
+              "ci_width": 0.20506645600976625,
+              "full_dataset_mean": 0.5063407472996214,
+              "full_dataset_rank": 9
+            }
+          ]
+        },
+        "40": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9688363636363638,
+          "spearman_rho_std": 0.03295757129960852,
+          "kendall_tau_mean": 0.9217333333333335,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.646399029098983,
+              "std_across_reps": 0.05612380248248442,
+              "ci_lower_2.5": 0.540010824328413,
+              "ci_upper_97.5": 0.7576330962315321,
+              "ci_width": 0.2176222719031191,
+              "full_dataset_mean": 0.6475109436975904,
+              "full_dataset_rank": 10
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.16584472355919502,
+              "std_across_reps": 0.06903968304660642,
+              "ci_lower_2.5": 0.06804316604550177,
+              "ci_upper_97.5": 0.28244775542778905,
+              "ci_width": 0.2144045893822873,
+              "full_dataset_mean": 0.16441258150094845,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.09523656646393354,
+              "std_across_reps": 0.01877221752795424,
+              "ci_lower_2.5": 0.06221952386535724,
+              "ci_upper_97.5": 0.1330020122887359,
+              "ci_width": 0.07078248842337866,
+              "full_dataset_mean": 0.09472990130384451,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.023556653609776452,
+              "std_across_reps": 0.00608501426247104,
+              "ci_lower_2.5": 0.012725776575156757,
+              "ci_upper_97.5": 0.03559261726353031,
+              "ci_width": 0.022866840688373552,
+              "full_dataset_mean": 0.023546211356495327,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.08003698964573618,
+              "std_across_reps": 0.016909386528635394,
+              "ci_lower_2.5": 0.05029965529681175,
+              "ci_upper_97.5": 0.11249288364777318,
+              "ci_width": 0.06219322835096144,
+              "full_dataset_mean": 0.07935137110293686,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.04761931917743787,
+              "std_across_reps": 0.010817672192381524,
+              "ci_lower_2.5": 0.02935007484285084,
+              "ci_upper_97.5": 0.06863489603578998,
+              "ci_width": 0.03928482119293914,
+              "full_dataset_mean": 0.0478736477027097,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.0608324605499502,
+              "std_across_reps": 0.014025166939380308,
+              "ci_lower_2.5": 0.03812503953140853,
+              "ci_upper_97.5": 0.08628017457269574,
+              "ci_width": 0.04815513504128721,
+              "full_dataset_mean": 0.060211975358098545,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.055527097918409034,
+              "std_across_reps": 0.013675383656473064,
+              "ci_lower_2.5": 0.03359793436000094,
+              "ci_upper_97.5": 0.07994820078292945,
+              "ci_width": 0.04635026642292851,
+              "full_dataset_mean": 0.055029793585889414,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.05182297826982452,
+              "std_across_reps": 0.013838700294741555,
+              "ci_lower_2.5": 0.030644673333200804,
+              "ci_upper_97.5": 0.07689879727429759,
+              "ci_width": 0.046254123941096785,
+              "full_dataset_mean": 0.051211206287079515,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.5062683762855983,
+              "std_across_reps": 0.032790287469838794,
+              "ci_lower_2.5": 0.4455315734070172,
+              "ci_upper_97.5": 0.5702530685082502,
+              "ci_width": 0.12472149510123298,
+              "full_dataset_mean": 0.5063407472996214,
+              "full_dataset_rank": 9
+            }
+          ]
+        },
+        "60": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9851515151515152,
+          "spearman_rho_std": 0.019859469548861752,
+          "kendall_tau_mean": 0.9600000000000001,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.6465602406532067,
+              "std_across_reps": 0.03630974401125897,
+              "ci_lower_2.5": 0.5728731001623066,
+              "ci_upper_97.5": 0.7167538064442086,
+              "ci_width": 0.14388070628190197,
+              "full_dataset_mean": 0.6475109436975904,
+              "full_dataset_rank": 10
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.16653172592728588,
+              "std_across_reps": 0.04616596359009553,
+              "ci_lower_2.5": 0.08718546348909412,
+              "ci_upper_97.5": 0.23193876462572557,
+              "ci_width": 0.14475330113663146,
+              "full_dataset_mean": 0.16441258150094845,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.09556051009314721,
+              "std_across_reps": 0.01266432503136737,
+              "ci_lower_2.5": 0.0714784847951409,
+              "ci_upper_97.5": 0.11684352079808602,
+              "ci_width": 0.045365036002945114,
+              "full_dataset_mean": 0.09472990130384451,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.023777612890963154,
+              "std_across_reps": 0.003987775446993138,
+              "ci_lower_2.5": 0.015899467583896848,
+              "ci_upper_97.5": 0.031048350253361893,
+              "ci_width": 0.015148882669465045,
+              "full_dataset_mean": 0.023546211356495327,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.0798915153326152,
+              "std_across_reps": 0.011759223251677357,
+              "ci_lower_2.5": 0.055732813748776845,
+              "ci_upper_97.5": 0.09880828851237586,
+              "ci_width": 0.04307547476359901,
+              "full_dataset_mean": 0.07935137110293686,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.04839846680390624,
+              "std_across_reps": 0.0070985289358208034,
+              "ci_lower_2.5": 0.03452857534231532,
+              "ci_upper_97.5": 0.06073937018531034,
+              "ci_width": 0.026210794842995017,
+              "full_dataset_mean": 0.0478736477027097,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.06066688981678071,
+              "std_across_reps": 0.00915525126080379,
+              "ci_lower_2.5": 0.04385438612888497,
+              "ci_upper_97.5": 0.07593757467037889,
+              "ci_width": 0.03208318854149392,
+              "full_dataset_mean": 0.060211975358098545,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.05537759043403476,
+              "std_across_reps": 0.008829233718271897,
+              "ci_lower_2.5": 0.03923940366949371,
+              "ci_upper_97.5": 0.06945178666912868,
+              "ci_width": 0.030212382999634975,
+              "full_dataset_mean": 0.055029793585889414,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.051569555409810314,
+              "std_across_reps": 0.008896752411175322,
+              "ci_lower_2.5": 0.035093153276382606,
+              "ci_upper_97.5": 0.06518628872244159,
+              "ci_width": 0.03009313544605898,
+              "full_dataset_mean": 0.051211206287079515,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.5064113010101818,
+              "std_across_reps": 0.022174026747810924,
+              "ci_lower_2.5": 0.4656189141129581,
+              "ci_upper_97.5": 0.5506532188130677,
+              "ci_width": 0.08503430470010964,
+              "full_dataset_mean": 0.5063407472996214,
+              "full_dataset_rank": 9
+            }
+          ]
+        },
+        "80": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9941333333333334,
+          "spearman_rho_std": 0.012466264485785966,
+          "kendall_tau_mean": 0.9838666666666667,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.6473259101287763,
+              "std_across_reps": 0.023318876755173794,
+              "ci_lower_2.5": 0.6054610173881751,
+              "ci_upper_97.5": 0.692698131339007,
+              "ci_width": 0.08723711395083189,
+              "full_dataset_mean": 0.6475109436975904,
+              "full_dataset_rank": 10
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.16482050265833093,
+              "std_across_reps": 0.028120119950000452,
+              "ci_lower_2.5": 0.10091783086859996,
+              "ci_upper_97.5": 0.19366405141318352,
+              "ci_width": 0.09274622054458356,
+              "full_dataset_mean": 0.16441258150094845,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.09466657040841349,
+              "std_across_reps": 0.007984178304928346,
+              "ci_lower_2.5": 0.07666325151878531,
+              "ci_upper_97.5": 0.10623377493336048,
+              "ci_width": 0.029570523414575167,
+              "full_dataset_mean": 0.09472990130384451,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.02343526050295905,
+              "std_across_reps": 0.0023816122405805155,
+              "ci_lower_2.5": 0.018274741062708627,
+              "ci_upper_97.5": 0.027212571095981068,
+              "ci_width": 0.008937830033272441,
+              "full_dataset_mean": 0.023546211356495327,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.07938388905916616,
+              "std_across_reps": 0.0070540813412410365,
+              "ci_lower_2.5": 0.06273680472165756,
+              "ci_upper_97.5": 0.08868990301425261,
+              "ci_width": 0.025953098292595053,
+              "full_dataset_mean": 0.07935137110293686,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.04779906170649046,
+              "std_across_reps": 0.0041400211344516874,
+              "ci_lower_2.5": 0.03801702231167111,
+              "ci_upper_97.5": 0.053974288604871974,
+              "ci_width": 0.015957266293200864,
+              "full_dataset_mean": 0.0478736477027097,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.06008836051832268,
+              "std_across_reps": 0.005736648248138687,
+              "ci_lower_2.5": 0.04689127376381615,
+              "ci_upper_97.5": 0.06752457091808386,
+              "ci_width": 0.02063329715426771,
+              "full_dataset_mean": 0.060211975358098545,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.054820546456554944,
+              "std_across_reps": 0.005608115295935624,
+              "ci_lower_2.5": 0.04226969044770873,
+              "ci_upper_97.5": 0.06213962623806924,
+              "ci_width": 0.01986993579036051,
+              "full_dataset_mean": 0.055029793585889414,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.05098322098879475,
+              "std_across_reps": 0.005584464135666275,
+              "ci_lower_2.5": 0.03803037411449423,
+              "ci_upper_97.5": 0.05802634765237925,
+              "ci_width": 0.019995973537885015,
+              "full_dataset_mean": 0.051211206287079515,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.5055137217173857,
+              "std_across_reps": 0.013898387235412188,
+              "ci_lower_2.5": 0.47933562107325617,
+              "ci_upper_97.5": 0.5334357740398943,
+              "ci_width": 0.054100152966638115,
+              "full_dataset_mean": 0.5063407472996214,
+              "full_dataset_rank": 9
+            }
+          ]
+        },
+        "100": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 1.0,
+          "spearman_rho_std": 0.0,
+          "kendall_tau_mean": 1.0,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.6475109436975911,
+              "std_across_reps": 6.661338147750939e-16,
+              "ci_lower_2.5": 0.6475109436975904,
+              "ci_upper_97.5": 0.6475109436975904,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.6475109436975904,
+              "full_dataset_rank": 10
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.16441258150095187,
+              "std_across_reps": 3.4139358007223564e-15,
+              "ci_lower_2.5": 0.16441258150094845,
+              "ci_upper_97.5": 0.16441258150094845,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.16441258150094845,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.09472990130384576,
+              "std_across_reps": 1.2490009027033011e-15,
+              "ci_lower_2.5": 0.09472990130384451,
+              "ci_upper_97.5": 0.09472990130384451,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.09472990130384451,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.023546211356495452,
+              "std_across_reps": 1.249000902703301e-16,
+              "ci_lower_2.5": 0.023546211356495327,
+              "ci_upper_97.5": 0.023546211356495327,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.023546211356495327,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.0793513711029362,
+              "std_across_reps": 6.522560269672795e-16,
+              "ci_lower_2.5": 0.07935137110293686,
+              "ci_upper_97.5": 0.07935137110293686,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.07935137110293686,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.047873647702708896,
+              "std_across_reps": 8.049116928532385e-16,
+              "ci_lower_2.5": 0.0478736477027097,
+              "ci_upper_97.5": 0.0478736477027097,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.0478736477027097,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.060211975358099294,
+              "std_across_reps": 7.494005416219807e-16,
+              "ci_lower_2.5": 0.060211975358098545,
+              "ci_upper_97.5": 0.060211975358098545,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.060211975358098545,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.05502979358588838,
+              "std_across_reps": 1.033895191682177e-15,
+              "ci_lower_2.5": 0.055029793585889414,
+              "ci_upper_97.5": 0.055029793585889414,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.055029793585889414,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.05121120628707885,
+              "std_across_reps": 6.661338147750939e-16,
+              "ci_lower_2.5": 0.051211206287079515,
+              "ci_upper_97.5": 0.051211206287079515,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.051211206287079515,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.5063407472996323,
+              "std_across_reps": 1.0880185641326534e-14,
+              "ci_lower_2.5": 0.5063407472996214,
+              "ci_upper_97.5": 0.5063407472996214,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.5063407472996214,
+              "full_dataset_rank": 9
+            }
+          ]
+        }
+      }
+    },
+    {
+      "metric": "English WER",
+      "report_dir": "handwritten_en",
+      "field": "wer",
+      "higher_is_better": false,
+      "n_full": 100,
+      "engines": [
+        "baidu_ocr",
+        "deepseekOCR",
+        "deepseekOCR2",
+        "dots_mocr",
+        "glm_ocr",
+        "mineru",
+        "monkey_ocr",
+        "paddle_vl_1.5",
+        "paddle_vl_1.6",
+        "tesseract"
+      ],
+      "top1_full_dataset": "dots.mocr",
+      "by_sample_size": {
+        "20": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.8911757575757576,
+          "spearman_rho_std": 0.07677763295352848,
+          "kendall_tau_mean": 0.785288888888889,
+          "top1_match_rate": 0.925,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.7101882899674721,
+              "std_across_reps": 0.08239485645921216,
+              "ci_lower_2.5": 0.5430526433329741,
+              "ci_upper_97.5": 0.8669455670426065,
+              "ci_width": 0.3238929237096324,
+              "full_dataset_mean": 0.7132802675051129,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.27879819651195015,
+              "std_across_reps": 0.09343559899726862,
+              "ci_lower_2.5": 0.1449132672882673,
+              "ci_upper_97.5": 0.487130477161727,
+              "ci_width": 0.3422172098734597,
+              "full_dataset_mean": 0.2789690735820766,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.23875209249170215,
+              "std_across_reps": 0.05648471384411399,
+              "ci_lower_2.5": 0.1435563356921716,
+              "ci_upper_97.5": 0.356047391205286,
+              "ci_width": 0.2124910555131144,
+              "full_dataset_mean": 0.2389242675109548,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.1286078376493218,
+              "std_across_reps": 0.04525930343757006,
+              "ci_lower_2.5": 0.05081118990658465,
+              "ci_upper_97.5": 0.22425759182338126,
+              "ci_width": 0.1734464019167966,
+              "full_dataset_mean": 0.12818912765081492,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.22826525374221612,
+              "std_across_reps": 0.046239052214022046,
+              "ci_lower_2.5": 0.14645174726589202,
+              "ci_upper_97.5": 0.3228908244533244,
+              "ci_width": 0.17643907718743237,
+              "full_dataset_mean": 0.2282050324976023,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.1837025772080089,
+              "std_across_reps": 0.05024457492640621,
+              "ci_lower_2.5": 0.09250404783125371,
+              "ci_upper_97.5": 0.2886835542929293,
+              "ci_width": 0.1961795064616756,
+              "full_dataset_mean": 0.18288738261222767,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.23010857739676027,
+              "std_across_reps": 0.049156248938344624,
+              "ci_lower_2.5": 0.14135267857142858,
+              "ci_upper_97.5": 0.3281336997518306,
+              "ci_width": 0.18678102118040202,
+              "full_dataset_mean": 0.22932341364346,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.1778257969008975,
+              "std_across_reps": 0.04574895002086429,
+              "ci_lower_2.5": 0.09713534902597402,
+              "ci_upper_97.5": 0.26961232389686335,
+              "ci_width": 0.1724769748708893,
+              "full_dataset_mean": 0.17723334792142842,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.1854464232158019,
+              "std_across_reps": 0.04659918561936028,
+              "ci_lower_2.5": 0.10234213855996943,
+              "ci_upper_97.5": 0.2788858349575261,
+              "ci_width": 0.17654369639755668,
+              "full_dataset_mean": 0.18410717159517465,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.9079500656485755,
+              "std_across_reps": 0.0523174285450521,
+              "ci_lower_2.5": 0.8085749729179489,
+              "ci_upper_97.5": 1.0087084686147187,
+              "ci_width": 0.20013349569676986,
+              "full_dataset_mean": 0.9087015149453229,
+              "full_dataset_rank": 10
+            }
+          ]
+        },
+        "40": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.940969696969697,
+          "spearman_rho_std": 0.040617999149549014,
+          "kendall_tau_mean": 0.8543111111111112,
+          "top1_match_rate": 0.997,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.7145439718829498,
+              "std_across_reps": 0.04789518152715931,
+              "ci_lower_2.5": 0.6179658244876898,
+              "ci_upper_97.5": 0.8047594023354954,
+              "ci_width": 0.1867935778478056,
+              "full_dataset_mean": 0.7132802675051129,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.27690288114620165,
+              "std_across_reps": 0.05622576687932634,
+              "ci_lower_2.5": 0.18212660227951444,
+              "ci_upper_97.5": 0.38803791520979014,
+              "ci_width": 0.2059113129302757,
+              "full_dataset_mean": 0.2789690735820766,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.23942102353378472,
+              "std_across_reps": 0.03547201092488338,
+              "ci_lower_2.5": 0.1732491645781119,
+              "ci_upper_97.5": 0.30956978146122877,
+              "ci_width": 0.13632061688311686,
+              "full_dataset_mean": 0.2389242675109548,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.1281809350458837,
+              "std_across_reps": 0.02783750495060182,
+              "ci_lower_2.5": 0.07715263918067228,
+              "ci_upper_97.5": 0.18390395943603177,
+              "ci_width": 0.1067513202553595,
+              "full_dataset_mean": 0.12818912765081492,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.22974808995592486,
+              "std_across_reps": 0.02797772902129633,
+              "ci_lower_2.5": 0.17117581819410377,
+              "ci_upper_97.5": 0.2830422937324544,
+              "ci_width": 0.11186647553835061,
+              "full_dataset_mean": 0.2282050324976023,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.1835317343635254,
+              "std_across_reps": 0.031142150497249586,
+              "ci_lower_2.5": 0.12470861539776013,
+              "ci_upper_97.5": 0.24434382274180066,
+              "ci_width": 0.11963520734404054,
+              "full_dataset_mean": 0.18288738261222767,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.22956498108884985,
+              "std_across_reps": 0.02918052460776203,
+              "ci_lower_2.5": 0.17375264289213113,
+              "ci_upper_97.5": 0.2850587022841279,
+              "ci_width": 0.11130605939199675,
+              "full_dataset_mean": 0.22932341364346,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.1775104036476725,
+              "std_across_reps": 0.027807792539420593,
+              "ci_lower_2.5": 0.12338281117102713,
+              "ci_upper_97.5": 0.23202890037593976,
+              "ci_width": 0.10864608920491263,
+              "full_dataset_mean": 0.17723334792142842,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.18464498352299155,
+              "std_across_reps": 0.02817720965432963,
+              "ci_lower_2.5": 0.1313409283220864,
+              "ci_upper_97.5": 0.243432873458778,
+              "ci_width": 0.1120919451366916,
+              "full_dataset_mean": 0.18410717159517465,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.9089425082822664,
+              "std_across_reps": 0.03192442255289902,
+              "ci_lower_2.5": 0.8467905053967358,
+              "ci_upper_97.5": 0.9696598827030812,
+              "ci_width": 0.1228693773063454,
+              "full_dataset_mean": 0.9087015149453229,
+              "full_dataset_rank": 10
+            }
+          ]
+        },
+        "60": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9585333333333335,
+          "spearman_rho_std": 0.030816877300240988,
+          "kendall_tau_mean": 0.8867555555555557,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.7139217481045501,
+              "std_across_reps": 0.034599917196471895,
+              "ci_lower_2.5": 0.647026884333918,
+              "ci_upper_97.5": 0.7806818655881156,
+              "ci_width": 0.1336549812541976,
+              "full_dataset_mean": 0.7132802675051129,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.27848410919375327,
+              "std_across_reps": 0.03791871095758462,
+              "ci_lower_2.5": 0.20513799157713633,
+              "ci_upper_97.5": 0.34195958147960853,
+              "ci_width": 0.1368215899024722,
+              "full_dataset_mean": 0.2789690735820766,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.2386627163249261,
+              "std_across_reps": 0.024228242872402186,
+              "ci_lower_2.5": 0.18900095531761552,
+              "ci_upper_97.5": 0.2821400200676516,
+              "ci_width": 0.09313906475003608,
+              "full_dataset_mean": 0.2389242675109548,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.12762999178095144,
+              "std_across_reps": 0.018895845028406577,
+              "ci_lower_2.5": 0.0892672966152068,
+              "ci_upper_97.5": 0.16367306286907674,
+              "ci_width": 0.07440576625386994,
+              "full_dataset_mean": 0.12818912765081492,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.2278128926736317,
+              "std_across_reps": 0.01837375750018641,
+              "ci_lower_2.5": 0.19157405042999073,
+              "ci_upper_97.5": 0.2615655866715271,
+              "ci_width": 0.06999153624153634,
+              "full_dataset_mean": 0.2282050324976023,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.18192000050030213,
+              "std_across_reps": 0.02064820978504721,
+              "ci_lower_2.5": 0.14171316918196758,
+              "ci_upper_97.5": 0.2195097038378288,
+              "ci_width": 0.07779653465586123,
+              "full_dataset_mean": 0.18288738261222767,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.2278840671899766,
+              "std_across_reps": 0.020067437702299004,
+              "ci_lower_2.5": 0.1900272122796794,
+              "ci_upper_97.5": 0.26673164840047575,
+              "ci_width": 0.07670443612079636,
+              "full_dataset_mean": 0.22932341364346,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.17688954656153935,
+              "std_across_reps": 0.01885328904688712,
+              "ci_lower_2.5": 0.13850509736543987,
+              "ci_upper_97.5": 0.2121818834240951,
+              "ci_width": 0.07367678605865524,
+              "full_dataset_mean": 0.17723334792142842,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.18340687221776597,
+              "std_across_reps": 0.019116339589520026,
+              "ci_lower_2.5": 0.14503736314102994,
+              "ci_upper_97.5": 0.21903818281391804,
+              "ci_width": 0.0740008196728881,
+              "full_dataset_mean": 0.18410717159517465,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.9094605069788319,
+              "std_across_reps": 0.0220419126655486,
+              "ci_lower_2.5": 0.8644894358415061,
+              "ci_upper_97.5": 0.952268699946138,
+              "ci_width": 0.087779264104632,
+              "full_dataset_mean": 0.9087015149453229,
+              "full_dataset_rank": 10
+            }
+          ]
+        },
+        "80": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9721818181818183,
+          "spearman_rho_std": 0.022618243528448732,
+          "kendall_tau_mean": 0.9177333333333335,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.7140344931669534,
+              "std_across_reps": 0.021278421780360803,
+              "ci_lower_2.5": 0.673553959252392,
+              "ci_upper_97.5": 0.7570309886058001,
+              "ci_width": 0.08347702935340806,
+              "full_dataset_mean": 0.7132802675051129,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.2781216806678655,
+              "std_across_reps": 0.023436880039102676,
+              "ci_lower_2.5": 0.22432369582064815,
+              "ci_upper_97.5": 0.31172664616354145,
+              "ci_width": 0.0874029503428933,
+              "full_dataset_mean": 0.2789690735820766,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.23898923276671752,
+              "std_across_reps": 0.013737255663037785,
+              "ci_lower_2.5": 0.21021984713289377,
+              "ci_upper_97.5": 0.26276774194641345,
+              "ci_width": 0.05254789481351968,
+              "full_dataset_mean": 0.2389242675109548,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.12772800111642316,
+              "std_across_reps": 0.010982572286281708,
+              "ci_lower_2.5": 0.10475450951911862,
+              "ci_upper_97.5": 0.14773711979079138,
+              "ci_width": 0.04298261027167276,
+              "full_dataset_mean": 0.12818912765081492,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.22816965428147687,
+              "std_across_reps": 0.010883317152760067,
+              "ci_lower_2.5": 0.2061416673980044,
+              "ci_upper_97.5": 0.2477923156806428,
+              "ci_width": 0.0416506482826384,
+              "full_dataset_mean": 0.2282050324976023,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.18232239830001432,
+              "std_across_reps": 0.012255056561368636,
+              "ci_lower_2.5": 0.15680754679724296,
+              "ci_upper_97.5": 0.20335407232033098,
+              "ci_width": 0.04654652552308802,
+              "full_dataset_mean": 0.18288738261222767,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.22892646719830717,
+              "std_across_reps": 0.012032739954327616,
+              "ci_lower_2.5": 0.2048196826702171,
+              "ci_upper_97.5": 0.2523248892181628,
+              "ci_width": 0.04750520654794571,
+              "full_dataset_mean": 0.22932341364346,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.17713932654435996,
+              "std_across_reps": 0.010975565314656715,
+              "ci_lower_2.5": 0.15442753212747648,
+              "ci_upper_97.5": 0.19631563666999277,
+              "ci_width": 0.04188810454251629,
+              "full_dataset_mean": 0.17723334792142842,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.18373105174817414,
+              "std_across_reps": 0.0112240257193936,
+              "ci_lower_2.5": 0.1610303312394305,
+              "ci_upper_97.5": 0.20361708900834283,
+              "ci_width": 0.042586757768912326,
+              "full_dataset_mean": 0.18410717159517465,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.9091666213112654,
+              "std_across_reps": 0.012702809322660687,
+              "ci_lower_2.5": 0.8853454294861273,
+              "ci_upper_97.5": 0.9359551145583217,
+              "ci_width": 0.05060968507219443,
+              "full_dataset_mean": 0.9087015149453229,
+              "full_dataset_rank": 10
+            }
+          ]
+        },
+        "100": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 1.0,
+          "spearman_rho_std": 0.0,
+          "kendall_tau_mean": 1.0,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.713280267505108,
+              "std_across_reps": 4.884981308350689e-15,
+              "ci_lower_2.5": 0.7132802675051129,
+              "ci_upper_97.5": 0.7132802675051129,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.7132802675051129,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.278969073582081,
+              "std_across_reps": 4.385380947269368e-15,
+              "ci_lower_2.5": 0.2789690735820766,
+              "ci_upper_97.5": 0.2789690735820766,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.2789690735820766,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.23892426751095322,
+              "std_across_reps": 1.582067810090848e-15,
+              "ci_lower_2.5": 0.2389242675109548,
+              "ci_upper_97.5": 0.2389242675109548,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.2389242675109548,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.12818912765081358,
+              "std_across_reps": 1.3322676295501878e-15,
+              "ci_lower_2.5": 0.12818912765081492,
+              "ci_upper_97.5": 0.12818912765081492,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.12818912765081492,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.22820503249760615,
+              "std_across_reps": 3.858025010572419e-15,
+              "ci_lower_2.5": 0.2282050324976023,
+              "ci_upper_97.5": 0.2282050324976023,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.2282050324976023,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.18288738261222426,
+              "std_across_reps": 3.4139358007223564e-15,
+              "ci_lower_2.5": 0.18288738261222767,
+              "ci_upper_97.5": 0.18288738261222767,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.18288738261222767,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.2293234136434641,
+              "std_across_reps": 4.08006961549745e-15,
+              "ci_lower_2.5": 0.22932341364346,
+              "ci_upper_97.5": 0.22932341364346,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.22932341364346,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.1772333479214295,
+              "std_across_reps": 1.0824674490095276e-15,
+              "ci_lower_2.5": 0.17723334792142842,
+              "ci_upper_97.5": 0.17723334792142842,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.17723334792142842,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.18410717159517323,
+              "std_across_reps": 1.4155343563970746e-15,
+              "ci_lower_2.5": 0.18410717159517465,
+              "ci_upper_97.5": 0.18410717159517465,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.18410717159517465,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.9087015149453083,
+              "std_across_reps": 1.4654943925052066e-14,
+              "ci_lower_2.5": 0.9087015149453229,
+              "ci_upper_97.5": 0.9087015149453229,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.9087015149453229,
+              "full_dataset_rank": 10
+            }
+          ]
+        }
+      }
+    },
+    {
+      "metric": "Chinese CER",
+      "report_dir": "handwritten_zh",
+      "field": "cer",
+      "higher_is_better": false,
+      "n_full": 100,
+      "engines": [
+        "baidu_ocr",
+        "deepseekOCR",
+        "deepseekOCR2",
+        "dots_mocr",
+        "glm_ocr",
+        "mineru",
+        "monkey_ocr",
+        "paddle_vl_1.5",
+        "paddle_vl_1.6",
+        "tesseract"
+      ],
+      "top1_full_dataset": "PaddleOCR-VL-1.5",
+      "by_sample_size": {
+        "20": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9428242424242426,
+          "spearman_rho_std": 0.05304178022987244,
+          "kendall_tau_mean": 0.870888888888889,
+          "top1_match_rate": 0.775,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.39623680253564214,
+              "std_across_reps": 0.09644761226286883,
+              "ci_lower_2.5": 0.21353193914817786,
+              "ci_upper_97.5": 0.5667141711229945,
+              "ci_width": 0.35318223197481663,
+              "full_dataset_mean": 0.39005536112720657,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.12263185757125701,
+              "std_across_reps": 0.1324845510105843,
+              "ci_lower_2.5": 0.0049466801737380155,
+              "ci_upper_97.5": 0.42579447270831705,
+              "ci_width": 0.42084779253457905,
+              "full_dataset_mean": 0.12344457860716672,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.333889475241228,
+              "std_across_reps": 0.1442322927811261,
+              "ci_lower_2.5": 0.09338867058960479,
+              "ci_upper_97.5": 0.6561630813871946,
+              "ci_width": 0.5627744107975898,
+              "full_dataset_mean": 0.3392184815335007,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.06612821611294288,
+              "std_across_reps": 0.04335371837563617,
+              "ci_lower_2.5": 0.0035613162878787887,
+              "ci_upper_97.5": 0.1609228445165945,
+              "ci_width": 0.1573615282287157,
+              "full_dataset_mean": 0.0642514717046157,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.03913892081713055,
+              "std_across_reps": 0.013001892121665493,
+              "ci_lower_2.5": 0.016338648348593127,
+              "ci_upper_97.5": 0.0663684056923281,
+              "ci_width": 0.05002975734373498,
+              "full_dataset_mean": 0.03865147591106748,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.01795945241133585,
+              "std_across_reps": 0.01014302895570176,
+              "ci_lower_2.5": 0.0035134796238244516,
+              "ci_upper_97.5": 0.04140158867649793,
+              "ci_width": 0.03788810905267348,
+              "full_dataset_mean": 0.017456456199044543,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.012825139491722292,
+              "std_across_reps": 0.007202913591718377,
+              "ci_lower_2.5": 0.001561316287878788,
+              "ci_upper_97.5": 0.028735549428104572,
+              "ci_width": 0.027174233140225785,
+              "full_dataset_mean": 0.012610569184049262,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.004318578847158567,
+              "std_across_reps": 0.004542638689330421,
+              "ci_lower_2.5": 0.0,
+              "ci_upper_97.5": 0.015217350770637402,
+              "ci_width": 0.015217350770637402,
+              "full_dataset_mean": 0.004144973273852585,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.005439403745944011,
+              "std_across_reps": 0.005044670164889899,
+              "ci_lower_2.5": 0.0,
+              "ci_upper_97.5": 0.017247451946873448,
+              "ci_width": 0.017247451946873448,
+              "full_dataset_mean": 0.005273515783974042,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.7493032222964302,
+              "std_across_reps": 0.0849428597822056,
+              "ci_lower_2.5": 0.6045502977223789,
+              "ci_upper_97.5": 0.9310302367591625,
+              "ci_width": 0.32647993903678363,
+              "full_dataset_mean": 0.7452303542039566,
+              "full_dataset_rank": 10
+            }
+          ]
+        },
+        "40": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9765333333333334,
+          "spearman_rho_std": 0.02471034477014274,
+          "kendall_tau_mean": 0.9288000000000002,
+          "top1_match_rate": 0.746,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.38936465613575444,
+              "std_across_reps": 0.0587664018352044,
+              "ci_lower_2.5": 0.2668604452319393,
+              "ci_upper_97.5": 0.5053597223592939,
+              "ci_width": 0.23849927712735464,
+              "full_dataset_mean": 0.39005536112720657,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.12098668383600647,
+              "std_across_reps": 0.07813389984529712,
+              "ci_lower_2.5": 0.012948897158621731,
+              "ci_upper_97.5": 0.25988708989601694,
+              "ci_width": 0.2469381927373952,
+              "full_dataset_mean": 0.12344457860716672,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.3370273794175616,
+              "std_across_reps": 0.0869860435802471,
+              "ci_lower_2.5": 0.16752967753530393,
+              "ci_upper_97.5": 0.5095535089916425,
+              "ci_width": 0.34202383145633863,
+              "full_dataset_mean": 0.3392184815335007,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.06367451979317872,
+              "std_across_reps": 0.026967308420652373,
+              "ci_lower_2.5": 0.012843446917665667,
+              "ci_upper_97.5": 0.12084174313632191,
+              "ci_width": 0.10799829621865625,
+              "full_dataset_mean": 0.0642514717046157,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.03892226040721719,
+              "std_across_reps": 0.008014543677954575,
+              "ci_lower_2.5": 0.02389875968298608,
+              "ci_upper_97.5": 0.05489033372737575,
+              "ci_width": 0.03099157404438967,
+              "full_dataset_mean": 0.03865147591106748,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.017490881511729516,
+              "std_across_reps": 0.005918852157991452,
+              "ci_lower_2.5": 0.007331031083192594,
+              "ci_upper_97.5": 0.029518238492525967,
+              "ci_width": 0.022187207409333373,
+              "full_dataset_mean": 0.017456456199044543,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.01280550338274072,
+              "std_across_reps": 0.004381867701921087,
+              "ci_lower_2.5": 0.005114780838233709,
+              "ci_upper_97.5": 0.021568748266357723,
+              "ci_width": 0.016453967428124015,
+              "full_dataset_mean": 0.012610569184049262,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.0042523709961016076,
+              "std_across_reps": 0.002751993334342709,
+              "ci_lower_2.5": 0.0,
+              "ci_upper_97.5": 0.009500364219114219,
+              "ci_width": 0.009500364219114219,
+              "full_dataset_mean": 0.004144973273852585,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.005400789518368822,
+              "std_across_reps": 0.003101219745801905,
+              "ci_lower_2.5": 0.0006578947368421052,
+              "ci_upper_97.5": 0.011564144736842105,
+              "ci_width": 0.01090625,
+              "full_dataset_mean": 0.005273515783974042,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.7460085890382233,
+              "std_across_reps": 0.052736952199241016,
+              "ci_lower_2.5": 0.648795753943046,
+              "ci_upper_97.5": 0.8484430938343529,
+              "ci_width": 0.1996473398913069,
+              "full_dataset_mean": 0.7452303542039566,
+              "full_dataset_rank": 10
+            }
+          ]
+        },
+        "60": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.987878787878788,
+          "spearman_rho_std": 0.013344348067416136,
+          "kendall_tau_mean": 0.9585333333333336,
+          "top1_match_rate": 0.773,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.3912576369695531,
+              "std_across_reps": 0.03808787606730586,
+              "ci_lower_2.5": 0.31194833236510283,
+              "ci_upper_97.5": 0.46260649637061035,
+              "ci_width": 0.15065816400550752,
+              "full_dataset_mean": 0.39005536112720657,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.12199992492213807,
+              "std_across_reps": 0.05479083945201971,
+              "ci_lower_2.5": 0.02981311930054576,
+              "ci_upper_97.5": 0.19546484710647924,
+              "ci_width": 0.16565172780593349,
+              "full_dataset_mean": 0.12344457860716672,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.33770821191433764,
+              "std_across_reps": 0.05784012242628072,
+              "ci_lower_2.5": 0.21778757366271528,
+              "ci_upper_97.5": 0.4443442970451018,
+              "ci_width": 0.22655672338238653,
+              "full_dataset_mean": 0.3392184815335007,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.06435910089129411,
+              "std_across_reps": 0.017254213113228885,
+              "ci_lower_2.5": 0.028770923451814256,
+              "ci_upper_97.5": 0.09751140484581154,
+              "ci_width": 0.06874048139399729,
+              "full_dataset_mean": 0.0642514717046157,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.03854076898738383,
+              "std_across_reps": 0.005222041680121146,
+              "ci_lower_2.5": 0.028039557874033703,
+              "ci_upper_97.5": 0.048500346679191834,
+              "ci_width": 0.02046078880515813,
+              "full_dataset_mean": 0.03865147591106748,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.01737650448940415,
+              "std_across_reps": 0.003878425100913431,
+              "ci_lower_2.5": 0.0096896973854705,
+              "ci_upper_97.5": 0.024211863134190686,
+              "ci_width": 0.014522165748720187,
+              "full_dataset_mean": 0.017456456199044543,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.012520213902785179,
+              "std_across_reps": 0.0030880450101432146,
+              "ci_lower_2.5": 0.006409711720972679,
+              "ci_upper_97.5": 0.01817601885509484,
+              "ci_width": 0.011766307134122161,
+              "full_dataset_mean": 0.012610569184049262,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.0040955777771079435,
+              "std_across_reps": 0.0018196926546511566,
+              "ci_lower_2.5": 0.0010258838383838385,
+              "ci_upper_97.5": 0.006908288789754307,
+              "ci_width": 0.005882404951370469,
+              "full_dataset_mean": 0.004144973273852585,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.0052360129997800165,
+              "std_across_reps": 0.0021030720443528717,
+              "ci_lower_2.5": 0.0010258838383838385,
+              "ci_upper_97.5": 0.008350596482062,
+              "ci_width": 0.007324712643678162,
+              "full_dataset_mean": 0.005273515783974042,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.7444294526866986,
+              "std_across_reps": 0.03521380713586417,
+              "ci_lower_2.5": 0.6740629679406086,
+              "ci_upper_97.5": 0.8111156587260345,
+              "ci_width": 0.13705269078542592,
+              "full_dataset_mean": 0.7452303542039566,
+              "full_dataset_rank": 10
+            }
+          ]
+        },
+        "80": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9944484848484849,
+          "spearman_rho_std": 0.00782016418372545,
+          "kendall_tau_mean": 0.9799555555555556,
+          "top1_match_rate": 0.853,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.3892659432611872,
+              "std_across_reps": 0.023827884841746104,
+              "ci_lower_2.5": 0.34570946975993827,
+              "ci_upper_97.5": 0.4356680746459861,
+              "ci_width": 0.08995860488604784,
+              "full_dataset_mean": 0.39005536112720657,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.12427868965017888,
+              "std_across_reps": 0.031878190404502765,
+              "ci_lower_2.5": 0.04911528890595733,
+              "ci_upper_97.5": 0.15294885434493058,
+              "ci_width": 0.10383356543897325,
+              "full_dataset_mean": 0.12344457860716672,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.33979437750211544,
+              "std_across_reps": 0.03720360307334397,
+              "ci_lower_2.5": 0.2600977371809046,
+              "ci_upper_97.5": 0.4020334296678882,
+              "ci_width": 0.14193569248698357,
+              "full_dataset_mean": 0.3392184815335007,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.06484022094132451,
+              "std_across_reps": 0.01088418273394223,
+              "ci_lower_2.5": 0.04198090934577686,
+              "ci_upper_97.5": 0.07917797599440601,
+              "ci_width": 0.03719706664862915,
+              "full_dataset_mean": 0.0642514717046157,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.03854152312495834,
+              "std_across_reps": 0.0031565204384118115,
+              "ci_lower_2.5": 0.03185602950940167,
+              "ci_upper_97.5": 0.04421605595289594,
+              "ci_width": 0.012360026443494272,
+              "full_dataset_mean": 0.03865147591106748,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.017376855738618947,
+              "std_across_reps": 0.002415922727731463,
+              "ci_lower_2.5": 0.011957542970819466,
+              "ci_upper_97.5": 0.020921173941987496,
+              "ci_width": 0.00896363097116803,
+              "full_dataset_mean": 0.017456456199044543,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.012652268870346152,
+              "std_across_reps": 0.001753331006329298,
+              "ci_lower_2.5": 0.008862137159427902,
+              "ci_upper_97.5": 0.015372586480061576,
+              "ci_width": 0.006510449320633674,
+              "full_dataset_mean": 0.012610569184049262,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.004134280817960757,
+              "std_across_reps": 0.0011080029145774098,
+              "ci_lower_2.5": 0.0016812165923157305,
+              "ci_upper_97.5": 0.005181216592315731,
+              "ci_width": 0.0035000000000000005,
+              "full_dataset_mean": 0.004144973273852585,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.0052654928624951995,
+              "std_across_reps": 0.0012530002937177498,
+              "ci_lower_2.5": 0.002199201348787329,
+              "ci_upper_97.5": 0.006591894729967553,
+              "ci_width": 0.004392693381180224,
+              "full_dataset_mean": 0.005273515783974042,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.7449947815835232,
+              "std_across_reps": 0.02157836284975814,
+              "ci_lower_2.5": 0.7000465793332498,
+              "ci_upper_97.5": 0.7813242030836631,
+              "ci_width": 0.08127762375041336,
+              "full_dataset_mean": 0.7452303542039566,
+              "full_dataset_rank": 10
+            }
+          ]
+        },
+        "100": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 1.0,
+          "spearman_rho_std": 0.0,
+          "kendall_tau_mean": 1.0,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.3900553611272095,
+              "std_across_reps": 2.942091015256665e-15,
+              "ci_lower_2.5": 0.39005536112720657,
+              "ci_upper_97.5": 0.39005536112720657,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.39005536112720657,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.12344457860716411,
+              "std_across_reps": 2.609024107869118e-15,
+              "ci_lower_2.5": 0.12344457860716672,
+              "ci_upper_97.5": 0.12344457860716672,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.12344457860716672,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.3392184815335039,
+              "std_across_reps": 3.219646771412954e-15,
+              "ci_lower_2.5": 0.3392184815335007,
+              "ci_upper_97.5": 0.3392184815335007,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.3392184815335007,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.06425147170461547,
+              "std_across_reps": 2.3592239273284576e-16,
+              "ci_lower_2.5": 0.0642514717046157,
+              "ci_upper_97.5": 0.0642514717046157,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.0642514717046157,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.03865147591106695,
+              "std_across_reps": 5.342948306008566e-16,
+              "ci_lower_2.5": 0.03865147591106748,
+              "ci_upper_97.5": 0.03865147591106748,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.03865147591106748,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.01745645619904447,
+              "std_across_reps": 7.28583859910259e-17,
+              "ci_lower_2.5": 0.017456456199044543,
+              "ci_upper_97.5": 0.017456456199044543,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.017456456199044543,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.01261056918404954,
+              "std_across_reps": 2.7755575615628914e-16,
+              "ci_lower_2.5": 0.012610569184049262,
+              "ci_upper_97.5": 0.012610569184049262,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.012610569184049262,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.004144973273852668,
+              "std_across_reps": 8.239936510889834e-17,
+              "ci_lower_2.5": 0.004144973273852585,
+              "ci_upper_97.5": 0.004144973273852585,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.004144973273852585,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.00527351578397395,
+              "std_across_reps": 9.194034422677078e-17,
+              "ci_lower_2.5": 0.005273515783974042,
+              "ci_upper_97.5": 0.005273515783974042,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.005273515783974042,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "tesseract",
+              "display": "Tesseract",
+              "mean_of_subsample_means": 0.7452303542039546,
+              "std_across_reps": 1.9984014443252818e-15,
+              "ci_lower_2.5": 0.7452303542039566,
+              "ci_upper_97.5": 0.7452303542039566,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.7452303542039566,
+              "full_dataset_rank": 10
+            }
+          ]
+        }
+      }
+    },
+    {
+      "metric": "Table TEDS",
+      "report_dir": "table",
+      "field": "TEDS",
+      "higher_is_better": true,
+      "n_full": 100,
+      "engines": [
+        "baidu_ocr",
+        "deepseekOCR",
+        "deepseekOCR2",
+        "dots_mocr",
+        "glm_ocr",
+        "mineru",
+        "monkey_ocr",
+        "paddle_vl_1.5",
+        "paddle_vl_1.6"
+      ],
+      "top1_full_dataset": "MonkeyOCR",
+      "by_sample_size": {
+        "20": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.8657166666666667,
+          "spearman_rho_std": 0.09151464818996646,
+          "kendall_tau_mean": 0.7418333333333332,
+          "top1_match_rate": 0.702,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8715310797957168,
+              "std_across_reps": 0.03840156873601934,
+              "ci_lower_2.5": 0.7842666735211344,
+              "ci_upper_97.5": 0.9316436915176332,
+              "ci_width": 0.14737701799649872,
+              "full_dataset_mean": 0.8720203115441961,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9058131156669629,
+              "std_across_reps": 0.024042422043498903,
+              "ci_lower_2.5": 0.8536994052522655,
+              "ci_upper_97.5": 0.9470368002680601,
+              "ci_width": 0.09333739501579463,
+              "full_dataset_mean": 0.9058994847468484,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8650090012327613,
+              "std_across_reps": 0.03039405096306174,
+              "ci_lower_2.5": 0.8012235481343558,
+              "ci_upper_97.5": 0.9162266140534966,
+              "ci_width": 0.11500306591914078,
+              "full_dataset_mean": 0.8649428769793448,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7366871683963527,
+              "std_across_reps": 0.06218324700631502,
+              "ci_lower_2.5": 0.6164160788910588,
+              "ci_upper_97.5": 0.8482385487942173,
+              "ci_width": 0.23182246990315858,
+              "full_dataset_mean": 0.7397784477780802,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.8320474437616601,
+              "std_across_reps": 0.041406324477291305,
+              "ci_lower_2.5": 0.7417340075626928,
+              "ci_upper_97.5": 0.905016023068952,
+              "ci_width": 0.1632820155062592,
+              "full_dataset_mean": 0.836616358348096,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7483846744159465,
+              "std_across_reps": 0.06423124754889102,
+              "ci_lower_2.5": 0.6121334853573437,
+              "ci_upper_97.5": 0.8635640586453378,
+              "ci_width": 0.2514305732879941,
+              "full_dataset_mean": 0.7491207216080841,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.923292403211236,
+              "std_across_reps": 0.021288761044677505,
+              "ci_lower_2.5": 0.8809626401151518,
+              "ci_upper_97.5": 0.9622641013896698,
+              "ci_width": 0.08130146127451798,
+              "full_dataset_mean": 0.9234908794441558,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.85427964757436,
+              "std_across_reps": 0.031487982341052885,
+              "ci_lower_2.5": 0.7870258591036563,
+              "ci_upper_97.5": 0.9100699451309978,
+              "ci_width": 0.12304408602734151,
+              "full_dataset_mean": 0.8561059837341262,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8822833499736453,
+              "std_across_reps": 0.027481598711705114,
+              "ci_lower_2.5": 0.8228637793315972,
+              "ci_upper_97.5": 0.9298406959469977,
+              "ci_width": 0.10697691661540054,
+              "full_dataset_mean": 0.8831353468323373,
+              "full_dataset_rank": 3
+            }
+          ]
+        },
+        "40": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9308666666666665,
+          "spearman_rho_std": 0.05183868139612434,
+          "kendall_tau_mean": 0.839388888888889,
+          "top1_match_rate": 0.87,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8710869041908231,
+              "std_across_reps": 0.024046548217362046,
+              "ci_lower_2.5": 0.8232724654040404,
+              "ci_upper_97.5": 0.9161708000543212,
+              "ci_width": 0.09289833465028074,
+              "full_dataset_mean": 0.8720203115441961,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9056273824417096,
+              "std_across_reps": 0.01494017260496428,
+              "ci_lower_2.5": 0.8751583914043748,
+              "ci_upper_97.5": 0.9349486544307006,
+              "ci_width": 0.05979026302632584,
+              "full_dataset_mean": 0.9058994847468484,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8652017574484564,
+              "std_across_reps": 0.018253252892784344,
+              "ci_lower_2.5": 0.8282640204325269,
+              "ci_upper_97.5": 0.9017283392521307,
+              "ci_width": 0.0734643188196038,
+              "full_dataset_mean": 0.8649428769793448,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7390058528467427,
+              "std_across_reps": 0.0391064388453101,
+              "ci_lower_2.5": 0.6671719209726511,
+              "ci_upper_97.5": 0.8160759460685953,
+              "ci_width": 0.14890402509594425,
+              "full_dataset_mean": 0.7397784477780802,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.8368637754914576,
+              "std_across_reps": 0.025080222702419632,
+              "ci_lower_2.5": 0.7870673879147104,
+              "ci_upper_97.5": 0.8815223019167673,
+              "ci_width": 0.09445491400205686,
+              "full_dataset_mean": 0.836616358348096,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7495658778500777,
+              "std_across_reps": 0.03984040719945604,
+              "ci_lower_2.5": 0.674813144046941,
+              "ci_upper_97.5": 0.8275680819172205,
+              "ci_width": 0.1527549378702795,
+              "full_dataset_mean": 0.7491207216080841,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9232158030554254,
+              "std_across_reps": 0.01271112457273677,
+              "ci_lower_2.5": 0.8972587532193098,
+              "ci_upper_97.5": 0.9475332775499683,
+              "ci_width": 0.05027452433065849,
+              "full_dataset_mean": 0.9234908794441558,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8561259832074878,
+              "std_across_reps": 0.018971140905757945,
+              "ci_lower_2.5": 0.8190938771320893,
+              "ci_upper_97.5": 0.8909469833865458,
+              "ci_width": 0.07185310625445651,
+              "full_dataset_mean": 0.8561059837341262,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8830759544493948,
+              "std_across_reps": 0.016532276728888944,
+              "ci_lower_2.5": 0.8500836838531475,
+              "ci_upper_97.5": 0.9135973883748807,
+              "ci_width": 0.06351370452173322,
+              "full_dataset_mean": 0.8831353468323373,
+              "full_dataset_rank": 3
+            }
+          ]
+        },
+        "60": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9611833333333332,
+          "spearman_rho_std": 0.032122850122615204,
+          "kendall_tau_mean": 0.8966666666666668,
+          "top1_match_rate": 0.965,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8717194203977635,
+              "std_across_reps": 0.015296787406808628,
+              "ci_lower_2.5": 0.8429798136969571,
+              "ci_upper_97.5": 0.9018131265573497,
+              "ci_width": 0.05883331286039262,
+              "full_dataset_mean": 0.8720203115441961,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.90572018879563,
+              "std_across_reps": 0.009902277065467478,
+              "ci_lower_2.5": 0.88732073951385,
+              "ci_upper_97.5": 0.9260738486590314,
+              "ci_width": 0.038753109145181375,
+              "full_dataset_mean": 0.9058994847468484,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8649322975300575,
+              "std_across_reps": 0.011842154122011438,
+              "ci_lower_2.5": 0.8409181301135349,
+              "ci_upper_97.5": 0.8874575825233079,
+              "ci_width": 0.046539452409772974,
+              "full_dataset_mean": 0.8649428769793448,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7408217986527443,
+              "std_across_reps": 0.02498000614607166,
+              "ci_lower_2.5": 0.6932822139692731,
+              "ci_upper_97.5": 0.7908374476596098,
+              "ci_width": 0.0975552336903367,
+              "full_dataset_mean": 0.7397784477780802,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.8367559877741924,
+              "std_across_reps": 0.01702457178388391,
+              "ci_lower_2.5": 0.8039201676778346,
+              "ci_upper_97.5": 0.8698793061322803,
+              "ci_width": 0.06595913845444568,
+              "full_dataset_mean": 0.836616358348096,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.749648638010262,
+              "std_across_reps": 0.026069739053963932,
+              "ci_lower_2.5": 0.6985470512845074,
+              "ci_upper_97.5": 0.8021351882610411,
+              "ci_width": 0.10358813697653368,
+              "full_dataset_mean": 0.7491207216080841,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9232279529608776,
+              "std_across_reps": 0.008414036560986611,
+              "ci_lower_2.5": 0.907018300688745,
+              "ci_upper_97.5": 0.9400671938773387,
+              "ci_width": 0.03304889318859372,
+              "full_dataset_mean": 0.9234908794441558,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8560712661502147,
+              "std_across_reps": 0.012680339719230414,
+              "ci_lower_2.5": 0.8324219664626817,
+              "ci_upper_97.5": 0.8816558423005281,
+              "ci_width": 0.04923387583784633,
+              "full_dataset_mean": 0.8561059837341262,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8832059729069508,
+              "std_across_reps": 0.01066471498355927,
+              "ci_lower_2.5": 0.8627689800330695,
+              "ci_upper_97.5": 0.9038850435255884,
+              "ci_width": 0.04111606349251895,
+              "full_dataset_mean": 0.8831353468323373,
+              "full_dataset_rank": 3
+            }
+          ]
+        },
+        "80": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9831166666666665,
+          "spearman_rho_std": 0.015730640659412307,
+          "kendall_tau_mean": 0.9470555555555557,
+          "top1_match_rate": 0.999,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8718670818353508,
+              "std_across_reps": 0.009493327283248263,
+              "ci_lower_2.5": 0.8567143170152035,
+              "ci_upper_97.5": 0.8923115195996248,
+              "ci_width": 0.03559720258442134,
+              "full_dataset_mean": 0.8720203115441961,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9060938103711484,
+              "std_across_reps": 0.0058980594397554705,
+              "ci_lower_2.5": 0.8958968423628244,
+              "ci_upper_97.5": 0.918489984972004,
+              "ci_width": 0.02259314260917955,
+              "full_dataset_mean": 0.9058994847468484,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8649588717755576,
+              "std_across_reps": 0.00716237248598421,
+              "ci_lower_2.5": 0.852493075752589,
+              "ci_upper_97.5": 0.8798123599446883,
+              "ci_width": 0.02731928419209928,
+              "full_dataset_mean": 0.8649428769793448,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7398654952418174,
+              "std_across_reps": 0.015203860026846665,
+              "ci_lower_2.5": 0.7113702978620052,
+              "ci_upper_97.5": 0.7694367164304203,
+              "ci_width": 0.0580664185684151,
+              "full_dataset_mean": 0.7397784477780802,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.8367061931892144,
+              "std_across_reps": 0.010456758110314907,
+              "ci_lower_2.5": 0.8182397284344527,
+              "ci_upper_97.5": 0.8582495172084617,
+              "ci_width": 0.04000978877400896,
+              "full_dataset_mean": 0.836616358348096,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7486186091912284,
+              "std_across_reps": 0.01620861783923389,
+              "ci_lower_2.5": 0.719053793231334,
+              "ci_upper_97.5": 0.7810082157749666,
+              "ci_width": 0.06195442254363259,
+              "full_dataset_mean": 0.7491207216080841,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9235063204400972,
+              "std_across_reps": 0.005131251796247371,
+              "ci_lower_2.5": 0.9140053020215264,
+              "ci_upper_97.5": 0.9334035032705662,
+              "ci_width": 0.019398201249039793,
+              "full_dataset_mean": 0.9234908794441558,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8560813157160977,
+              "std_across_reps": 0.00780198508509175,
+              "ci_lower_2.5": 0.8430819391566461,
+              "ci_upper_97.5": 0.8733580051749025,
+              "ci_width": 0.030276066018256387,
+              "full_dataset_mean": 0.8561059837341262,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8831777985816616,
+              "std_across_reps": 0.006807069309151025,
+              "ci_lower_2.5": 0.8716701574749016,
+              "ci_upper_97.5": 0.8985116291796855,
+              "ci_width": 0.026841471704783904,
+              "full_dataset_mean": 0.8831353468323373,
+              "full_dataset_rank": 3
+            }
+          ]
+        },
+        "100": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 1.0,
+          "spearman_rho_std": 0.0,
+          "kendall_tau_mean": 1.0,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8720203115442144,
+              "std_across_reps": 1.8318679906315083e-14,
+              "ci_lower_2.5": 0.8720203115441961,
+              "ci_upper_97.5": 0.8720203115441961,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8720203115441961,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9058994847468661,
+              "std_across_reps": 1.765254609153999e-14,
+              "ci_lower_2.5": 0.9058994847468484,
+              "ci_upper_97.5": 0.9058994847468484,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.9058994847468484,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8649428769793651,
+              "std_across_reps": 2.0317081350640365e-14,
+              "ci_lower_2.5": 0.8649428769793448,
+              "ci_upper_97.5": 0.8649428769793448,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8649428769793448,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7397784477780895,
+              "std_across_reps": 9.325873406851315e-15,
+              "ci_lower_2.5": 0.7397784477780802,
+              "ci_upper_97.5": 0.7397784477780802,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.7397784477780802,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.8366163583481152,
+              "std_across_reps": 1.9206858326015208e-14,
+              "ci_lower_2.5": 0.836616358348096,
+              "ci_upper_97.5": 0.836616358348096,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.836616358348096,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7491207216080807,
+              "std_across_reps": 3.3306690738754696e-15,
+              "ci_lower_2.5": 0.7491207216080841,
+              "ci_upper_97.5": 0.7491207216080841,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.7491207216080841,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9234908794441338,
+              "std_across_reps": 2.19824158875781e-14,
+              "ci_lower_2.5": 0.9234908794441558,
+              "ci_upper_97.5": 0.9234908794441558,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.9234908794441558,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8561059837341218,
+              "std_across_reps": 4.3298697960381105e-15,
+              "ci_lower_2.5": 0.8561059837341262,
+              "ci_upper_97.5": 0.8561059837341262,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8561059837341262,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8831353468323252,
+              "std_across_reps": 1.2101430968414206e-14,
+              "ci_lower_2.5": 0.8831353468323373,
+              "ci_upper_97.5": 0.8831353468323373,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8831353468323373,
+              "full_dataset_rank": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "metric": "Table TEDS-Struct",
+      "report_dir": "table",
+      "field": "TEDS-Struct",
+      "higher_is_better": true,
+      "n_full": 100,
+      "engines": [
+        "baidu_ocr",
+        "deepseekOCR",
+        "deepseekOCR2",
+        "dots_mocr",
+        "glm_ocr",
+        "mineru",
+        "monkey_ocr",
+        "paddle_vl_1.5",
+        "paddle_vl_1.6"
+      ],
+      "top1_full_dataset": "MonkeyOCR",
+      "by_sample_size": {
+        "20": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.7849,
+          "spearman_rho_std": 0.1426973915513369,
+          "kendall_tau_mean": 0.6543333333333333,
+          "top1_match_rate": 0.72,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8800844341067933,
+              "std_across_reps": 0.03723148572215504,
+              "ci_lower_2.5": 0.7965454347939556,
+              "ci_upper_97.5": 0.9398352661836883,
+              "ci_width": 0.14328983138973272,
+              "full_dataset_mean": 0.8800600270633545,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9166657697784283,
+              "std_across_reps": 0.022255917609504527,
+              "ci_lower_2.5": 0.8705088210476609,
+              "ci_upper_97.5": 0.9558525839333285,
+              "ci_width": 0.08534376288566758,
+              "full_dataset_mean": 0.9165016853177366,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8842593361419633,
+              "std_across_reps": 0.02834162181232941,
+              "ci_lower_2.5": 0.8239437277005769,
+              "ci_upper_97.5": 0.9313545841905229,
+              "ci_width": 0.10741085648994597,
+              "full_dataset_mean": 0.8845651029368906,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7970826903847595,
+              "std_across_reps": 0.06231357911090324,
+              "ci_lower_2.5": 0.666096952627318,
+              "ci_upper_97.5": 0.9025123371653496,
+              "ci_width": 0.23641538453803157,
+              "full_dataset_mean": 0.7940649218347063,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.8940369811162638,
+              "std_across_reps": 0.03974281109703658,
+              "ci_lower_2.5": 0.8067320166814084,
+              "ci_upper_97.5": 0.9597501988002235,
+              "ci_width": 0.15301818211881513,
+              "full_dataset_mean": 0.8941494150653782,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.76847866386519,
+              "std_across_reps": 0.06150950988824805,
+              "ci_lower_2.5": 0.643875751916137,
+              "ci_upper_97.5": 0.8816085028190789,
+              "ci_width": 0.23773275090294188,
+              "full_dataset_mean": 0.766039649208999,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9390815917079567,
+              "std_across_reps": 0.02072085759569064,
+              "ci_lower_2.5": 0.8937801997067771,
+              "ci_upper_97.5": 0.9753654042346507,
+              "ci_width": 0.08158520452787354,
+              "full_dataset_mean": 0.9386999804007351,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8828307406287481,
+              "std_across_reps": 0.02704368939015729,
+              "ci_lower_2.5": 0.8267920686632579,
+              "ci_upper_97.5": 0.9279033040895067,
+              "ci_width": 0.10111123542624878,
+              "full_dataset_mean": 0.8832548582834581,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.9031131069738526,
+              "std_across_reps": 0.02189718238998375,
+              "ci_lower_2.5": 0.8555572861384881,
+              "ci_upper_97.5": 0.9417629813512254,
+              "ci_width": 0.08620569521273724,
+              "full_dataset_mean": 0.9032423776411607,
+              "full_dataset_rank": 3
+            }
+          ]
+        },
+        "40": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.8844666666666666,
+          "spearman_rho_std": 0.0884046504558568,
+          "kendall_tau_mean": 0.7769444444444444,
+          "top1_match_rate": 0.914,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8793040458855724,
+              "std_across_reps": 0.022311114052857343,
+              "ci_lower_2.5": 0.8355691662624498,
+              "ci_upper_97.5": 0.9231598885087963,
+              "ci_width": 0.08759072224634645,
+              "full_dataset_mean": 0.8800600270633545,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9173136607983047,
+              "std_across_reps": 0.013948548137717122,
+              "ci_lower_2.5": 0.8893620026236555,
+              "ci_upper_97.5": 0.9419931316958985,
+              "ci_width": 0.05263112907224299,
+              "full_dataset_mean": 0.9165016853177366,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8843424539599466,
+              "std_across_reps": 0.01693920400961213,
+              "ci_lower_2.5": 0.8508822567122974,
+              "ci_upper_97.5": 0.917656430011993,
+              "ci_width": 0.0667741732996956,
+              "full_dataset_mean": 0.8845651029368906,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7949954117610851,
+              "std_across_reps": 0.038488566011979836,
+              "ci_lower_2.5": 0.7161345414036482,
+              "ci_upper_97.5": 0.8690729403118054,
+              "ci_width": 0.1529383989081572,
+              "full_dataset_mean": 0.7940649218347063,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.8946051732042318,
+              "std_across_reps": 0.024034086165732695,
+              "ci_lower_2.5": 0.8461010463638144,
+              "ci_upper_97.5": 0.9380108811932285,
+              "ci_width": 0.09190983482941406,
+              "full_dataset_mean": 0.8941494150653782,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7654295465769461,
+              "std_across_reps": 0.0405865647066594,
+              "ci_lower_2.5": 0.6815881563293785,
+              "ci_upper_97.5": 0.8404423472070368,
+              "ci_width": 0.15885419087765829,
+              "full_dataset_mean": 0.766039649208999,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9389840321498067,
+              "std_across_reps": 0.012921303108687242,
+              "ci_lower_2.5": 0.9136385058843574,
+              "ci_upper_97.5": 0.9625648826812783,
+              "ci_width": 0.04892637679692091,
+              "full_dataset_mean": 0.9386999804007351,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8828521626311879,
+              "std_across_reps": 0.016619061848612577,
+              "ci_lower_2.5": 0.850519185809644,
+              "ci_upper_97.5": 0.915255357014271,
+              "ci_width": 0.06473617120462694,
+              "full_dataset_mean": 0.8832548582834581,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.9032715469195798,
+              "std_across_reps": 0.013359342253132496,
+              "ci_lower_2.5": 0.8769013480658432,
+              "ci_upper_97.5": 0.929005219366097,
+              "ci_width": 0.052103871300253846,
+              "full_dataset_mean": 0.9032423776411607,
+              "full_dataset_rank": 3
+            }
+          ]
+        },
+        "60": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9238666666666666,
+          "spearman_rho_std": 0.058975927292413126,
+          "kendall_tau_mean": 0.834388888888889,
+          "top1_match_rate": 0.995,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8801406821819874,
+              "std_across_reps": 0.014674372133295513,
+              "ci_lower_2.5": 0.8508985877080908,
+              "ci_upper_97.5": 0.9078124395776181,
+              "ci_width": 0.056913851869527354,
+              "full_dataset_mean": 0.8800600270633545,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9164386283244598,
+              "std_across_reps": 0.008628077979162953,
+              "ci_lower_2.5": 0.9003827840378441,
+              "ci_upper_97.5": 0.9331631328913896,
+              "ci_width": 0.03278034885354553,
+              "full_dataset_mean": 0.9165016853177366,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8847059142838599,
+              "std_across_reps": 0.01137871830015289,
+              "ci_lower_2.5": 0.8636123742980539,
+              "ci_upper_97.5": 0.9079267764309906,
+              "ci_width": 0.04431440213293669,
+              "full_dataset_mean": 0.8845651029368906,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7943624299786571,
+              "std_across_reps": 0.026251993728761348,
+              "ci_lower_2.5": 0.7457013516609534,
+              "ci_upper_97.5": 0.847488119633445,
+              "ci_width": 0.10178676797249153,
+              "full_dataset_mean": 0.7940649218347063,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.894585730617133,
+              "std_across_reps": 0.016192955997364613,
+              "ci_lower_2.5": 0.8643942900194176,
+              "ci_upper_97.5": 0.9254116904076984,
+              "ci_width": 0.06101740038828085,
+              "full_dataset_mean": 0.8941494150653782,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7658901437393535,
+              "std_across_reps": 0.026449214749039437,
+              "ci_lower_2.5": 0.7159239134551345,
+              "ci_upper_97.5": 0.8180451432232813,
+              "ci_width": 0.10212122976814675,
+              "full_dataset_mean": 0.766039649208999,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9389421848355523,
+              "std_across_reps": 0.008210142805959228,
+              "ci_lower_2.5": 0.9236014467082431,
+              "ci_upper_97.5": 0.9552474175293211,
+              "ci_width": 0.03164597082107801,
+              "full_dataset_mean": 0.9386999804007351,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8835092009908171,
+              "std_across_reps": 0.011206860689874233,
+              "ci_lower_2.5": 0.8625942781584852,
+              "ci_upper_97.5": 0.9063049587706319,
+              "ci_width": 0.04371068061214667,
+              "full_dataset_mean": 0.8832548582834581,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.9030753890587634,
+              "std_across_reps": 0.008591759499079707,
+              "ci_lower_2.5": 0.8873734346556432,
+              "ci_upper_97.5": 0.9198053524479939,
+              "ci_width": 0.03243191779235066,
+              "full_dataset_mean": 0.9032423776411607,
+              "full_dataset_rank": 3
+            }
+          ]
+        },
+        "80": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9523666666666666,
+          "spearman_rho_std": 0.0429464653829496,
+          "kendall_tau_mean": 0.8889444444444445,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8803117171980365,
+              "std_across_reps": 0.009858389791063894,
+              "ci_lower_2.5": 0.8653971177154487,
+              "ci_upper_97.5": 0.901727150650764,
+              "ci_width": 0.03633003293531534,
+              "full_dataset_mean": 0.8800600270633545,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9163728161081215,
+              "std_across_reps": 0.005721309043297314,
+              "ci_lower_2.5": 0.906756249877112,
+              "ci_upper_97.5": 0.928984127727649,
+              "ci_width": 0.022227877850537037,
+              "full_dataset_mean": 0.9165016853177366,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8838922443102912,
+              "std_across_reps": 0.006648320334968229,
+              "ci_lower_2.5": 0.8727214330108382,
+              "ci_upper_97.5": 0.8982470404289769,
+              "ci_width": 0.025525607418138696,
+              "full_dataset_mean": 0.8845651029368906,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7928974823637054,
+              "std_across_reps": 0.015783141728556917,
+              "ci_lower_2.5": 0.7655996555488871,
+              "ci_upper_97.5": 0.827323769890945,
+              "ci_width": 0.061724114342057934,
+              "full_dataset_mean": 0.7940649218347063,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.8941190451273116,
+              "std_across_reps": 0.010098102180071181,
+              "ci_lower_2.5": 0.8772566578825962,
+              "ci_upper_97.5": 0.9153938867028987,
+              "ci_width": 0.03813722882030246,
+              "full_dataset_mean": 0.8941494150653782,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7662897442766452,
+              "std_across_reps": 0.015727411436943207,
+              "ci_lower_2.5": 0.7374410018333203,
+              "ci_upper_97.5": 0.7981541084209941,
+              "ci_width": 0.060713106587673815,
+              "full_dataset_mean": 0.766039649208999,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9383890468158065,
+              "std_across_reps": 0.00511862440228384,
+              "ci_lower_2.5": 0.9292724346835745,
+              "ci_upper_97.5": 0.9492432480757481,
+              "ci_width": 0.01997081339217366,
+              "full_dataset_mean": 0.9386999804007351,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8830550992268035,
+              "std_across_reps": 0.0066198572390004035,
+              "ci_lower_2.5": 0.8713390942489525,
+              "ci_upper_97.5": 0.8964406135854174,
+              "ci_width": 0.025101519336464873,
+              "full_dataset_mean": 0.8832548582834581,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.903430127550785,
+              "std_across_reps": 0.005584533120061918,
+              "ci_lower_2.5": 0.8938897785180551,
+              "ci_upper_97.5": 0.9155996089850429,
+              "ci_width": 0.021709830466987823,
+              "full_dataset_mean": 0.9032423776411607,
+              "full_dataset_rank": 3
+            }
+          ]
+        },
+        "100": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 1.0,
+          "spearman_rho_std": 0.0,
+          "kendall_tau_mean": 1.0,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.8800600270633431,
+              "std_across_reps": 1.1435297153639112e-14,
+              "ci_lower_2.5": 0.8800600270633545,
+              "ci_upper_97.5": 0.8800600270633545,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8800600270633545,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9165016853177198,
+              "std_across_reps": 1.6764367671839864e-14,
+              "ci_lower_2.5": 0.9165016853177366,
+              "ci_upper_97.5": 0.9165016853177366,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.9165016853177366,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8845651029369017,
+              "std_across_reps": 1.1102230246251565e-14,
+              "ci_lower_2.5": 0.8845651029368906,
+              "ci_upper_97.5": 0.8845651029368906,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8845651029368906,
+              "full_dataset_rank": 5
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.7940649218346951,
+              "std_across_reps": 1.1213252548714081e-14,
+              "ci_lower_2.5": 0.7940649218347063,
+              "ci_upper_97.5": 0.7940649218347063,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.7940649218347063,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.8941494150653847,
+              "std_across_reps": 6.5503158452884236e-15,
+              "ci_lower_2.5": 0.8941494150653782,
+              "ci_upper_97.5": 0.8941494150653782,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8941494150653782,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7660396492090051,
+              "std_across_reps": 6.106226635438361e-15,
+              "ci_lower_2.5": 0.766039649208999,
+              "ci_upper_97.5": 0.766039649208999,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.766039649208999,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9386999804007463,
+              "std_across_reps": 1.1213252548714081e-14,
+              "ci_lower_2.5": 0.9386999804007351,
+              "ci_upper_97.5": 0.9386999804007351,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.9386999804007351,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8832548582834403,
+              "std_across_reps": 1.7763568394002505e-14,
+              "ci_lower_2.5": 0.8832548582834581,
+              "ci_upper_97.5": 0.8832548582834581,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8832548582834581,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.9032423776411631,
+              "std_across_reps": 2.4424906541753444e-15,
+              "ci_lower_2.5": 0.9032423776411607,
+              "ci_upper_97.5": 0.9032423776411607,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.9032423776411607,
+              "full_dataset_rank": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "metric": "Table Cell-F1",
+      "report_dir": "table",
+      "field": "Cell-F1",
+      "higher_is_better": true,
+      "n_full": 100,
+      "engines": [
+        "baidu_ocr",
+        "deepseekOCR",
+        "deepseekOCR2",
+        "dots_mocr",
+        "glm_ocr",
+        "mineru",
+        "monkey_ocr",
+        "paddle_vl_1.5",
+        "paddle_vl_1.6"
+      ],
+      "top1_full_dataset": "DeepSeek-OCR",
+      "by_sample_size": {
+        "20": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.8862833333333333,
+          "spearman_rho_std": 0.09334474781392063,
+          "kendall_tau_mean": 0.7788333333333334,
+          "top1_match_rate": 0.41,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.9204193972633506,
+              "std_across_reps": 0.03880360438035373,
+              "ci_lower_2.5": 0.8366564259075097,
+              "ci_upper_97.5": 0.9797328989577163,
+              "ci_width": 0.14307647305020665,
+              "full_dataset_mean": 0.9215459648303924,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.928437173017494,
+              "std_across_reps": 0.025911615877276434,
+              "ci_lower_2.5": 0.8740744170473227,
+              "ci_upper_97.5": 0.9727355740880944,
+              "ci_width": 0.09866115704077172,
+              "full_dataset_mean": 0.928849157484781,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8940448739882773,
+              "std_across_reps": 0.03177605677373065,
+              "ci_lower_2.5": 0.827059789628811,
+              "ci_upper_97.5": 0.9490560844931233,
+              "ci_width": 0.1219962948643123,
+              "full_dataset_mean": 0.8960655599859716,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.6710003198761635,
+              "std_across_reps": 0.06156007247336098,
+              "ci_lower_2.5": 0.5368215412910363,
+              "ci_upper_97.5": 0.7812339159742479,
+              "ci_width": 0.24441237468321153,
+              "full_dataset_mean": 0.6740319503837909,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.71180281377073,
+              "std_across_reps": 0.05064728511831334,
+              "ci_lower_2.5": 0.6054673076673958,
+              "ci_upper_97.5": 0.8068178078017315,
+              "ci_width": 0.20135050013433575,
+              "full_dataset_mean": 0.7136755977574712,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7760934641693753,
+              "std_across_reps": 0.06775006609795545,
+              "ci_lower_2.5": 0.6393983304156533,
+              "ci_upper_97.5": 0.8962987231072974,
+              "ci_width": 0.2569003926916441,
+              "full_dataset_mean": 0.774823761075182,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9143551612359988,
+              "std_across_reps": 0.01813184069987037,
+              "ci_lower_2.5": 0.8765607255685935,
+              "ci_upper_97.5": 0.9470289016005483,
+              "ci_width": 0.07046817603195477,
+              "full_dataset_mean": 0.9147669524382934,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8737236537673743,
+              "std_across_reps": 0.03283154298371223,
+              "ci_lower_2.5": 0.8008389922337459,
+              "ci_upper_97.5": 0.9325954569675443,
+              "ci_width": 0.13175646473379843,
+              "full_dataset_mean": 0.8746730941397927,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8889856944811789,
+              "std_across_reps": 0.031608082938385386,
+              "ci_lower_2.5": 0.8213720665446187,
+              "ci_upper_97.5": 0.9442503420588488,
+              "ci_width": 0.12287827551423014,
+              "full_dataset_mean": 0.89049836061982,
+              "full_dataset_rank": 5
+            }
+          ]
+        },
+        "40": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9463833333333332,
+          "spearman_rho_std": 0.050431226547756204,
+          "kendall_tau_mean": 0.8737222222222224,
+          "top1_match_rate": 0.541,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.9208644796812202,
+              "std_across_reps": 0.022423707188264617,
+              "ci_lower_2.5": 0.876551391303404,
+              "ci_upper_97.5": 0.9628698400988539,
+              "ci_width": 0.08631844879544992,
+              "full_dataset_mean": 0.9215459648303924,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9284821468811774,
+              "std_across_reps": 0.01611652455928351,
+              "ci_lower_2.5": 0.8957141124993545,
+              "ci_upper_97.5": 0.9584963268809807,
+              "ci_width": 0.06278221438162623,
+              "full_dataset_mean": 0.928849157484781,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.895775042380452,
+              "std_across_reps": 0.01947539941271896,
+              "ci_lower_2.5": 0.8585588209210713,
+              "ci_upper_97.5": 0.9305544756728297,
+              "ci_width": 0.0719956547517584,
+              "full_dataset_mean": 0.8960655599859716,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.6745188778248722,
+              "std_across_reps": 0.039894727988773075,
+              "ci_lower_2.5": 0.5948830369553609,
+              "ci_upper_97.5": 0.7481801478458607,
+              "ci_width": 0.1532971108904998,
+              "full_dataset_mean": 0.6740319503837909,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.7137678355404347,
+              "std_across_reps": 0.031099394024217752,
+              "ci_lower_2.5": 0.6509087817390271,
+              "ci_upper_97.5": 0.7727383625002403,
+              "ci_width": 0.1218295807612132,
+              "full_dataset_mean": 0.7136755977574712,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.774966853249058,
+              "std_across_reps": 0.043461921108097754,
+              "ci_lower_2.5": 0.6923475207161836,
+              "ci_upper_97.5": 0.859775745936597,
+              "ci_width": 0.16742822522041345,
+              "full_dataset_mean": 0.774823761075182,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.91469284965319,
+              "std_across_reps": 0.011569849198738434,
+              "ci_lower_2.5": 0.8922479282567278,
+              "ci_upper_97.5": 0.9360650516868125,
+              "ci_width": 0.0438171234300847,
+              "full_dataset_mean": 0.9147669524382934,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8744676272223898,
+              "std_across_reps": 0.020865887697473166,
+              "ci_lower_2.5": 0.8330579960274177,
+              "ci_upper_97.5": 0.9128021388090016,
+              "ci_width": 0.07974414278158393,
+              "full_dataset_mean": 0.8746730941397927,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8897015222545307,
+              "std_across_reps": 0.01996747881430393,
+              "ci_lower_2.5": 0.8480960562684757,
+              "ci_upper_97.5": 0.9269276124601064,
+              "ci_width": 0.07883155619163063,
+              "full_dataset_mean": 0.89049836061982,
+              "full_dataset_rank": 5
+            }
+          ]
+        },
+        "60": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9750333333333332,
+          "spearman_rho_std": 0.023652554477969885,
+          "kendall_tau_mean": 0.9295555555555557,
+          "top1_match_rate": 0.662,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.9214641831846713,
+              "std_across_reps": 0.014969516565114279,
+              "ci_lower_2.5": 0.8937963056325188,
+              "ci_upper_97.5": 0.9501103499237399,
+              "ci_width": 0.05631404429122111,
+              "full_dataset_mean": 0.9215459648303924,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9288952685315041,
+              "std_across_reps": 0.01012769673311478,
+              "ci_lower_2.5": 0.9101792594554482,
+              "ci_upper_97.5": 0.9482059967849737,
+              "ci_width": 0.03802673732952555,
+              "full_dataset_mean": 0.928849157484781,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.8959187748575649,
+              "std_across_reps": 0.013051898614886164,
+              "ci_lower_2.5": 0.8727504612227327,
+              "ci_upper_97.5": 0.9222007967015186,
+              "ci_width": 0.049450335478785856,
+              "full_dataset_mean": 0.8960655599859716,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.6724849047311728,
+              "std_across_reps": 0.026660927803065233,
+              "ci_lower_2.5": 0.622692737145471,
+              "ci_upper_97.5": 0.7231485089146151,
+              "ci_width": 0.10045577176914411,
+              "full_dataset_mean": 0.6740319503837909,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.713057274244916,
+              "std_across_reps": 0.021190392605477025,
+              "ci_lower_2.5": 0.6709960596270008,
+              "ci_upper_97.5": 0.7543769714878875,
+              "ci_width": 0.0833809118608867,
+              "full_dataset_mean": 0.7136755977574712,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7749846857623811,
+              "std_across_reps": 0.0286374316753677,
+              "ci_lower_2.5": 0.7190592997706599,
+              "ci_upper_97.5": 0.8314113309263252,
+              "ci_width": 0.11235203115566539,
+              "full_dataset_mean": 0.774823761075182,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9147922358558291,
+              "std_across_reps": 0.007535254783154275,
+              "ci_lower_2.5": 0.9007217322148137,
+              "ci_upper_97.5": 0.9296884253682969,
+              "ci_width": 0.028966693153483214,
+              "full_dataset_mean": 0.9147669524382934,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.8745573691231164,
+              "std_across_reps": 0.013356241358384585,
+              "ci_lower_2.5": 0.8491317216631913,
+              "ci_upper_97.5": 0.9010603916497804,
+              "ci_width": 0.05192866998658907,
+              "full_dataset_mean": 0.8746730941397927,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8906648517322356,
+              "std_across_reps": 0.012675306529135346,
+              "ci_lower_2.5": 0.8665168313300263,
+              "ci_upper_97.5": 0.9160397020088414,
+              "ci_width": 0.04952287067881511,
+              "full_dataset_mean": 0.89049836061982,
+              "full_dataset_rank": 5
+            }
+          ]
+        },
+        "80": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 0.9877999999999998,
+          "spearman_rho_std": 0.011132734514834082,
+          "kendall_tau_mean": 0.9596111111111112,
+          "top1_match_rate": 0.778,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.9210621292326008,
+              "std_across_reps": 0.009352337250152597,
+              "ci_lower_2.5": 0.9072179619873083,
+              "ci_upper_97.5": 0.9402648329988,
+              "ci_width": 0.03304687101149173,
+              "full_dataset_mean": 0.9215459648303924,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9288439678733008,
+              "std_across_reps": 0.006438850259555333,
+              "ci_lower_2.5": 0.9176842245213982,
+              "ci_upper_97.5": 0.9419946510328183,
+              "ci_width": 0.024310426511420125,
+              "full_dataset_mean": 0.928849157484781,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.896009463823543,
+              "std_across_reps": 0.008057755174835774,
+              "ci_lower_2.5": 0.882565555686862,
+              "ci_upper_97.5": 0.914892323166616,
+              "ci_width": 0.03232676747975394,
+              "full_dataset_mean": 0.8960655599859716,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.6743929475353762,
+              "std_across_reps": 0.016247235726268402,
+              "ci_lower_2.5": 0.6442997978519455,
+              "ci_upper_97.5": 0.7057891016047516,
+              "ci_width": 0.061489303752806146,
+              "full_dataset_mean": 0.6740319503837909,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.7137681719535495,
+              "std_across_reps": 0.012419385181054456,
+              "ci_lower_2.5": 0.6895331407253364,
+              "ci_upper_97.5": 0.7391006550908502,
+              "ci_width": 0.049567514365513765,
+              "full_dataset_mean": 0.7136755977574712,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7747685142686977,
+              "std_across_reps": 0.017140593337301935,
+              "ci_lower_2.5": 0.7439692054032985,
+              "ci_upper_97.5": 0.8087693793559677,
+              "ci_width": 0.06480017395266924,
+              "full_dataset_mean": 0.774823761075182,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9147093648193546,
+              "std_across_reps": 0.004774396362736724,
+              "ci_lower_2.5": 0.9061290578508894,
+              "ci_upper_97.5": 0.9245730709479038,
+              "ci_width": 0.018444013097014378,
+              "full_dataset_mean": 0.9147669524382934,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.87464463820592,
+              "std_across_reps": 0.008119309095794279,
+              "ci_lower_2.5": 0.8593998309206649,
+              "ci_upper_97.5": 0.89159499857505,
+              "ci_width": 0.032195167654385126,
+              "full_dataset_mean": 0.8746730941397927,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8904688706698285,
+              "std_across_reps": 0.007888219420320199,
+              "ci_lower_2.5": 0.8764912414514682,
+              "ci_upper_97.5": 0.9059351988595218,
+              "ci_width": 0.02944395740805361,
+              "full_dataset_mean": 0.89049836061982,
+              "full_dataset_rank": 5
+            }
+          ]
+        },
+        "100": {
+          "n_reps": 1000,
+          "spearman_rho_mean": 1.0,
+          "spearman_rho_std": 0.0,
+          "kendall_tau_mean": 1.0,
+          "top1_match_rate": 1.0,
+          "engines": [
+            {
+              "engine": "baidu_ocr",
+              "display": "Baidu Unlimited OCR",
+              "mean_of_subsample_means": 0.9215459648304121,
+              "std_across_reps": 1.965094753586527e-14,
+              "ci_lower_2.5": 0.9215459648303924,
+              "ci_upper_97.5": 0.9215459648303924,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.9215459648303924,
+              "full_dataset_rank": 2
+            },
+            {
+              "engine": "deepseekOCR",
+              "display": "DeepSeek-OCR",
+              "mean_of_subsample_means": 0.9288491574847944,
+              "std_across_reps": 1.3322676295501878e-14,
+              "ci_lower_2.5": 0.928849157484781,
+              "ci_upper_97.5": 0.928849157484781,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.928849157484781,
+              "full_dataset_rank": 1
+            },
+            {
+              "engine": "deepseekOCR2",
+              "display": "DeepSeek-OCR2",
+              "mean_of_subsample_means": 0.896065559985995,
+              "std_across_reps": 2.3425705819590803e-14,
+              "ci_lower_2.5": 0.8960655599859716,
+              "ci_upper_97.5": 0.8960655599859716,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8960655599859716,
+              "full_dataset_rank": 4
+            },
+            {
+              "engine": "dots_mocr",
+              "display": "dots.mocr",
+              "mean_of_subsample_means": 0.6740319503837809,
+              "std_across_reps": 9.992007221626409e-15,
+              "ci_lower_2.5": 0.6740319503837909,
+              "ci_upper_97.5": 0.6740319503837909,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.6740319503837909,
+              "full_dataset_rank": 9
+            },
+            {
+              "engine": "glm_ocr",
+              "display": "GLM-OCR",
+              "mean_of_subsample_means": 0.7136755977574766,
+              "std_across_reps": 5.329070518200751e-15,
+              "ci_lower_2.5": 0.7136755977574712,
+              "ci_upper_97.5": 0.7136755977574712,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.7136755977574712,
+              "full_dataset_rank": 8
+            },
+            {
+              "engine": "mineru",
+              "display": "MinerU",
+              "mean_of_subsample_means": 0.7748237610751707,
+              "std_across_reps": 1.1324274851176597e-14,
+              "ci_lower_2.5": 0.774823761075182,
+              "ci_upper_97.5": 0.774823761075182,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.774823761075182,
+              "full_dataset_rank": 7
+            },
+            {
+              "engine": "monkey_ocr",
+              "display": "MonkeyOCR",
+              "mean_of_subsample_means": 0.9147669524382985,
+              "std_across_reps": 5.10702591327572e-15,
+              "ci_lower_2.5": 0.9147669524382934,
+              "ci_upper_97.5": 0.9147669524382934,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.9147669524382934,
+              "full_dataset_rank": 3
+            },
+            {
+              "engine": "paddle_vl_1.5",
+              "display": "PaddleOCR-VL-1.5",
+              "mean_of_subsample_means": 0.874673094139782,
+              "std_across_reps": 1.0658141036401503e-14,
+              "ci_lower_2.5": 0.8746730941397927,
+              "ci_upper_97.5": 0.8746730941397927,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.8746730941397927,
+              "full_dataset_rank": 6
+            },
+            {
+              "engine": "paddle_vl_1.6",
+              "display": "PaddleOCR-VL-1.6",
+              "mean_of_subsample_means": 0.8904983606198322,
+              "std_across_reps": 1.2212453270876722e-14,
+              "ci_lower_2.5": 0.89049836061982,
+              "ci_upper_97.5": 0.89049836061982,
+              "ci_width": 0.0,
+              "full_dataset_mean": 0.89049836061982,
+              "full_dataset_rank": 5
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

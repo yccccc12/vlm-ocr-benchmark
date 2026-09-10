@@ -1,0 +1,469 @@
+{
+  "charts": {
+    "failure_maps": {
+      "English CER": "evaluation_reports/charts/handwritten_en_failure_map.png",
+      "Chinese CER": "evaluation_reports/charts/handwritten_zh_failure_map.png",
+      "Table TEDS": "evaluation_reports/charts/table_teds_failure_map.png"
+    }
+  },
+  "patterns": {
+    "English CER": {
+      "hardest_samples": [
+        {
+          "index": 34,
+          "id": "handwritten_en_0034",
+          "mean_error": 0.7857142857142857,
+          "n_engines_bad": 8,
+          "per_engine": {
+            "Tesseract OCR": 1.0,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 0.14285714285714285,
+            "DeepSeek-OCR-2": 1.2857142857142858,
+            "PaddleOCR-VL-1.5": 1.0,
+            "PaddleOCR-VL-1.6": 1.0,
+            "dots.mocr": 0.14285714285714285,
+            "GLM-OCR": 1.0,
+            "MinerU2.5-Pro": 0.2857142857142857,
+            "MonkeyOCR-pro-3B": 1.0
+          }
+        },
+        {
+          "index": 22,
+          "id": "handwritten_en_0022",
+          "mean_error": 0.7754716981132075,
+          "n_engines_bad": 3,
+          "per_engine": {
+            "Tesseract OCR": 0.6415094339622641,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 5.320754716981132,
+            "DeepSeek-OCR-2": 0.18867924528301888,
+            "PaddleOCR-VL-1.5": 0.09433962264150944,
+            "PaddleOCR-VL-1.6": 0.09433962264150944,
+            "dots.mocr": 0.07547169811320754,
+            "GLM-OCR": 0.09433962264150944,
+            "MinerU2.5-Pro": 0.1509433962264151,
+            "MonkeyOCR-pro-3B": 0.09433962264150944
+          }
+        },
+        {
+          "index": 13,
+          "id": "handwritten_en_0013",
+          "mean_error": 0.4470588235294118,
+          "n_engines_bad": 10,
+          "per_engine": {
+            "Tesseract OCR": 0.47058823529411764,
+            "Unlimited OCR": 0.8235294117647058,
+            "DeepSeek-OCR": 0.47058823529411764,
+            "DeepSeek-OCR-2": 0.29411764705882354,
+            "PaddleOCR-VL-1.5": 0.29411764705882354,
+            "PaddleOCR-VL-1.6": 0.35294117647058826,
+            "dots.mocr": 0.29411764705882354,
+            "GLM-OCR": 0.35294117647058826,
+            "MinerU2.5-Pro": 0.7058823529411765,
+            "MonkeyOCR-pro-3B": 0.4117647058823529
+          }
+        },
+        {
+          "index": 70,
+          "id": "handwritten_en_0070",
+          "mean_error": 0.3657534246575343,
+          "n_engines_bad": 4,
+          "per_engine": {
+            "Tesseract OCR": 0.7534246575342466,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 1.3013698630136987,
+            "DeepSeek-OCR-2": 0.3013698630136986,
+            "PaddleOCR-VL-1.5": 0.136986301369863,
+            "PaddleOCR-VL-1.6": 0.0821917808219178,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.0410958904109589,
+            "MinerU2.5-Pro": 0.0410958904109589,
+            "MonkeyOCR-pro-3B": 0.0
+          }
+        },
+        {
+          "index": 57,
+          "id": "handwritten_en_0057",
+          "mean_error": 0.3230769230769231,
+          "n_engines_bad": 5,
+          "per_engine": {
+            "Tesseract OCR": 0.41025641025641024,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 0.3076923076923077,
+            "DeepSeek-OCR-2": 0.23076923076923078,
+            "PaddleOCR-VL-1.5": 0.15384615384615385,
+            "PaddleOCR-VL-1.6": 0.10256410256410256,
+            "dots.mocr": 0.02564102564102564,
+            "GLM-OCR": 0.9487179487179487,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.05128205128205128
+          }
+        },
+        {
+          "index": 91,
+          "id": "handwritten_en_0091",
+          "mean_error": 0.3111111111111111,
+          "n_engines_bad": 4,
+          "per_engine": {
+            "Tesseract OCR": 0.9444444444444444,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 0.1111111111111111,
+            "DeepSeek-OCR-2": 0.5,
+            "PaddleOCR-VL-1.5": 0.16666666666666666,
+            "PaddleOCR-VL-1.6": 0.05555555555555555,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.2222222222222222,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.1111111111111111
+          }
+        },
+        {
+          "index": 90,
+          "id": "handwritten_en_0090",
+          "mean_error": 0.30600000000000005,
+          "n_engines_bad": 5,
+          "per_engine": {
+            "Tesseract OCR": 0.76,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 0.22,
+            "DeepSeek-OCR-2": 0.22,
+            "PaddleOCR-VL-1.5": 0.16,
+            "PaddleOCR-VL-1.6": 0.16,
+            "dots.mocr": 0.06,
+            "GLM-OCR": 0.16,
+            "MinerU2.5-Pro": 0.1,
+            "MonkeyOCR-pro-3B": 0.22
+          }
+        },
+        {
+          "index": 23,
+          "id": "handwritten_en_0023",
+          "mean_error": 0.305,
+          "n_engines_bad": 4,
+          "per_engine": {
+            "Tesseract OCR": 1.0,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 0.4,
+            "DeepSeek-OCR-2": 0.325,
+            "PaddleOCR-VL-1.5": 0.15,
+            "PaddleOCR-VL-1.6": 0.0,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.025,
+            "MinerU2.5-Pro": 0.15,
+            "MonkeyOCR-pro-3B": 0.0
+          }
+        }
+      ],
+      "shared_hard_count": 5,
+      "shared_hard_indices": [
+        13,
+        14,
+        34,
+        57,
+        90
+      ],
+      "bad_threshold": 0.2,
+      "higher_is_better": false
+    },
+    "Chinese CER": {
+      "hardest_samples": [
+        {
+          "index": 23,
+          "id": "handwritten_zh_0023",
+          "mean_error": 0.8181818181818181,
+          "n_engines_bad": 3,
+          "per_engine": {
+            "Tesseract OCR": 0.7272727272727273,
+            "Unlimited OCR": 0.030303030303030304,
+            "DeepSeek-OCR": 6.242424242424242,
+            "DeepSeek-OCR-2": 0.9696969696969697,
+            "PaddleOCR-VL-1.5": 0.0,
+            "PaddleOCR-VL-1.6": 0.0,
+            "dots.mocr": 0.030303030303030304,
+            "GLM-OCR": 0.06060606060606061,
+            "MinerU2.5-Pro": 0.12121212121212122,
+            "MonkeyOCR-pro-3B": 0.0
+          }
+        },
+        {
+          "index": 32,
+          "id": "handwritten_zh_0032",
+          "mean_error": 0.6526315789473683,
+          "n_engines_bad": 5,
+          "per_engine": {
+            "Tesseract OCR": 2.026315789473684,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 0.9473684210526315,
+            "DeepSeek-OCR-2": 2.1842105263157894,
+            "PaddleOCR-VL-1.5": 0.0,
+            "PaddleOCR-VL-1.6": 0.02631578947368421,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.0,
+            "MinerU2.5-Pro": 0.3157894736842105,
+            "MonkeyOCR-pro-3B": 0.02631578947368421
+          }
+        },
+        {
+          "index": 36,
+          "id": "handwritten_zh_0036",
+          "mean_error": 0.5588235294117647,
+          "n_engines_bad": 3,
+          "per_engine": {
+            "Tesseract OCR": 2.735294117647059,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 0.0,
+            "DeepSeek-OCR-2": 1.8235294117647058,
+            "PaddleOCR-VL-1.5": 0.0,
+            "PaddleOCR-VL-1.6": 0.0,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.0,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.029411764705882353
+          }
+        },
+        {
+          "index": 45,
+          "id": "handwritten_zh_0045",
+          "mean_error": 0.4645161290322581,
+          "n_engines_bad": 2,
+          "per_engine": {
+            "Tesseract OCR": 0.7419354838709677,
+            "Unlimited OCR": 0.0,
+            "DeepSeek-OCR": 0.06451612903225806,
+            "DeepSeek-OCR-2": 3.838709677419355,
+            "PaddleOCR-VL-1.5": 0.0,
+            "PaddleOCR-VL-1.6": 0.0,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.0,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.0
+          }
+        },
+        {
+          "index": 3,
+          "id": "handwritten_zh_0003",
+          "mean_error": 0.4258064516129032,
+          "n_engines_bad": 2,
+          "per_engine": {
+            "Tesseract OCR": 0.6129032258064516,
+            "Unlimited OCR": 0.0,
+            "DeepSeek-OCR": 0.0,
+            "DeepSeek-OCR-2": 3.6451612903225805,
+            "PaddleOCR-VL-1.5": 0.0,
+            "PaddleOCR-VL-1.6": 0.0,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.0,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.0
+          }
+        },
+        {
+          "index": 24,
+          "id": "handwritten_zh_0024",
+          "mean_error": 0.35,
+          "n_engines_bad": 4,
+          "per_engine": {
+            "Tesseract OCR": 1.0,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 0.0,
+            "DeepSeek-OCR-2": 1.125,
+            "PaddleOCR-VL-1.5": 0.0,
+            "PaddleOCR-VL-1.6": 0.0,
+            "dots.mocr": 0.125,
+            "GLM-OCR": 0.25,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.0
+          }
+        },
+        {
+          "index": 86,
+          "id": "handwritten_zh_0086",
+          "mean_error": 0.33999999999999997,
+          "n_engines_bad": 2,
+          "per_engine": {
+            "Tesseract OCR": 2.4,
+            "Unlimited OCR": 1.0,
+            "DeepSeek-OCR": 0.0,
+            "DeepSeek-OCR-2": 0.0,
+            "PaddleOCR-VL-1.5": 0.0,
+            "PaddleOCR-VL-1.6": 0.0,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.0,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.0
+          }
+        },
+        {
+          "index": 17,
+          "id": "handwritten_zh_0017",
+          "mean_error": 0.3290322580645161,
+          "n_engines_bad": 2,
+          "per_engine": {
+            "Tesseract OCR": 0.5483870967741935,
+            "Unlimited OCR": 0.0,
+            "DeepSeek-OCR": 0.0,
+            "DeepSeek-OCR-2": 2.7419354838709675,
+            "PaddleOCR-VL-1.5": 0.0,
+            "PaddleOCR-VL-1.6": 0.0,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.0,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.0
+          }
+        }
+      ],
+      "shared_hard_count": 1,
+      "shared_hard_indices": [
+        32
+      ],
+      "bad_threshold": 0.2,
+      "higher_is_better": false
+    },
+    "Table TEDS": {
+      "hardest_samples": [
+        {
+          "index": 37,
+          "id": "table_0037",
+          "mean_error": 0.54168587783237,
+          "n_engines_bad": 5,
+          "per_engine": {
+            "Unlimited OCR": 0.14243309791364933,
+            "DeepSeek-OCR": 1.0,
+            "DeepSeek-OCR-2": 0.8059250566001954,
+            "PaddleOCR-VL-1.5": 0.18701767260267366,
+            "PaddleOCR-VL-1.6": 0.08896080881087887,
+            "dots.mocr": 0.6613216628587728,
+            "GLM-OCR": 0.2505320160952583,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.9886367846272417
+          }
+        },
+        {
+          "index": 58,
+          "id": "table_0058",
+          "mean_error": 0.43515043192630837,
+          "n_engines_bad": 2,
+          "per_engine": {
+            "Unlimited OCR": 0.9623983739837398,
+            "DeepSeek-OCR": 0.5048780487804878,
+            "DeepSeek-OCR-2": 0.505589430894309,
+            "PaddleOCR-VL-1.5": 0.6439532520325204,
+            "PaddleOCR-VL-1.6": 0.48983739837398366,
+            "dots.mocr": 0.8099749202006384,
+            "GLM-OCR": 0.6084302790240399,
+            "MinerU2.5-Pro": 0.014227642276422814,
+            "MonkeyOCR-pro-3B": 0.5443567670970827
+          }
+        },
+        {
+          "index": 60,
+          "id": "table_0060",
+          "mean_error": 0.41890244735111726,
+          "n_engines_bad": 3,
+          "per_engine": {
+            "Unlimited OCR": 0.9026275030444944,
+            "DeepSeek-OCR": 0.970984446341896,
+            "DeepSeek-OCR-2": 0.09057713038977677,
+            "PaddleOCR-VL-1.5": 0.11020390752028819,
+            "PaddleOCR-VL-1.6": 0.8109205654724787,
+            "dots.mocr": 0.6979939543608523,
+            "GLM-OCR": 0.6938265105313152,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.9527439561788436
+          }
+        },
+        {
+          "index": 71,
+          "id": "table_0071",
+          "mean_error": 0.3959334754428445,
+          "n_engines_bad": 0,
+          "per_engine": {
+            "Unlimited OCR": 0.6021714674278338,
+            "DeepSeek-OCR": 0.65625,
+            "DeepSeek-OCR-2": 0.5144703190200566,
+            "PaddleOCR-VL-1.5": 0.6016115570135,
+            "PaddleOCR-VL-1.6": 0.6021714674278338,
+            "dots.mocr": 0.6457453039397754,
+            "GLM-OCR": 0.6422836726634018,
+            "MinerU2.5-Pro": 0.5983332720152902,
+            "MonkeyOCR-pro-3B": 0.5735616615067081
+          }
+        },
+        {
+          "index": 95,
+          "id": "table_0095",
+          "mean_error": 0.3587502875546354,
+          "n_engines_bad": 1,
+          "per_engine": {
+            "Unlimited OCR": 0.6956521739130435,
+            "DeepSeek-OCR": 0.9130434782608696,
+            "DeepSeek-OCR-2": 0.5745341614906833,
+            "PaddleOCR-VL-1.5": 0.8260869565217391,
+            "PaddleOCR-VL-1.6": 0.6956521739130435,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.6532349896480332,
+            "MinerU2.5-Pro": 0.6956521739130435,
+            "MonkeyOCR-pro-3B": 0.7173913043478262
+          }
+        },
+        {
+          "index": 38,
+          "id": "table_0038",
+          "mean_error": 0.3548461266485924,
+          "n_engines_bad": 1,
+          "per_engine": {
+            "Unlimited OCR": 0.7076411960132891,
+            "DeepSeek-OCR": 0.7717781007751938,
+            "DeepSeek-OCR-2": 0.6059347557477605,
+            "PaddleOCR-VL-1.5": 0.5196106931144551,
+            "PaddleOCR-VL-1.6": 0.526120493417005,
+            "dots.mocr": 0.47417120237506183,
+            "GLM-OCR": 0.7647462204917745,
+            "MinerU2.5-Pro": 0.6468715393133998,
+            "MonkeyOCR-pro-3B": 0.7895106589147287
+          }
+        },
+        {
+          "index": 85,
+          "id": "table_0085",
+          "mean_error": 0.3484215908585656,
+          "n_engines_bad": 3,
+          "per_engine": {
+            "Unlimited OCR": 0.9191176470588235,
+            "DeepSeek-OCR": 0.6759453781512605,
+            "DeepSeek-OCR-2": 0.719187675070028,
+            "PaddleOCR-VL-1.5": 0.83156262505002,
+            "PaddleOCR-VL-1.6": 0.9241696678671468,
+            "dots.mocr": 0.4327030812324929,
+            "GLM-OCR": 0.4131652661064428,
+            "MinerU2.5-Pro": 0.0,
+            "MonkeyOCR-pro-3B": 0.9483543417366946
+          }
+        },
+        {
+          "index": 41,
+          "id": "table_0041",
+          "mean_error": 0.3302041662238437,
+          "n_engines_bad": 1,
+          "per_engine": {
+            "Unlimited OCR": 0.7361963190184049,
+            "DeepSeek-OCR": 0.7156791518673985,
+            "DeepSeek-OCR-2": 0.7667449061540117,
+            "PaddleOCR-VL-1.5": 0.7738874696364392,
+            "PaddleOCR-VL-1.6": 0.721911965195076,
+            "dots.mocr": 0.0,
+            "GLM-OCR": 0.8133737296446939,
+            "MinerU2.5-Pro": 0.7417629638327088,
+            "MonkeyOCR-pro-3B": 0.7586059986366734
+          }
+        }
+      ],
+      "shared_hard_count": 1,
+      "shared_hard_indices": [
+        37
+      ],
+      "bad_threshold": 0.5,
+      "higher_is_better": true
+    }
+  }
+}

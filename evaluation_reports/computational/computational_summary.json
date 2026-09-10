@@ -1,0 +1,497 @@
+{
+  "baidu_ocr": {
+    "timestamp": "2026-07-04T05:00:38.753577",
+    "total_records": 100,
+    "successful_records": 100,
+    "success_rate": 100.0,
+    "execution_time": {
+      "mean": 56.55,
+      "min": 11.54,
+      "max": 242.04,
+      "count": 100,
+      "stdev": 45.36
+    },
+    "cpu_usage": {
+      "mean": 11.39,
+      "min": 10.4,
+      "max": 12.3,
+      "count": 100,
+      "stdev": 0.48
+    },
+    "ram_peak": {
+      "mean": 3063.72,
+      "min": 2837.0,
+      "max": 3172.0,
+      "count": 100,
+      "stdev": 54.65
+    },
+    "gpu_utilization": {
+      "mean": 21.68,
+      "min": 18.4,
+      "max": 26.6,
+      "count": 100,
+      "stdev": 1.66
+    },
+    "gpu_memory_used": {
+      "mean": 14012.12,
+      "min": 10206.0,
+      "max": 14092.0,
+      "count": 100,
+      "stdev": 468.0
+    },
+    "gpu_memory_percent": {
+      "mean": 60.86,
+      "min": 44.3,
+      "max": 61.2,
+      "count": 100,
+      "stdev": 2.04
+    },
+    "gpu_temp_peak": {
+      "mean": 73.41,
+      "min": 48.0,
+      "max": 76.0,
+      "count": 100,
+      "stdev": 3.64
+    }
+  },
+  "deepseekOCR": {
+    "timestamp": "2026-07-03T14:39:00.699861",
+    "total_records": 100,
+    "successful_records": 100,
+    "success_rate": 100.0,
+    "execution_time": {
+      "mean": 70.53,
+      "min": 7.34,
+      "max": 592.16,
+      "count": 100,
+      "stdev": 94.32
+    },
+    "cpu_usage": {
+      "mean": 11.59,
+      "min": 10.3,
+      "max": 12.9,
+      "count": 100,
+      "stdev": 0.56
+    },
+    "ram_peak": {
+      "mean": 2639.85,
+      "min": 2386.0,
+      "max": 2713.0,
+      "count": 100,
+      "stdev": 60.4
+    },
+    "gpu_utilization": {
+      "mean": 20.71,
+      "min": 15.8,
+      "max": 22.2,
+      "count": 100,
+      "stdev": 0.94
+    },
+    "gpu_memory_used": {
+      "mean": 9374.18,
+      "min": 8149.0,
+      "max": 9388.0,
+      "count": 100,
+      "stdev": 123.76
+    },
+    "gpu_memory_percent": {
+      "mean": 40.68,
+      "min": 35.4,
+      "max": 40.8,
+      "count": 100,
+      "stdev": 0.54
+    },
+    "gpu_temp_peak": {
+      "mean": 55.91,
+      "min": 49.0,
+      "max": 58.0,
+      "count": 100,
+      "stdev": 1.04
+    }
+  },
+  "deepseekOCR2": {
+    "timestamp": "2026-07-03T14:51:24.254614",
+    "total_records": 100,
+    "successful_records": 100,
+    "success_rate": 100.0,
+    "execution_time": {
+      "mean": 70.34,
+      "min": 9.43,
+      "max": 533.88,
+      "count": 100,
+      "stdev": 82.06
+    },
+    "cpu_usage": {
+      "mean": 11.49,
+      "min": 10.5,
+      "max": 12.5,
+      "count": 100,
+      "stdev": 0.53
+    },
+    "ram_peak": {
+      "mean": 2837.73,
+      "min": 2636.0,
+      "max": 2862.0,
+      "count": 100,
+      "stdev": 37.8
+    },
+    "gpu_utilization": {
+      "mean": 19.52,
+      "min": 16.9,
+      "max": 21.1,
+      "count": 100,
+      "stdev": 0.75
+    },
+    "gpu_memory_used": {
+      "mean": 9208.05,
+      "min": 8383.0,
+      "max": 9224.0,
+      "count": 100,
+      "stdev": 111.19
+    },
+    "gpu_memory_percent": {
+      "mean": 39.93,
+      "min": 36.4,
+      "max": 40.0,
+      "count": 100,
+      "stdev": 0.48
+    },
+    "gpu_temp_peak": {
+      "mean": 55.46,
+      "min": 49.0,
+      "max": 57.0,
+      "count": 100,
+      "stdev": 0.89
+    }
+  },
+  "dots_mocr": {
+    "timestamp": "2026-07-04T04:24:34.501448",
+    "total_records": 100,
+    "successful_records": 100,
+    "success_rate": 100.0,
+    "execution_time": {
+      "mean": 42.11,
+      "min": 6.38,
+      "max": 168.67,
+      "count": 100,
+      "stdev": 30.09
+    },
+    "cpu_usage": {
+      "mean": 10.69,
+      "min": 9.9,
+      "max": 11.2,
+      "count": 100,
+      "stdev": 0.28
+    },
+    "ram_peak": {
+      "mean": 451.04,
+      "min": 219.0,
+      "max": 644.0,
+      "count": 100,
+      "stdev": 61.39
+    },
+    "gpu_utilization": {
+      "mean": 90.18,
+      "min": 78.5,
+      "max": 98.0,
+      "count": 100,
+      "stdev": 4.31
+    },
+    "gpu_memory_used": {
+      "mean": 19428.65,
+      "min": 13489.0,
+      "max": 20160.0,
+      "count": 100,
+      "stdev": 1359.87
+    },
+    "gpu_memory_percent": {
+      "mean": 84.33,
+      "min": 58.6,
+      "max": 87.5,
+      "count": 100,
+      "stdev": 5.89
+    },
+    "gpu_temp_peak": {
+      "mean": 78.72,
+      "min": 74.0,
+      "max": 82.0,
+      "count": 100,
+      "stdev": 1.45
+    }
+  },
+  "glm_ocr": {
+    "timestamp": "2026-07-04T05:35:30.108561",
+    "total_records": 100,
+    "successful_records": 100,
+    "success_rate": 100.0,
+    "execution_time": {
+      "mean": 4.0,
+      "min": 2.09,
+      "max": 21.1,
+      "count": 100,
+      "stdev": 2.18
+    },
+    "cpu_usage": {
+      "mean": 12.86,
+      "min": 4.2,
+      "max": 21.1,
+      "count": 100,
+      "stdev": 3.78
+    },
+    "ram_peak": {
+      "mean": 3261.14,
+      "min": 2061.0,
+      "max": 3710.0,
+      "count": 100,
+      "stdev": 420.75
+    },
+    "gpu_utilization": {
+      "mean": 32.45,
+      "min": 0.0,
+      "max": 53.0,
+      "count": 100,
+      "stdev": 11.97
+    },
+    "gpu_memory_used": {
+      "mean": 21732.88,
+      "min": 21232.0,
+      "max": 22193.0,
+      "count": 100,
+      "stdev": 196.66
+    },
+    "gpu_memory_percent": {
+      "mean": 94.36,
+      "min": 92.2,
+      "max": 96.3,
+      "count": 100,
+      "stdev": 0.85
+    },
+    "gpu_temp_peak": {
+      "mean": 64.86,
+      "min": 52.0,
+      "max": 71.0,
+      "count": 100,
+      "stdev": 4.69
+    }
+  },
+  "mineru": {
+    "timestamp": "2026-07-04T04:22:50.010352",
+    "total_records": 100,
+    "successful_records": 100,
+    "success_rate": 100.0,
+    "execution_time": {
+      "mean": 18.38,
+      "min": 12.53,
+      "max": 36.71,
+      "count": 100,
+      "stdev": 4.71
+    },
+    "cpu_usage": {
+      "mean": 13.89,
+      "min": 12.9,
+      "max": 15.8,
+      "count": 100,
+      "stdev": 0.54
+    },
+    "ram_peak": {
+      "mean": 112.0,
+      "min": 112.0,
+      "max": 112.0,
+      "count": 100,
+      "stdev": 0.0
+    },
+    "gpu_utilization": {
+      "mean": 29.91,
+      "min": 11.7,
+      "max": 50.9,
+      "count": 100,
+      "stdev": 8.46
+    },
+    "gpu_memory_used": {
+      "mean": 13899.35,
+      "min": 11590.0,
+      "max": 14220.0,
+      "count": 100,
+      "stdev": 566.12
+    },
+    "gpu_memory_percent": {
+      "mean": 60.32,
+      "min": 50.3,
+      "max": 61.7,
+      "count": 100,
+      "stdev": 2.44
+    },
+    "gpu_temp_peak": {
+      "mean": 78.44,
+      "min": 66.0,
+      "max": 83.0,
+      "count": 100,
+      "stdev": 2.52
+    }
+  },
+  "monkey_ocr": {
+    "timestamp": "2026-07-04T04:23:29.496114",
+    "total_records": 100,
+    "successful_records": 100,
+    "success_rate": 100.0,
+    "execution_time": {
+      "mean": 34.89,
+      "min": 31.39,
+      "max": 49.18,
+      "count": 100,
+      "stdev": 2.45
+    },
+    "cpu_usage": {
+      "mean": 10.62,
+      "min": 10.1,
+      "max": 11.2,
+      "count": 100,
+      "stdev": 0.22
+    },
+    "ram_peak": {
+      "mean": 103.0,
+      "min": 103.0,
+      "max": 103.0,
+      "count": 100,
+      "stdev": 0.0
+    },
+    "gpu_utilization": {
+      "mean": 14.42,
+      "min": 4.5,
+      "max": 30.4,
+      "count": 100,
+      "stdev": 4.37
+    },
+    "gpu_memory_used": {
+      "mean": 6989.78,
+      "min": 5853.0,
+      "max": 9058.0,
+      "count": 100,
+      "stdev": 631.67
+    },
+    "gpu_memory_percent": {
+      "mean": 30.34,
+      "min": 25.4,
+      "max": 39.3,
+      "count": 100,
+      "stdev": 2.74
+    },
+    "gpu_temp_peak": {
+      "mean": 70.2,
+      "min": 50.0,
+      "max": 74.0,
+      "count": 100,
+      "stdev": 3.89
+    }
+  },
+  "paddle_vl_1.5": {
+    "timestamp": "2026-07-03T14:38:32.943101",
+    "total_records": 100,
+    "successful_records": 100,
+    "success_rate": 100.0,
+    "execution_time": {
+      "mean": 32.49,
+      "min": 6.29,
+      "max": 137.32,
+      "count": 100,
+      "stdev": 24.69
+    },
+    "cpu_usage": {
+      "mean": 10.2,
+      "min": 8.3,
+      "max": 11.0,
+      "count": 100,
+      "stdev": 0.33
+    },
+    "ram_peak": {
+      "mean": 3314.56,
+      "min": 2927.0,
+      "max": 3907.0,
+      "count": 100,
+      "stdev": 226.86
+    },
+    "gpu_utilization": {
+      "mean": 24.71,
+      "min": 14.3,
+      "max": 39.4,
+      "count": 100,
+      "stdev": 5.34
+    },
+    "gpu_memory_used": {
+      "mean": 14803.1,
+      "min": 8155.0,
+      "max": 17514.0,
+      "count": 100,
+      "stdev": 2255.15
+    },
+    "gpu_memory_percent": {
+      "mean": 64.24,
+      "min": 35.4,
+      "max": 76.0,
+      "count": 100,
+      "stdev": 9.78
+    },
+    "gpu_temp_peak": {
+      "mean": 67.96,
+      "min": 52.0,
+      "max": 71.0,
+      "count": 100,
+      "stdev": 2.72
+    }
+  },
+  "paddle_vl_1.6": {
+    "timestamp": "2026-07-03T15:37:25.446997",
+    "total_records": 100,
+    "successful_records": 100,
+    "success_rate": 100.0,
+    "execution_time": {
+      "mean": 32.51,
+      "min": 6.29,
+      "max": 137.34,
+      "count": 100,
+      "stdev": 24.78
+    },
+    "cpu_usage": {
+      "mean": 10.21,
+      "min": 8.3,
+      "max": 10.9,
+      "count": 100,
+      "stdev": 0.38
+    },
+    "ram_peak": {
+      "mean": 3360.69,
+      "min": 2876.0,
+      "max": 3901.0,
+      "count": 100,
+      "stdev": 224.99
+    },
+    "gpu_utilization": {
+      "mean": 24.34,
+      "min": 13.8,
+      "max": 40.0,
+      "count": 100,
+      "stdev": 5.32
+    },
+    "gpu_memory_used": {
+      "mean": 14802.92,
+      "min": 8154.0,
+      "max": 17514.0,
+      "count": 100,
+      "stdev": 2255.01
+    },
+    "gpu_memory_percent": {
+      "mean": 64.24,
+      "min": 35.4,
+      "max": 76.0,
+      "count": 100,
+      "stdev": 9.78
+    },
+    "gpu_temp_peak": {
+      "mean": 68.05,
+      "min": 56.0,
+      "max": 70.0,
+      "count": 100,
+      "stdev": 2.1
+    }
+  }
+}
