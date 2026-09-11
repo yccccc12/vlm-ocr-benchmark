@@ -6,3 +6,6 @@ temp/
 outputs/
 __pycache__/
 experiments/
+.claude/
+.vscode/
+inference_output/
