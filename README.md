@@ -39,7 +39,8 @@ final-year-project/
 │   │   ├── table.py            # Fetch PubTabNet OTSL tables (images + GT)
 │   │   ├── select_table.py     # Organise selected tables into level_1..level_4
 │   │   ├── handwritten_en.py   # Fetch IAM-line         (English handwriting)
-│   │   └── handwritten_zh.py   # Fetch CASIA-HWDB2-line (Chinese handwriting)
+│   │   ├── handwritten_zh.py   # Fetch CASIA-HWDB2-line (Chinese handwriting)
+│   │   └── zip_input_images.py # Package data/raw images -> data/data.zip (engine input)
 │   │ 
 │   ├── engines/                # Run each model to generate predictions
 │   │   ├── deepseek_ocr.ipynb
@@ -48,15 +49,16 @@ final-year-project/
 │   │   ├── mineru_pro.ipynb
 │   │   ├── monkey_ocr.ipynb
 │   │   ├── paddle_ocr_vl.ipynb
-│   │   ├── paddle_ocr_vl_api.py # PaddleOCR-VL via hosted API
 │   │   └── tesseract.py         # Tesseract baseline
 │   │ 
-│   └── evaluation/                # Score predictions
-│       ├── eval_table.py          # Table metrics (TEDS / TEDS-Struct / Cell-F1)
-│       ├── eval_handwritten_en.py # English CER / WER
-│       ├── eval_handwritten_zh.py # Chinese CER
-│       ├── eval_computational.py  # Aggregate runtime / resource logs
-│       └── otsl_to_html.py        # OTSL -> HTML conversion helper
+│   └── evaluation/                       # Score predictions
+│       ├── eval.py                       # Runs all three evaluations below in sequence
+│       ├── extract_inference_output.py   # Unzip inference_output/*.zip -> outputs/
+│       ├── eval_table.py                 # Table metrics (TEDS / TEDS-Struct / Cell-F1)
+│       ├── eval_handwritten_en.py        # English CER / WER
+│       ├── eval_handwritten_zh.py        # Chinese CER
+│       ├── eval_computational.py         # Aggregate runtime / resource logs
+│       └── otsl_to_html.py               # OTSL -> HTML conversion helper
 │ 
 ├── evaluation_reports/   # Generated metric reports
 │   ├── table/  
@@ -65,12 +67,13 @@ final-year-project/
 │   └── handwritten_zh/
 │ 
 ├── data/                 # Datasets (git-ignored)
-├── outputs/              # Model predictions (git-ignored)
+├── inference_output/     # Downloaded prediction zips, one per model (git-ignored)
+├── outputs/              # Extracted model predictions (git-ignored)
 ├── requirements.txt
 └── README.md
 ```
 
-> `data/` and `outputs/` are git-ignored. Run the fetch and engine steps to populate them locally.
+> `data/`, `inference_output/`, and `outputs/` are git-ignored. Run the fetch, engine, and extraction steps to populate them locally.
 
 ## Setup
 
@@ -83,13 +86,6 @@ pip install -r requirements.txt
 ```
 
 For the **Tesseract** baseline, install the Tesseract binary separately and the `eng` / `chi_sim` language packs ([install guide](https://tesseract-ocr.github.io/tessdoc/Installation.html)).
-
-For the **PaddleOCR-VL API**, create a `.env` file in the project root:
-
-```
-PaddleOCR_VL_API_URL=<your-endpoint-url>
-PaddleOCR_VL_API_TOKEN=<your-token>
-```
 
 ## Workflow
 
@@ -112,20 +108,97 @@ python src/fetch_data/fetch_all.py
 
 This step also produces the ground-truth files used for evaluation (`data/raw/<task>/gt/`).
 
-### 2. Generate predictions
+#### How samples are selected
 
-Run the engine for each model. The notebooks in `src/engines/` are Colab-based: upload the fetched input images as a zip, run the notebook, then download the resulting `<model>_output.zip` and extract it under `outputs/<dataset>/<model>/`.
+There is no random sampling and no seed: each script takes the **first N rows of a fixed
+split**, in dataset order, via the Hugging Face `datasets-server` API. The sample ID *is* the
+row index (`handwritten_en_0042` = row 42 of the IAM-line `test` split), so the 100-sample set
+is fully determined by the split and reproducible without any stored manifest. Re-running a
+fetch script overwrites the same files.
 
-> To skip re-fetching, download the pre-packaged input-images zip used for this project's notebook runs: [Google Drive link](https://drive.google.com/file/d/17fy1xziJWVD7hC1PaFI5KZrRNDWGxIDe/view?usp=sharing). This is the zip to upload into each notebook — it does not include ground truth (that still comes from step 1).
+#### Adjusting how much data is fetched
 
-Script-based engines:
+The fetch scripts have no CLI flags — the parameters are constants at the top of each file:
+
+| Script | Parameter | Default | Meaning |
+|---|---|---|---|
+| `handwritten_en.py` / `handwritten_zh.py` | `split` | `"test"` | Dataset split to read from |
+| | `offset` | `0` | Index of the first row to fetch |
+| | `length` | `100` | Rows to fetch — **max 100, API limit** (see below) |
+| `table.py` | `split` | `"val"` | Dataset split |
+| | `total_samples` | `100` | Total tables to fetch |
+| | `batch_size` | `100` | Rows per API request — **must stay ≤ 100** |
+| `select_table.py` | `levels` | 5 IDs × 4 levels | Hand-picked row indices for the difficulty split |
+
+Upper bounds (split sizes as of this writing): IAM-line `test` = 2,915 · CASIA-HWDB2-line
+`test` = 10,441 · PubTabNet_OTSL `val` = 6,942.
+
+**The API caps every request at 100 rows** — asking for more returns
+`422 Parameter 'length' must not be greater than 100`. The scripts handle this differently:
+
+- **`table.py` paginates.** To fetch 500 tables, set `total_samples = 500` and leave
+  `batch_size = 100`; it loops over offsets automatically.
+- **`handwritten_en.py` / `handwritten_zh.py` make a single request** and will fail if
+  `length > 100`. To fetch more than 100 lines, either run the script several times with
+  `offset = 0`, `100`, `200`, … (IDs embed the offset, so nothing collides), or add a
+  pagination loop mirroring `table.py`.
+- **`select_table.py` is independent of `table.py`.** It fetches its 20 tables directly by
+  absolute row index, so changing `total_samples` does not affect the difficulty split, and
+  it can run on its own. To change the split, edit the `levels` dict; several of its indices
+  (e.g. `0704`, `0804`) deliberately lie outside the first 100 rows.
+
+Sample IDs are zero-padded to four digits, so a single fetch supports up to 9,999 samples per
+task.
+
+**If you change N:**
+
+- Run every engine on the same samples. The statistical tests compare engines document by
+  document, so any document missing from one engine is dropped for all of them.
+- The evaluation and statistics scripts work with whatever number of samples you fetched.
+  If N > 100, also update `SAMPLE_SIZES` in `src/evaluation/sample_size_stability.py`.
+- Results from a different N cannot be compared with the published results.
+
+### 2. Package images for the engines
+
+Bundle the fetched images (no ground truth) into a single upload-ready zip:
 
 ```bash
-python src/engines/tesseract.py            # handwritten_en + handwritten_zh
-python src/engines/paddle_ocr_vl_api.py    # PaddleOCR-VL (configure dataset in file)
+python src/fetch_data/zip_input_images.py    # data/raw/<task> images -> data/data.zip
 ```
 
-### 3. Evaluate
+`handwritten_en`, `handwritten_zh`, and `table` are mandatory — the script aborts if any is missing from `data/raw/`. `table_by_level` is optional: if you skipped `select_table.py`, it's simply left out of the zip with a note, and the other three still get packaged.
+
+> To skip fetching + packaging entirely, download the pre-packaged input-images zip used for this project's notebook runs: [Google Drive link](https://drive.google.com/file/d/17fy1xziJWVD7hC1PaFI5KZrRNDWGxIDe/view?usp=sharing). It does not include ground truth (that still comes from step 1).
+
+### 3. Generate predictions
+
+Run the engine for each model. The notebooks in `src/engines/` are Colab-based: upload `data/data.zip` (from step 2), run the notebook, then download the resulting `<model>_output.zip`.
+
+Place every downloaded `<model>_output.zip` into `inference_output/` (create the folder if needed), then extract them all into `outputs/` in one go:
+
+```bash
+python src/evaluation/extract_inference_output.py
+```
+
+This locates the `handwritten_en` / `handwritten_zh` / `table` / `table_by_level` folders inside each zip (whatever top-level prefix the notebook wrapped them in) and copies each model's predictions to `outputs/<task>/<model>/`, matching the layout the evaluation scripts expect. Computational-cost logs bundled in the same zips are skipped. `handwritten_en`, `handwritten_zh`, and `table` are mandatory per zip — a model missing one is flagged with `[ERROR]` and the script exits non-zero; `table_by_level` is optional and just prints a note if absent. It never modifies `inference_output/` itself (zips are opened read-only); add `--dry-run` to preview counts first, or `--tasks table,table_by_level` to extract a subset. See the script header for the zip-filename -> model-key mapping if you rename a downloaded zip.
+
+Script-based engines write straight to `outputs/` and don't go through `inference_output/`:
+
+```bash
+python src/engines/tesseract.py  # handwritten_en + handwritten_zh
+```
+
+### 4. Evaluate
+
+Run everything (handwritten English, handwritten Chinese, table) in one command:
+
+```bash
+python src/evaluation/eval.py
+```
+
+This runs `eval_handwritten_en.py`, `eval_handwritten_zh.py`, and `eval_table.py` (`--mode both`) in sequence. Use `--tasks` to run a subset (e.g. `--tasks table`) and `--table-mode` to change the table mode (`level`, `overall`, `both`).
+
+Or run each metric individually for finer control:
 
 ```bash
 # Tables (by-level + overall). Defaults to all configured models.
@@ -174,7 +247,7 @@ The table set is split into four difficulty levels (5 tables each) to analyse ho
 
 ## Requirements
 
-Key dependencies (see `requirements.txt` for the full list): `datasets`, `transformers`, `beautifulsoup4`, `apted`, `jiwer`, `editdistance`, `opencv-python`, `scikit-image`, `pillow`, `pytesseract`, `python-dotenv`.
+Key dependencies are list at `requirements.txt`.
 
 ## Acknowledgements
 
